@@ -1,0 +1,76 @@
+
+
+<style>
+.menulines{
+border:1px solid white;
+}
+
+.menulines a{
+text-decoration:none;
+color:#FF8000;
+}
+</style>
+</head>
+
+<body text="#FFFF00">
+<script language="JavaScript">
+
+
+function borderize(what,color){
+what.style.borderColor=color<!--设置对象的边框颜色-->
+}
+
+function borderize_on(e){<!--边框显示-->
+if (document.all)<!--如果是ie浏览器-->
+source3=event.srcElement<!--获得当前事件的对象-->
+else if (document.getElementById)
+source3=e.target<!--获得当前事件的对象-->
+if (source3.className=="menulines"){<!--如果当前事件的对象是菜单-->
+borderize(source3,"black")<!--在上边加上黑色边框-->
+}
+else{<!--当前事件的对象不是菜单-->
+while(source3.tagName!="TABLE"){<!--如果当前对象的tag名称不是table-->
+source3=document.getElementById? source3.parentNode : source3.parentElement<!--寻找其父对象-->
+borderize(source3,"black")<!--将其边框变成黑色-->
+}
+}
+}
+
+function borderize_off(e){<!--边框隐藏-->
+if (document.all)<!--如果是ie浏览器-->
+source4=event.srcElement<!--获得当前事件的对象-->
+else if (document.getElementById)
+source4=e.target<!--获得当前事件的对象-->
+if (source4.className=="menulines")<!--如果当前事件的对象是菜单-->
+borderize(source4,"white")<!--在上边加上白色边框-->
+else{<!--当前事件的对象不是菜单-->
+while(source4.tagName!="TABLE"){<!--如果当前对象的tag名称不是table-->
+source4=document.getElementById? source4.parentNode : source4.parentElement<!--寻找其父对象-->
+borderize(source4,"white")<!--将其边框变成白色-->
+}
+}
+}
+
+</script>
+<table border="0" width="123" cellpadding="2" onMouseOver="borderize_on(event)" onMouseOut="borderize_off(event)">
+  <tr>
+    <td width="121" bgcolor="#E0E0E0">
+      <p align="center"><b><font size="3">软件下载</font></b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="121" class="menulines" align="center"><a href="#"><font size="2">播放软件下载</font></a></td>
+  </tr>
+  <tr>
+    <td width="121" class="menulines" align="center"><a href="#"><font size="2">学习软件下载</font></a></td>
+  </tr>
+  <tr>
+    <td width="121" class="menulines" align="center"><font size="2"><a href="#">游戏软件下载</a></font></td>
+  </tr>
+</table>
+
+
+<!--本例程实现了出现边框的菜单-->
+<!--边框出现时用黑色，边框消失时用白色-->
+<!--对鼠标事件的函数响应-->
+<!--对不同浏览器的支持-->

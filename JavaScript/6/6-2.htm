@@ -1,0 +1,73 @@
+
+<script language="JavaScript">
+step = 0;<!--定义摆动的步长-->
+obj = new Image();<!--定义图片-->
+
+function anim(xp,xk,smer) 
+{
+<!--把x赋值为图片当前左侧坐标-->
+ obj.style.left = x;
+ <!--x按照smer定义的方向移动一个步长--> 
+ x += step*smer;
+ <!--如果x在摆动中心右侧-->
+  if (x>=(xk+xp)/2) {
+   <!--如果当前方向为正方向，步长将减小-->
+    if (smer == 1) step--;
+    <!--否则，步长将增加-->
+       else step++;
+    }
+  <!--如果x在摆动中心左侧-->
+ else {
+ <!--如果当前方向为正方向，步长将增加-->
+    if (smer == 1) step++;
+    <!--否则，步长将减小-->
+       else step--;
+    }
+
+ 
+
+  setTimeout('anim('+xp+','+xk+','+smer+')', 50);
+}
+
+<!--图像摆动函数，objID代表摆动的图像ID，movingarea_width代表摆动的范围，c表示-->
+function moveLR(objID,movingarea_width,c)
+{
+
+  <!--调用document.body.offsetWidth变量-->
+   window_width = document.body.offsetWidth;
+  
+  obj = document.images[objID];<!--获得objID代表的对象-->   
+  image_width = obj.width;<!--获得待摆动图片的宽度--> 
+  
+  
+ 
+ {
+       
+     {
+         <!--如果摆动的宽度不为0，则首先计算出图片摆动的最左侧坐标-->
+		     x = Math.round((window_width-movingarea_width)/2);
+		     <!--然后计算出图片摆动的最右侧坐标-->
+			 right_margin = Math.round((window_width+movingarea_width)/2)-image_width;
+		 }  
+		 <!--调用anim()函数-->
+		anim(x,right_margin,1);
+   }     	
+}
+</script>
+
+<img src="logo1.gif" name="picture"
+style="position: absolute; top: 70px; left: 30px;" BORDER="0">
+<script LANGUAGE="JavaScript"><!--
+<!--每0.01秒调用一次moveLR函数，摆动的对象是picture，摆动宽度是300个象素，-->
+setTimeout("moveLR('picture',300,1)",10); 
+
+
+</script>
+
+
+
+
+<!--本例程用来实现图片在当前窗口上的摆动。-->
+<!--可以根据设置摆动函数的参数，可以实现摆动的模式，包括全窗口的摆动、窗口中心的摆动，以及给定摆动范围的摆动-->
+<!--设计中使用了settimeout函数，用来周期的调用某一个函数-->
+<!--如何确定摆动过程中的范围是需要认真思考的-->

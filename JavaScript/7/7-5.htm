@@ -1,0 +1,38 @@
+<script language="JavaScript">
+
+function nextSize(i,incMethod,textLength)<!--返回字体大小-->
+{
+if (incMethod == 1) return (40*Math.abs( Math.sin(i/(textLength/3.14))) );<!--返回第i个字的字体的大小，字体按照正弦曲线变化-->
+
+}
+
+function sizeCycle(text,method,dis)
+{
+	output = "";<!--定义变量，赋值为空-->
+	for (i = 0; i < text.length; i++)<!--循环所有的文字-->
+	{
+		size = parseInt(nextSize(i +dis,method,text.length));<!--获得第i+dis的字的字体的大小-->
+output += "<font color=red style='font-size: "+size +"pt'>" +text.substring(i,i+1)+ "</font>";<!--生成显示的字符串-->
+	}
+	theDiv.innerHTML = output;<!--输出字符串-->
+}
+
+function doWave(n) 
+{   
+	theText ="欢迎来到本站！";<!--设定待显示的文字-->
+                 
+	sizeCycle(theText,1,n);<!--调用sizeCycle函数-->
+	if (n > theText.length) {n=0}
+	setTimeout("doWave(" + (n+1) + ")", 100);<!--每隔0.5毫秒调用一次doWave函数-->
+}
+</script>
+<div ID="theDiv">
+
+</div>
+
+
+<body  onload=doWave(0);><!--直接调用doWave函数-->
+<!--本例程实现了文字胡乱跳动的效果-->
+<!--对字体大小的控制-->
+<!--利用settimeout函数实现动画效果-->
+<!--对函数的调用-->

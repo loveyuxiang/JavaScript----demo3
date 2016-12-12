@@ -1,0 +1,17 @@
+<SCRIPT LANGUAGE="Javascript">
+pageOpen = new Date();
+function bye() {
+pageClose = new Date();
+minutes = (pageClose.getMinutes() - pageOpen.getMinutes());
+seconds = (pageClose.getSeconds() - pageOpen.getSeconds());
+time = (seconds + (minutes * 60));
+if (time == 1) {
+time = (time + "秒");
+}
+else {
+time = (time + " 秒");
+   }
+alert('您在这儿呆了' + time + '.欢迎再来!');
+} 
+</SCRIPT>
+<body  onUnload="bye()">

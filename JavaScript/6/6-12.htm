@@ -1,0 +1,43 @@
+
+<script language="JavaScript">
+ var pos1=-95;
+ var pos2=-95;
+ var pos3=-95;
+ 
+
+ var speed1 = Math.floor(Math.random()*10)+2;
+ var speed2 = Math.floor(Math.random()*10)+2;
+ var speed3 = Math.floor(Math.random()*10)+2;
+
+  function next() {
+    pos1 += speed1;
+    pos2 += speed2;
+    pos3 += speed3;
+   
+
+    if (pos1 > 795) pos1 = -95;
+    if (pos2 > 795) pos2 = -95;
+    if (pos3 > 795) pos3 = -95;
+   
+
+{
+       mouse1.style.left = pos1;
+       mouse2.style.left = pos2;
+       mouse3.style.left = pos3;
+       
+
+    }
+    window.setTimeout("next();",10);
+ }
+ </script>
+ <div id="mouse1"
+style="HEIGHT: 100px; LEFT: 0px; POSITION: absolute; TOP: 165px; WIDTH: 100px">
+<dd><img alt border="0" src="car.jpg" > </dd>
+</div><div id="mouse2"
+style="HEIGHT: 100px; LEFT: 0px; POSITION: absolute; TOP: 250px; WIDTH: 100px">
+<dd><img alt border="0" src="car.jpg" ></dd>
+</div><div id="mouse3"
+style="HEIGHT: 100px; LEFT: 0px; POSITION: absolute; TOP: 333px; WIDTH: 100px">
+<dd><img alt border="0" src="car.jpg" ></dd>
+
+<body  onload="next();">

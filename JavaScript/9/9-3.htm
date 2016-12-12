@@ -1,0 +1,26 @@
+
+
+<SCRIPT Language="JavaScript">
+
+
+function drop(n) {
+ if(self.moveBy){
+  self.moveBy (0,-900);<!--将当前窗口向上移动900-->
+  for(i = n; i > 0; i--){
+    self.moveBy(0,3);<!--将当前窗口向下移动900，每次移动3-->
+  }
+  for(j = 8; j > 0; j--){<!--振动8次-->
+    self.moveBy(0,j);<!--向下移动j-->
+    self.moveBy(j,0);<!--向右移动j-->
+    self.moveBy(0,-j);<!--向上移动j-->
+    self.moveBy(-j,0);<!--向左移动j-->
+  }
+ }
+}
+drop(300)
+</script>
+
+<!--本例程实现了从天而降的窗口-->
+<!--对窗口参数的动态控制-->
+<!--对浏览器类型的判断-->
+<!--衰减振动的实现方法-->

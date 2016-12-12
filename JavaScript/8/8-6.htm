@@ -1,0 +1,64 @@
+
+
+<script LANGUAGE="JavaScript">
+
+var hex = new Array(6)<!--定义数组变量-->
+
+hex[0] = "FF"
+hex[1] = "CC"
+hex[2] = "99"
+hex[3] = "66"
+hex[4] = "33"
+hex[5] = "00"
+function display(triplet) 
+{
+	document.bgColor = '#' + triplet<!--根据输入的triplet，更新窗口的背景颜色-->
+	alert('现在的背景颜色代码是： ' + triplet)<!--弹出提示窗口-->
+}
+function drawCell(red, green, blue) 
+{
+	document.write('<TD BGCOLOR="#' + red + green + blue + '">')<!--定义小方格内的背景颜色-->
+	document.write('<A HREF="javascript:display(\'' + (red + green + blue) + '\')">')<!--定义超链接，调用display函数-->
+	document.write('<IMG SRC="place.gif" BORDER=0 HEIGHT=12 WIDTH=12>')<!--引用图片-->
+	document.write('</A>')
+	document.write('</TD>')
+}
+function drawRow(red, blue) 
+{
+	document.write('<TR>')
+	for (var i = 0; i < 6; ++i) <!--循环6次-->
+{
+		drawCell(red, hex[i], blue)<!--一行6个小方格内部的颜色差别在于red和blue分量-->
+	}
+	document.write('</TR>')
+}
+function drawTable(blue) {
+	document.write('<TABLE CELLPADDING=0 CELLSPACING=0 BORDER=0>')
+	for (var i = 0; i < 6; ++i) {<!--循环6次-->
+		drawRow(hex[i], blue)<!--每个表格总体的颜色差别在于蓝色分量的不同-->
+	}
+	document.write('</TABLE>')	
+}
+function drawCube() {
+	document.write('<TABLE CELLPADDING=5 CELLSPACING=0 BORDER=1><TR>')
+	for (var i = 0; i < 6; ++i) {
+		document.write('<TD BGCOLOR="#FFFFFF">')<!--定义表格的背景颜色为白色-->
+		drawTable(hex[i])<!--循环画出每一个表格-->
+		document.write('</TD>')
+	}
+	document.write('</TR></TABLE>')
+}
+drawCube()<!--直接调用drawCube()函数-->
+
+</script>
+
+<body>
+
+单击上面的调色板试试
+</body>
+
+</html>
+<!--本例程实现了调色板的功能-->
+<!--颜色的基本构成，以及调配方法-->
+<!--超连接的使用-->
+<!--弹出窗口的使用-->

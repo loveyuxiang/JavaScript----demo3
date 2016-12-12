@@ -1,0 +1,37 @@
+<style>
+.drag{position:relative;cursor:hand}
+</style>
+<script language="JavaScript">
+var dragapproved=false<!--定义鼠标拖动标志-->
+var z,x,y<!--定义变量-->
+
+function move(){
+<!--移动函数-->
+if (event.button==1&&dragapproved){<!--如果鼠标左键按下并且开始拖动-->
+z.style.pixelLeft=temp1+event.clientX-x<!--将对象的左边界的值更新，在原有的基础上，加上一个移动量-->
+z.style.pixelTop=temp2+event.clientY-y<!--将对象的上边界的值更新，在原有的基础上，加上一个移动量-->
+return false}}
+
+function drags(){
+if (!document.all)<!--如果当前页面没有控件，则返回-->
+return
+if (event.srcElement.className=="drag"){<!--如果响应事件的对象的名字为drag-->
+dragapproved=true<!--拖动标志位变成true-->
+z=event.srcElement<!--获得相应事件的对象-->
+temp1=z.style.pixelLeft<!--获得该对象的左边界-->
+temp2=z.style.pixelTop<!--获得该对象的右边界-->
+x=event.clientX<!--获得x值-->
+y=event.clientY<!--获得y值-->
+document.onmousemove=move<!--鼠标移动后，响应函数move-->
+}}
+
+document.onmousedown=drags<!--鼠标拖动后，相应函数drags-->
+document.onmouseup=new Function("dragapproved=false")<!--鼠标左键弹起，拖动标志变成false-->
+</script>
+<span style="font-family:华文彩云;font-size: 24pt"><font color=#C04000 class="drag">欢迎来到JavaScript世界！</font></span>
+
+
+<!--本例程实现了随处拖放文字的功能-->
+<!--掌握对鼠标事件的处理-->
+<!--函数的调用-->
+<!--鼠标外观的设置-->

@@ -1,0 +1,227 @@
+<SCRIPT LANGUAGE="JavaScript">
+var timerID = null;                                                 <!--设置变量-->
+var patno = 1;                                                      <!--设置变量-->
+var cr = "\r\n";                                                    <!--设置变量-->
+ var spcf1 = "";                                                     <!--设置变量-->
+var spcf2 = "";                                                     <!--设置变量-->
+var spcf3 = "";                                                  <!--设置变量-->
+var hitflag = 0;                                                    <!--设置变量-->
+var score = 0;                                                      <!--设置变量-->
+var selec = 0;                                                      <!--设置变量-->
+var rsmiss = "";                                                     <!--设置变量-->
+function array1(arn)
+{
+this.length = arn;
+for (var ar1 = 0; ar1 <= arn; ar1++)                   <!--设置蜜蜂向下飞行-->
+{
+this[ar1] = 1;
+}
+return this;
+}
+function init()
+{
+blankx = new array1(63);                                         <!--设置数组-->
+for (var makeblank = 0; makeblank < 63; makeblank++)
+{
+blankx[makeblank] = "";
+for (var addBlank = 0; addBlank < makeblank; addBlank++)
+{
+blankx[makeblank] = blankx[makeblank] + " ";
+}
+}
+faker = new array1(24);                                     <!--设置数组-->
+face = new array1(2);                                       <!--设置数组-->
+face[1] = " (O_O) ";                                         <!--设置蜜蜂样式-->
+face[2] = " (o_o) ";                                         <!--设置蜜蜂样式-->
+mestotal = new array1(4);                                   <!--设置数组-->
+interval1();
+}
+function restarter()
+{
+inplay = 0;
+blankno = 0;
+totalblank = "";
+lr = 1;
+lowerlf = "";
+downlf = "";
+downno = 0; 
+missilex =  99;                                                <!--设置X轴位置-->
+missiley = 99;                                                <!--设置Y轴位置-->
+mychrx = 1;
+myblank = "";
+mymove = 0;                                                    <!--设置移动位置-->
+selec = 1;
+starter();
+}
+function starter()
+{
+document.fmark.win.value=cr+cr+cr+cr+cr+cr+cr+cr+cr+cr+"打蜜蜂游戏"+cr+cr+cr+"请单击发射开始游戏";                                 <!--设置提示信息-->
+selec = 1;
+}
+function goleft()                                           <!--设置移动函数-->
+{
+mymove = 0;
+mychrx = mychrx - 1;                                       <!--设置X轴向左移动-->
+if (mychrx <= 0)
+{
+mychrx = 1;
+}
+}
+function goright()                                          <!--设置移动函数-->
+{
+mymove = 0
+mychrx = mychrx + 1;                                      <!--设置X轴向右移动-->
+if (mychrx >= 56)
+{
+mychrx = 55;
+}
+}
+function golmax()                                           <!--设置移动函数-->
+{
+if (inplay == 1)
+{
+mymove = -1;                                       <!--设置X轴向左移动最大值-->
+}
+}
+function gormax()                                           <!--设置移动函数-->
+{
+if (inplay == 1)
+{
+mymove = 1;                                       <!--设置X轴向右移动最大值-->
+}
+}
+function fire()                                               <!--设置射击函数-->
+{
+if (inplay == 0)
+{
+if (selec == 1)
+{
+selec = 9; inplay = 1; init();
+}
+}
+else
+{
+if (missiley == 99)                                    <!--判断当前位置-->
+{
+missiley = 18; missilex = mychrx + 3;
+}
+}
+}
+function gameover()                                        <!--设置游戏结束函数-->
+{
+score = 0;
+for (var enerme = 1; enerme < 25; enerme++)
+{
+if (faker[enerme] == 1)                               <!--每打掉一只蜜蜂-->
+{
+score = score + 1;                                    <!--设的分加一-->
+}
+}
+if (score == 0)
+{
+document.fmark.win.value = cr+cr+cr+cr+cr+cr+cr+cr+"Congratulations!"+cr+cr+"YOU STOPPED THE ENEMY SQUAD!!";                                                     <!--设置获胜后的信息-->
+}
+else
+{
+document.fmark.win.value=cr+cr+cr+cr+cr+cr+cr+cr+"GAME OVER"+cr+cr
++""+score+" INVADERS GOT THROUGH";                <!--游戏结束并显示得分-->
+}
+inplay = 0;
+}
+function interval1()
+{
+if (missiley != 99)
+{
+missiley = missiley - 1;
+}
+
+mychrx = mychrx + mymove;                                 <!--判断移动位置-->
+if (mychrx <= 0)                                            <!--判断当前位置-->
+{
+mychrx = 1;
+}
+
+blankno = blankno + lr;
+totalblank = blankx[blankno];
+if (blankno >= 20)
+{
+lr = -1; downno = downno + 1; blankno = 20;
+}
+if (blankno <= 0)
+{
+lr = 1; downno = downno + 1; blankno = 0;
+}
+if (downno >= 12)
+{
+gameover();
+}
+downlf = "";
+for (var upperspc = 0; upperspc < downno; upperspc++)
+{
+if (missiley == upperspc)
+{
+downlf = downlf + blankx[missilex]+"|"+cr;
+}
+else
+{
+downlf = downlf+cr;
+}
+}
+if (inplay == 1)
+{
+patno = patno + 1;
+if (patno >= 3)
+{
+patno = 1;
+}
+for (var addline = 1; addline < 5; addline++)
+{
+mestotal[addline] = totalblank;
+rsmiss = "";
+
+for (var addfaker = 1; addfaker < 7; addfaker++)
+{
+(faker[(addline*6)+addfaker-6] == 1)
+{
+mestotal[addline] = mestotal[addline]+face[patno];
+}
+
+}
+
+}
+spcf1 = cr;
+spcf2 = cr;
+spcf3 = cr;
+
+lowerlf = "";
+for (var lowerspc = 0; lowerspc < (11-downno); lowerspc++)
+{
+if (missiley == (downno+7+lowerspc))
+{
+lowerlf = lowerlf+blankx[missilex]+"|"+cr;
+}
+else
+{
+lowerlf = lowerlf+cr;
+}
+}
+myblank = blankx[mychrx];
+document.fmark.win.value = downlf+mestotal[1]+cr+spcf1+mestotal[2]+cr+spcf2+mestotal[3]+cr+spcf3+mestotal[4]+cr+lowerlf+myblank+""+cr+myblank+"=!=";
+timerID = setTimeout("interval1()",250);
+}
+}
+</script>
+<center>
+<form method=post name=fmark>
+<table border=1 cellspacing=0 cellpadding=0>
+<tr><td align=center>
+<textarea name=win rows=20 cols=63 wrap=virtual></textarea>
+<!--设置按钮样式-->
+<pre><input type=button name=button value="<- " onClick="golmax()"> <input type=button name=button value="发射" onClick="fire()"> <input type=button name=button value=" ->" onClick="gormax()"></pre>
+<!--设置按钮样式-->
+<input type=button name=button value=" 新游戏 " onClick="restarter()">
+</td>
+</tr>
+</table>
+</form>
+</center>

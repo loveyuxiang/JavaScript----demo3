@@ -1,0 +1,24 @@
+
+
+<SCRIPT language=JavaScript>
+
+
+function high(which2){
+theobject=which2
+highlighting=setInterval("highlightit(theobject)",50)
+}
+function low(which2){
+clearInterval(highlighting)
+which2.filters.blur.strength=2
+}
+function highlightit(cur2){
+if (cur2.filters.blur.strength<110)
+cur2.filters.blur.strength+=5
+else if (window.highlighting)
+clearInterval(highlighting)
+}
+</SCRIPT>
+<P><IMG border=0 height=120 onmouseout=low(this) 
+onmouseover=high(this) src="pao.jpg" 
+style="FILTER: blur(add=1,direction=80,strength=2); LEFT: 10px; POSITION: absolute; TOP: 10px" 
+width=128> </P>

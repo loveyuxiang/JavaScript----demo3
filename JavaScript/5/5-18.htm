@@ -1,0 +1,62 @@
+<SCRIPT language=javascript>
+var cx=0;  <!--定义显示位置的横坐标-->
+var cy=0;  <!--定义显示位置的纵坐标-->
+var val=0;
+function locate()
+{        cx=window.event.x;<!--获得当前鼠标的横坐标-->
+        cy=window.event.y;   <!--获得当前鼠标的纵坐标-->
+}
+document.onmousemove=locate; <!--当鼠标移动时调用locate函数-->
+
+function follow(i)
+{        var x;
+        if(i<4)x=cx-50+i*10;<!--前四个字符的横坐标变化规律-->
+        else x=cx-25+i*10;<!-- 后两个字符的横坐标变化规律-->
+        var y=cy-20+Math.floor(Math.random()*40);<!--纵坐标变化规律-->
+        w=eval("word"+i);<!--获得当前字符-->
+        with(w.style)
+        {
+        left=x.toString()+"px";<!--字符的左边界-->
+        top=y.toString()+"px";<!--字符的上边界-->
+        }
+}
+
+function show(i)
+{
+        var w=eval("word"+i);<!--获得第i个字符-->
+        with(w.style)
+        {
+        visibility="visible";
+        s=parseInt(fontSize);<!--获取字体大小-->
+        if(s>=200)s-=100;<!--如果字体大于200，每次调用此函数，减小100-->
+        else if(s>90&&s<=100)<!--如果字体在90到100之间-->
+                {
+                s-=85;<!--每次减小85-->
+                clearInterval(val);<!--同时将当前定时器清除-->
+                if(i<6)val=setInterval("show("+(i+1)+")",20);<!--并且开始周期性的调用show-->
+                }
+        fontSize=s;<!--记录字体大小-->
+        }
+}
+
+function start()<!--开始-->
+{        for(i=1;i<=6;i++)<!--依次对6个字符进行配置-->
+        {
+        val=setInterval("show(1)",20);<!--每0.02秒调用一次show函数-->
+        setInterval("follow("+i+")",100);<!--每0.1秒调用一次follow函数-->
+
+        }
+}
+
+        var word=new Array(6);  <!--定义字符串变量word-->
+word[1]="*";word[2]="*";word[3]="*";word[4]="*";word[5]="*";word[6]="*"   <!--给word赋值为“*”-->
+        for(i=1;i<=6;i++)
+                document.write("<div id='word"+i+"' style='width:20px;height:20px;position:absolute;font-size:1000;visibility:hidden'><font face='隶书' color='#FFAA00' >"+word[i]+"</font></div>");start();
+                <!--设定最初显示文字的字体、颜色、大小、显示位置，并且调用start函数-->
+        </SCRIPT>
+
+
+<!--本例程实现了字符跟随鼠标，并且跳动的效果-->
+<!--动态显示字符的方法-->
+<!--动画效果的实现-->
+<!--文字属性的设置-->

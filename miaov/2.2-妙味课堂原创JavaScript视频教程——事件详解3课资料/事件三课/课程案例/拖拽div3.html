@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+#div1 {width:100px; height:100px; background:red; position:absolute;}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+// 定义鼠标距离框框左边的距离和右边的距离	用来存储
+	var disX=0;
+	var disY=0;
+	
+	oDiv.onmousedown=function (ev)
+	{
+		var oEvent=ev||event;
+	// 鼠标的位置 - 物体的距离左边的位置	
+		disX=oEvent.clientX-oDiv.offsetLeft;
+		disY=oEvent.clientY-oDiv.offsetTop;
+		
+		document.onmousemove=function (ev)
+		{
+			var oEvent=ev||event;
+			// 当鼠标移动的时候 距离在变化 而变化的这个距离我们用鼠标的位置 - 鼠标距离框框的位置 也就是我们的div的距离左边和上边的位置
+			oDiv.style.left=oEvent.clientX-disX+'px';
+			oDiv.style.top=oEvent.clientY-disY+'px';
+		};
+		
+		document.onmouseup=function ()
+		{
+			document.onmousemove=null;
+			document.onmouseup=null;
+		};
+
+        // 为了火狐下的浏览器bug 阻止默认行为
+		return false;
+	};
+};
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>

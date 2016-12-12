@@ -1,0 +1,17 @@
+<BODY ONLOAD="soccerOnload()" topmargin="0">
+<DIV ID="soccer" STYLE="position:absolute; left:10; top:10">
+<IMG SRC="final.bmp" border="1">
+</DIV>
+<SCRIPT LANGUAGE="JavaScript">
+var msecs = 500;
+var counter = 0; 
+function soccerOnload() {
+setTimeout("blink()", msecs);
+}
+function blink() {
+soccer.style.visibility =
+(soccer.style.visibility == "hidden") ? "visible" : "hidden";
+counter +=1;
+setTimeout("blink()", msecs);
+}
+</SCRIPT>

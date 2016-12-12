@@ -1,0 +1,31 @@
+<SCRIPT LANGUAGE="JavaScript">
+
+function PopIt(label, msg){  
+        var s1 =     "<TITLE>Information!</TITLE>" + 
+        "<BODY BGCOLOR='ffffff'><TABLE BORDER=0><TR>" +        
+        "<TD WIDTH=90% HEIGHT=90 VALIGN=TOP ALIGN=LEFT>"+        
+        "<FONT SIZE=4>"    <!--新窗口的题目，背景颜色，边框，字体设置-->
+        var s2 = "<FONT COLOR='FF0000'><B>"+label+"</B></FONT><P>"   <!--在新窗口中加入文字-->
+        var s3 =       "</TD><TD WIDTH=10%> </TD></TR><TR><TD> </TD>"+    
+        "<TD VALIGN=TOP ALIGN=RIGHT>"+    
+        "<FORM><INPUT TYPE='BUTTON' VALUE='关闭'" +    <!--在新窗口中写入一个按钮，点击则关闭窗口-->               
+        "onClick='self.close()'>"  +    
+        "</FORM></TD></TR></TABLE></BODY>"   
+        popup = window.open("","popDialog","height=160,width=300,scrollbars=no")  <!--按照指定的格式打开窗口-->
+        popup.document.write(s1+s2+msg+s3)  <!--在新窗口中写入html-->
+        popup.document.close()
+}
+
+function popHelp(){  
+        PopIt('JavaScript', '欢迎来到，奇妙的 '  +                 
+        'JavaScript世界！')<!--调用popit函数-->
+}
+
+</SCRIPT>
+<FORM>
+<INPUT TYPE="BUTTON" VALUE="点击进入" onClick="popHelp()">
+</FORM>
+<!--本例程实现了在页面中打开窗口的功能-->
+<!--打开新窗口的函数的使用-->
+<!--窗口属性、参数的设置和使用-->
+<!--在窗口中写入控件的方法-->

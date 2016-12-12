@@ -1,0 +1,28 @@
+<style>
+#leftright, #topdown#leftright, #topdown{
+position:absolute;
+left:0;
+top:0;
+width:1px;
+height:1px;
+layer-background-color:red;
+background-color:red;
+z-index:100;
+font-size:1px;
+}
+</style>
+<script language="JavaScript">
+if (document.all&&!window.print)
+{
+leftright.style.width=document.body.clientWidth-2;
+topdown.style.height=document.body.clientHeight-2;
+}
+function followmouse(){
+leftright.style.pixelTop=document.body.scrollTop+event.clientY+1
+topdown.style.pixelLeft=document.body.scrollLeft+event.clientX+1
+}
+document.onmousemove=followmouse
+</script>
+<div id="leftright" style="width:expression(document.body.clientWidth-2)"></div>
+<div id="topdown" style="height:expression(document.body.clientHeight-2)"></div>
+

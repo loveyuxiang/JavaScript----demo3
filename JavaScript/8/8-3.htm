@@ -1,0 +1,41 @@
+<SCRIPT LANGUAGE="JavaScript">
+
+function HowLongSince(startmonth, startdate, startyear) {
+sdate=startdate;<!--获得开始的日期-->
+smonth=startmonth-1;<!--获得开始的月份-->
+syear=startyear;<!--获得开始的年份-->
+var DaysInMonth = new Array(31,28,31,30,31,30,31,31,30,31,30,31);<!--每个月中包含的天数-->
+today = new Date()<!--获得当前的日期-->
+var thisyear = today.getFullYear();<!--获得当前的年份-->
+var thismonth = today.getMonth();<!--获得当前的月份-->
+var thisdate = today.getDate();<!--获得当前的日期-->
+mstart = new Date(syear,(smonth==12?1:smonth+1),1);<!--新的Date变量-->
+days1 = (mstart - new Date(syear,smonth,sdate))/(24*60*60*1000)-1;<!--获得经历的天数1-->
+mend = new Date(thisyear,thismonth,1);
+days2 = (new Date(thisyear,thismonth,thisdate) - mend)/(24*60*60*1000)+1;<!--获得经历的天数2-->
+dayst = days1 + days2;<!--经历的天数等于前两个之和-->
+if (dayst >= DaysInMonth[smonth])  {
+<!--如果经历的天数大于该月的天数，则增加一个月，同时天数减少一个月的天数-->
+AddOneMonth = 1; 
+dayst -= DaysInMonth[smonth]; 
+}
+else AddOneMonth = 0;<!--否则不增加-->
+ydiff1 = thisyear-mstart.getFullYear();<!--获得经历的年数-->
+mdiff1 = thismonth-mstart.getMonth()+AddOneMonth;<!--获得经历的月份数-->
+if (mdiff1 >11) { mdiff1=0; ydiff1++; }<!--如果月份超过12，则加一年-->
+if (mdiff1 < 0) { mdiff1 = mdiff1 + 12; ydiff1--; }<!--如果月份小于0，则减一年-->
+temp = (ydiff1==0?"":(ydiff1==1?ydiff1+"年零":ydiff1 + "年零"));<!--如果0年，返回noyears，如果1年，则返回year，否则years-->
+temp += (mdiff1==0?"个月又 ":(mdiff1==1?mdiff1+"个月又":mdiff1+"个月又"));<!--如果0月，返回no months，如果1月，则返回month，否则months-->
+temp += (dayst==0?"天！":(dayst==1 ? " 天！" : dayst + "天！" ));<!--如果0天，返回no days，如果1天，则返回day，否则days-->
+return temp;
+}
+
+
+document.write("本页面已经制作完成:");
+document.write("<font color=red>");<!--设置字体颜色-->
+document.write(HowLongSince(11,10,2002)); <!--调用函数HowLongSince()-->
+document.write("</font>");
+</script>
+<!--本例程实现了页面制作完成时间的功能-->
+<!--熟练掌握javascript自带的时间相关函数的使用-->
+<!--将时间能够清楚的转换成年、月、日的形式-->

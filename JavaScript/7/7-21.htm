@@ -1,0 +1,27 @@
+
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+    <td width="100%"><form name="form2" onSubmit="null">
+ <input type="submit" name="banner" VALUE="Submit"
+      onClick="alert('欢迎来到JavaScript乐园！')"> 
+      
+<script language="JavaScript">
+
+var id,pause=0,position=0;       <!--变量定义，分别表示显示的速度和位置-->
+
+function banner() {              <!--变量定义-->        
+var i,k,msg="欢迎来到JavaScript乐园";      <!--i，k为循环变量，msg为显示字符串--> 
+        k=(msg.length)+1;
+        for(i=0;i<=k;i++) msg+=" "+msg; <!--每6个字为一组，每组之间加一个空格-->
+        document.form2.banner.value=msg.substring(position,position-15); <!--显示到屏幕上，最多显示30个字符-->
+        if(position++==msg.length) position=0;   
+        id=setTimeout("banner()",60); }  <!--按设定的速度重复-->
+
+banner();
+ </script>
+
+
+<!--本案例实现在一个按钮上动态显示文字的效果-->
+<!--通过函数banner()设定要显示的文字，显示速度，个数等参数-->
+<!--当点击这个按钮时，则弹出提示框-->

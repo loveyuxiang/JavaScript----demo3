@@ -1,0 +1,28 @@
+
+
+
+ <script language="JavaScript">
+
+function AddDays(form) {
+<!--从表单form中取得需要加入的天数-->
+DaysToAdd=document.form.DaysToAdd.value;
+
+var now=new Date();<!--获取当前日期-->
+var newdate=new Date();<!--声明日期变量，初始值为当前日期-->
+var newtimems=newdate.getTime()+(DaysToAdd*24*60*60*1000);<!--当前时间加上增加的天数得到了新的时间-->
+newdate.setTime(newtimems);<!--根据新的时间，得到新的日期-->
+document.form.display.value=newdate.toLocaleString();<!--将新的日期显示在表单中-->
+}
+</script>
+                    <form name=form>
+                      <input type=text name=DaysToAdd size=4 value=10 onFocus="this.select()" onMouseOver="this.focus()">
+                      <input type=button value="天后的日期将是.." onClick="AddDays(this.form)" name="button">
+                      <input type=text name="display" size=22 value="">
+                    </form>
+               
+
+
+<!--本例程实现了计算几天后将是什么日期这个功能-->
+<!--采用了可以同用户交互的表单，读者应认真体会提交表单这一功能具体实现过程-->
+<!--将所增加的天数换算成毫秒数，直接加到当前的时间上，即可得到几天后的时间-->
+<!--再根据新的时间值，可以轻松得到几天后的日期-->

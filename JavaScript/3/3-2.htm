@@ -1,0 +1,43 @@
+<html>
+
+<head>
+<title>带滚动提示的链接</title>
+</head>
+<body background="02.jpg">
+<script language="JavaScript">
+
+
+function showtip2(current,e,text){
+if (document.readyState=="complete"){<!--如果是ie浏览器并且满足readystate标志位-->
+document.all.tooltip2.innerHTML='<marquee style="border:1px solid blue">'+text+'</marquee>'<!--循环播放链接-->
+document.all.tooltip2.style.pixelLeft=event.clientX+document.body.scrollLeft+10<!--链接的显示左边界的确定-->
+document.all.tooltip2.style.pixelTop=event.clientY+document.body.scrollTop+10<!--链接的显示上边界的确定-->
+document.all.tooltip2.style.visibility="visible"<!--方框设置为显示-->
+}
+
+}
+
+function hidetip2(){
+ (document.all)
+document.all.tooltip2.style.visibility="hidden"<!--设置链接不显示-->
+
+}
+
+
+</script>
+<div id="tooltip2"
+style="background-color: white; clip: rect(0px 150px 50px 0px); height: 0px; left: 2px; position: absolute; top: 0px; visibility: visible; width: 100px; z-index: 2"><LAYER name="nstip" width="500px" bgColor="white">
+</LAYER></div>
+<a href="http://www.javascript.com/" onmouseout="hidetip2()
+"onmouseover="showtip2(this,event,'javascript中文网')" target="_blank">
+<p>www.javascript.com</a></p>
+
+
+
+</body>
+
+</html>
+<!--本例程实现带滚动提示的链接-->
+<!--动态链接提示的实现方法-->
+<!--动画的简单实现方法-->
+<!--对不同浏览器的支持-->

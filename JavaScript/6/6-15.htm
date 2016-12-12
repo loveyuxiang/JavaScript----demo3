@@ -1,0 +1,25 @@
+
+
+<SCRIPT LANGUAGE=javascript>
+
+	function setFliph(){
+		obj.style.filter=obj.style.filter=="fliph"?"":"fliph";
+		
+	}
+	function setFlipv(){
+		obj.style.filter=obj.style.filter=="flipv"?"":"flipv";
+	}
+
+</SCRIPT>
+
+
+<BODY>
+<div ><img src="mouse.jpg"  id="obj"></div>
+<FORM id=form1 name=form1>
+滤镜效果:	
+
+<INPUT type="button" value="水平翻转" onclick="setFliph()">
+
+<INPUT type="button" value="垂直翻转" onclick="setFlipv()">
+
+</FORM>

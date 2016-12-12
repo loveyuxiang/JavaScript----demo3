@@ -1,0 +1,35 @@
+
+<body onload="go()">
+<script language="JavaScript">
+
+       var Light_X=20
+       var Light_Y=20
+       var Light_Z=40
+     
+       var r=125;
+       var deg=0;
+   
+     
+     
+       var conversion=(2*3.1415926)/360
+       
+    function movefilt()
+    {
+      Light_X=r+r*Math.cos(deg*conversion);
+      Light_Y=r+r*Math.sin(deg*conversion);
+      deg+=10;
+      if(deg==360)
+         deg=0;
+      Body1.filters[0].moveLight(0,Light_X,Light_Y,Light_Z,1);     
+         mytimeout=setTimeout('movefilt()',100);
+      }
+
+       function go(){
+          Body1.filters.light.addCone(150,150,0,Light_X,Light_Y,0,255,0,150,20);
+          Body1.filters.light.addAmbient(0,255,0,30)
+             var x=0;
+             movefilt();         
+       }
+ </script>
+<img src="kele.jpg"
+id="Body1" style="FILTER: light();">

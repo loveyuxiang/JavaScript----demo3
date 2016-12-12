@@ -1,0 +1,162 @@
+<html>
+
+<head>
+<title>打字速度测试</title>
+</head>
+
+<SCRIPT LANGUAGE="JavaScript">
+
+
+msg = new Array("Practicing with your typing can greatly help your overall computer skills.",
+
+"A new computer is sold in the US every hour!",
+
+"When do birds migrate from North to South?",
+
+"Perplexing phrases, like this one, are tougher to type.")  <!--msg用来存储测试样例-->
+
+word = 10
+
+function m() {    <!--中级者的测试样例-->
+
+msg = new Array("Practicing with your typing can greatly help your overall computer skills.",
+
+"A new computer is sold in the US every hour!",
+
+"When do birds migrate from North to South?",
+
+"Perplexing phrases, like this one, are tough to type.")
+
+word = 10
+
+}
+
+function e() {    <!--高级者的测试样例-->
+
+msg = new Array("If you can correctly, and quickly, type this perplexing sentence, you are one superb typist!",
+
+"You are one superb typist if you can correctly, and quickly, type this long phrase.",
+
+"I believe you're a good typist, so I believe you will correctly copy this statement!",
+
+"Because this is not a fairly simple phrase, could you swiftly, and precisely, copy it?")
+
+word = 15
+
+}
+
+function s() {    <!--初级者的测试样例-->
+
+msg = new Array("Computers are the medium of the future.",
+
+"Can you type this phrase rather quickly?",
+
+"Who is the President of the US?",
+
+"I believe that you can type well!")
+
+word = 7
+
+}
+
+function beginIt() {                                  <!--此函数是开始测试时的设置-->
+
+randNum = Math.floor((Math.random() * 10)) % 4        <!--产生一个0－3的随机整数-->
+
+msgType = msg[randNum]                                <!--将对应的msg信息赋给msgType-->
+
+day = new Date();                                     <!--定义一个新的时间日期变量-->
+
+startType = day.getTime();                            <!--把当前的时间赋给startType-->
+
+document.theForm.given.value = msgType                <!--在given栏中显示选中的测试样例-->            
+
+document.theForm.typed.focus();                       <!--光标显示在要打字的文本框typed中-->
+
+document.theForm.typed.select();
+
+}
+
+function cheat() {                                     <!--此函数为了防止作弊现象-->
+
+alert("对不起，这里的内容你不能改变！！");             <!--当鼠标点击given栏范围内时弹出提示框-->
+
+document.theForm.typed.focus();                        <!--光标转移到typed栏中-->
+
+}
+
+function stopIt() {                                   <!--此函数是测试完成时的操作-->
+
+dayTwo = new Date();                                  
+
+endType = dayTwo.getTime();                           <!--把当前的时间赋给endType-->
+
+totalTime = ((endType - startType) / 1000)            <!--计算所用时间，以秒作单位-->
+
+spd = Math.round((word/totalTime) * 60)               <!--计算打字速度-->
+
+if (document.theForm.typed.value == document.theForm.given.value) {  <!--如果输入字符和给定字符完全相同，则弹出提示框，并给出所用时间和打字速度-->
+
+alert("\n你输入了 " + word + " 个字符，在 " 
+
++ totalTime + " 秒内, 速度为每分钟 " + spd + " 个字符!")
+
+}
+
+else {
+
+alert("你输入有错，但是你每分钟输入 " + spd + " 个字符.")       <!--否则给出出错信息和打字速度-->
+
+   }
+
+}
+
+
+</SCRIPT>
+
+
+<FORM name="theForm">
+
+<TABLE BORDER=3 CELLSPACING=0 CELLPADDING=0>
+
+<TR>
+
+<TD>你是个...</TD>
+
+<TD align=center><input type=radio name="sme" value="Beginner" onClick="s()" checked>初级者 
+ 
+<input type=radio name="sme" value="Novice" onClick="m()">中级者 
+ 
+<input type=radio name="sme" value="Expert" onClick="e()">高级者</TD> 
+ 
+</TR> 
+ 
+<TR><TD colspan=2><BR> 
+ 
+<center><input type=button value="开始测试" name="start" onClick="beginIt()"></center><P> 
+ 
+<textarea name="given" cols=53 rows=3 wrap=on onFocus="cheat()"></textarea></TD> 
+ 
+</TR> 
+ 
+<TR><TD colspan=2><center><input type=text name="typed" size=45> 
+ 
+<input type=button value="完成"  name="stop"  onClick="stopIt()"></center></TD> 
+ 
+</TR> 
+ 
+</TABLE></FORM>
+
+<body>
+</body>
+</html>
+
+<!--本案例实现了测试打字速度的功能-->
+<!--测试分为三个难度，用前面的单选框来选择-->
+<!--用beginIt和stopIt函数配合实现检查错误，计算时间和速度并显示这些信息的功能-->
+<!--用cheat函数来防止测试者作弊-->
+
+
+
+
+

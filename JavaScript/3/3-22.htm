@@ -1,0 +1,20 @@
+
+<SCRIPT LANGUAGE="JavaScript">
+
+
+function doColor(item, color, bg) {
+item.style.color = color; // changes text color
+item.style.backgroundColor = bg; // changes background
+}
+
+function undoColor(item) {
+item.style.color = "#000000"; // sets color back to black
+item.style.backgroundColor = ""; // sets background to default
+}
+
+</script>
+</HEAD>
+<a name="link1" href="http://www.sohu.com/" onmouseover="doColor(link1, 'yellow','black');" onmouseout="undoColor(link1);">ËÑºüÍøÕ¾</a><p>
+<a name="link2" href="http://www.sina.com/" onmouseover="doColor(link2, 'white','red');" onmouseout="undoColor(link2);">ĞÂÀËÍøÕ¾</a><p>
+<a name="link3" href="http://www.tom.com/" onmouseover="doColor(link3, 'orange','gray');" onmouseout="undoColor(link3);">TOMÍøÕ¾</a>
+

@@ -1,0 +1,147 @@
+
+
+<script language="JAVASCRIPT">
+
+function ClearForm(form){     <!--清除表单上的内容-->
+form.weight.value = "";       <!--将身高、体重、健康值和评价的内容清除掉-
+form.height.value = "";
+form.bmi.value = "";
+form.my_comment.value = "";
+}
+
+
+function bmi(weight, height) {       <!--通过身高和体重计算健康指数-->
+bmindx=weight/eval(height*height);   
+return bmindx;                       <!--返回结果-->
+}
+
+
+function checkform(form) {                                 <!--此函数用来判断所填的各项内容是否符合要求-->
+if (form.weight.value==null||form.weight.value.length==0 
+|| form.height.value==null||form.height.value.length==0){   <!--如果身高或者体重项为空或者不是数字，则弹出提示框-->  
+alert("\n对不起！输入错误！");
+ return false;
+ }
+else if (parseFloat(form.height.value) <= 0||                  <!--如果身高或体重项小于等于0或者大于等于500，则弹出提示框-->
+parseFloat(form.height.value) >=500||
+parseFloat(form.weight.value) <= 0||
+parseFloat(form.weight.value) >=500){
+alert("\n这个机器可不是逞能的 \n你输的天数字我头都大了 \n快改正一下，再测试一遍……");
+ClearForm(form);                                               <!--清除所填写的内容-->
+ return false;
+ }
+ return true;                                                  <!--否则认为输入合法，返回true-->
+}
+
+
+function computeform(form) {                                        <!--此函数用来计算健康值，并根据不同的结果给出简单的评价-->
+if (checkform(form)) {                                               <!--如果输入各项均有效，则调用bmi函数计算健康值-->
+yourbmi=Math.round(bmi(form.weight.value, form.height.value/100));
+form.bmi.value=yourbmi;
+if (yourbmi >30) {                                                  <!--如果健康值大于30，则评价-->
+form.my_comment.value="不要在闹了!!!哪有这种身材";
+
+       }
+else if (yourbmi >28 && yourbmi <=30) {                             <!--如果健康值在28至30之间，则评价-->
+ form.my_comment.value="你在不减肥就完蛋了！";
+
+       }
+
+else if (yourbmi >23 && yourbmi <=28) {                             <!--如果健康值在23至28之间，则评价-->
+form.my_comment.value="您是不是胖了点?";
+
+}
+else if (yourbmi >21 && yourbmi <=23) {                             <!--如果健康值在21至23之间，则评价-->
+form.my_comment.value="我敢打赌，你一定经常抢吃的，不然不会偏胖";
+}
+
+else if (yourbmi >=19 && yourbmi <=21) {                             <!--如果健康值在19至21之间，则评价-->
+form.my_comment.value="哇!!!棒级了!是标准身材！";
+
+ }
+
+else if (yourbmi >=18 && yourbmi <19) {                              <!--如果健康值在18至19之间，则评价-->
+
+ form.my_comment.value="朋友，很明显你的营养不良(^_^)";
+
+ }
+
+ else if (yourbmi >=17 && yourbmi <18) {                             <!--如果健康值在17至18之间，则评价-->
+ form.my_comment.value="这个不是火柴杆吗?(^_^)";
+ }
+
+ else if (yourbmi <17) {                                             <!--如果健康值在17以下，则评价为-->
+ form.my_comment.value="按照生物学来说这种生物是不能生存的";
+  }
+  }
+return;
+
+  }
+
+</script>
+
+<form NAME="BMI" method="POST">
+
+<div align="center">
+  <center>
+
+  <table border="1" bordercolorlight="#808080" cellspacing="1" bordercolordark="#FFFFFF" bgcolor="#F0F0F0" width="450">
+
+    <tr>
+
+      <td width="65"><div align="center"><center><p>体重(kg)  
+          </div>
+        </center></td>
+
+      <td align="center" width="64"><div align="center"><center><p>身高(cm)
+          </div>
+        </center></td>
+
+      <td align="center" width="55"><div align="center"><center><p>健康值
+          </div>
+        </center></td>
+
+      <td align="center" width="120"><div align="center"><center><p>电脑评价
+          </div>
+        </center></td>
+
+      <td align="center" width="65"><input TYPE="reset" VALUE="取 消"
+
+  onClick="ClearForm(this.form)"> </td>
+
+    </tr>
+
+    <tr align="center">
+
+      <td width="65"><input TYPE="TEXT" NAME="weight" SIZE="6" onFocus="this.form.weight.value=''"></td>
+
+      <td width="64"><input TYPE="TEXT" NAME="height" SIZE="6" onFocus="this.form.height.value=''"></td>
+
+      <td width="55"><input TYPE="TEXT" NAME="bmi" SIZE="5"></td>
+
+      <td width="120"><input TYPE="TEXT" NAME="my_comment" size="20"></td>
+
+      <td width="65"><input TYPE="button" VALUE="确 定"
+
+  onClick="computeform(this.form)"></td>
+
+    </tr>
+
+  </table>
+
+  </center>
+</div>
+
+  <div align="center"><center><p>&nbsp; </p>
+ </center></div>
+</form>
+
+
+
+<!--本案例用来根据输入的身高和体重值计算和评价人的健康状况-->
+<!--当提交表单时，通过checkform检查输入数据的有效性，给出相应提示-->
+<!--有效性得到确认后，使用computeform函数来计算健康值，并根据结果作出简单的评价-->
+<!--当点击取消键时将会清除填入表单中的所有内容-->
+
+
+

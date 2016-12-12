@@ -1,0 +1,37 @@
+<script language="JavaScript">
+//按照"分:秒"的格式设置限制时间。
+var limit="0:30"
+if (document.images){
+var parselimit=limit.split(":")
+parselimit=parselimit[0]*60+parselimit[1]*1
+}
+function begintimer(){
+if (!document.images)
+return
+if (parselimit==1)
+//下面是限制时间到了后去的连接页面,自己修改。
+window.location="xxx.htm"
+else{ 
+parselimit-=1
+curmin=Math.floor(parselimit/60)
+cursec=parselimit
+
+curtime="您只有"+cursec+"秒的时间保存此页"
+setTimeout("begintimer()",1000)
+//下一句告诉访问者剩余的时间，在文本框中显示，不想要去掉即可。
+document.lefttime.left.value=curtime
+//下一句告诉访问者剩余的时间，在状态栏中显示。
+window.status=curtime
+}
+}
+
+</script>
+<!--//-------- 文本框显示区域，如果不想在文本框中显示去掉即可。-->
+<form name="lefttime">
+<p><input type="text" name="left" size="25">
+</p>
+</form>
+
+
+<BODY onload="begintimer()">
+

@@ -1,0 +1,80 @@
+
+<script language="javascript">
+
+
+
+function drip(){
+        wordy="欢迎进入javascript世界";<!--坠落的文字-->
+        document.hey.a.value="";<!--设置每个文本框中的文字均为空-->
+        document.hey.b.value="";<!--设置每个文本框中的文字均为空-->
+        document.hey.c.value="";<!--设置每个文本框中的文字均为空-->
+        document.hey.d.value="";<!--设置每个文本框中的文字均为空-->
+        word="";beat=0;aa=0;bb=0;cc=0;dd=0;lo=wordy.length;    <!--设置变量-->
+        drop(); <!--调用drop函数-->
+}
+
+function drop(){
+        if(beat<=lo*3+1){<!--如果在范围之内-->
+        beat=beat+1;
+        if(beat<=1){<!--显示文字在第一层（最上面一层）-->
+                document.hey.a.value=wordy;
+        }
+        if(beat>1&&beat<=lo+1){<!--文字从第一层落入第二层-->
+                fin="";<!--定义空格-->
+                aa=aa+1;<!--定义落入第二层的文字的个数-->
+                for(var x=0;x<=aa-1;x++){
+                        fin=fin+" ";<!--前面空格的个数-->
+                }
+                fin=fin+wordy.substring(aa,lo);<!--第一层要显示的字符串-->
+                document.hey.a.value=fin;<!--显示第一层-->
+                document.hey.b.value=wordy.substring(0,aa);<!--显示第二层-->
+        }
+        if(beat>lo+1&&beat<=lo*2+1){<!--文字从第二层落入第三层-->
+                fin="";<!--定义空格-->
+                bb=bb+1;<!--定义落入第三层的文字的个数-->
+                for(var x=0;x<=bb-1;x++){
+                        fin=fin+" ";<!--前面空格的个数-->
+                }
+                fin=fin+wordy.substring(bb,lo)<!--第二层要显示的字符串-->;
+                document.hey.b.value=fin;<!--显示第二层-->
+                document.hey.c.value=wordy.substring(0,bb);<!--显示第三层-->
+        }
+        if(beat>lo*2+1&&beat<=lo*3+1){<!--文字从第三层落入第四层-->
+                fin="";<!--定义空格-->
+                cc=cc+1;<!--定义落入第四层的文字的个数-->
+                for(var x=0;x<=cc-1;x++){
+                        fin=fin+" ";<!--前面空格的个数-->
+                }
+                fin=fin+wordy.substring(cc,lo);<!--第三层要显示的字符串-->;
+                document.hey.c.value=fin;<!--显示第三层-->
+                document.hey.d.value=wordy.substring(0,cc);<!--显示第四层-->
+        }
+        setTimeout("drop()",200);<!--定义动画的速度-->
+        }
+        else{
+                document.hey.d.value=wordy;<!--结束将所有字符显示在第四层-->
+        }
+}
+
+
+
+</script>
+
+<form name="hey">
+
+<input type="text" name="a" size=20><br>
+
+<input type="text" name="b" size=20><br>
+
+<input type="text" name="c" size=20><br>
+
+<input type="text" name="d" size=20><br><br>
+
+<input type="button" name="start" value="开始" onclick="drip()">
+
+
+
+<!--本例程实现了文字在文本框中坠落的过程-->
+<!--整个动画过程的相互关系-->
+<!--动画时间的处理-->
+<!--文本框中文字的显示-->

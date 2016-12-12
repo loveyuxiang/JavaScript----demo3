@@ -1,0 +1,35 @@
+<!--脚本说明:
+
+第一步：把如下代码加入<body>区域中-->
+
+<SCRIPT>
+current_image = "image1";
+
+function Clicked()
+ {
+var the_image;
+
+if (image1.style.visibility=="inherit") 
+{
+the_image = image1;
+}
+else {
+the_image = image1;
+} 
+the_image.filters.item(0).Apply();
+the_image.filters.item(0).Play(2.0);
+the_image.style.visibility="inherit";
+}
+
+</SCRIPT>
+
+<DIV id=image>
+
+<DIV id=text1></DIV><IMG id=image1 
+
+src="tu01.jpg" style="FILTER: revealTrans(Duration=3.0,Transition=1); VISIBILITY: hidden"> 
+<body onclick=Clicked()>
+<br>
+
+单击鼠标看效果图
+

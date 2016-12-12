@@ -1,0 +1,68 @@
+<html>
+
+<head>
+<title>动态变换的链接</title>
+</head>
+
+<style>
+
+#subtickertape{; background-color:000000; position:absolute; border: 0px solid; width:110; height:15; ; font-family: "隶书"; font- size:3pt }; .subtickertapefont{; font:bold 10pt "隶书"; text-decoration:none; color:aaaaaaa; }; .subtickertapefont a{
+color:ffffff; text-decoration:none; ; font-family: "隶书"; font- size: 12pt}
+</style>
+<body background="03.jpg" onload="if(document.all) {regenerate2();update()}">
+<div id="tickertape"> 
+<div id="subtickertape" class="subtickertapefont"></div>
+</div>
+<script language="JavaScript">
+var speed=2000<!--更新的速度为2秒-->
+var news=new Array()<!--定义矩阵-->
+news[0]="<a href='#'>JavaScript下载</a>"<!--第一条链接-->
+news[1]="<a href='#'>JavaScript学习</a>"<!--第二条链接-->
+
+i=0
+document.all  <!--对于ie浏览器-->
+tickerobject=document.all.subtickertape.style
+function regenerate2(){
+document.all<!--对于netscape浏览器，延时0.45秒调用-->
+setTimeout("window.onresize=regenerate",450)
+}
+function update(){
+ BgFade(0xff,0xff,0xff, 0x00,0x00,0x00,10);<!--动态显示颜色变化-->
+document.all
+document.all.subtickertape.innerHTML=news[i]<!--显示第i条链接-->
+if (i<news.length-1)
+i++
+else
+i=0<!--循环显示-->
+setTimeout("update()",speed)<!--按照设定的速度周期调用update函数-->
+}
+
+ function BgFade(red1, grn1, blu1, red2,
+ grn2, blu2, steps) {
+ sred = red1; sgrn = grn1; sblu = blu1;<!--变量的传递-->
+ ered = red2; egrn = grn2; eblu = blu2;<!--变量的传递-->
+ inc = steps;<!--变量的传递-->
+ step = 0;<!--变量赋值-->
+ RunFader();<!--调用runfader函数-->
+ }
+ 
+ function RunFader() {<!--动态的显示颜色的渐进变化效果-->
+ var epct = step/inc;<!--颜色变化的参量-->
+ var spct = 1 - epct;<!--颜色变化的参量-->
+ (document.all)<!--如果是netscape浏览器-->
+ 
+ tickerobject.backgroundColor= Math.floor(sred * spct + ered * epct)*256*256 + Math.floor(sgrn * spct + egrn * epct)*256 + Math.floor(sblu * spct + eblu * epct);
+ if ( step < inc ) {
+ setTimeout('RunFader()',50); }<!--周期性的变化颜色-->
+ step++;}
+</script>
+
+
+
+</body>
+
+</html>
+<!--本例程实现了动态链接类-->
+<!--颜色的动态显示-->
+<!--链接内容的动态更替-->
+<!--简单动画的实现方法-->

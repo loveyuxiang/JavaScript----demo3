@@ -1,0 +1,31 @@
+
+
+
+
+<script Language="JavaScript">
+
+ var msg  = "状态栏打字机效果！  " ;
+ interval = 200<!--定义打字效果的时间间隔-->
+
+var seq=0;<!--定义当前显示的字符的个数-->
+
+function Scroll() {
+len = msg.length;<!--获得待显示文字的长度-->
+window.status = msg.substring(0, seq+1);<!--显示第一个字符-->
+seq++;             <!--seq加1-->
+if ( seq >= len ) {<!--如果seq大于文字长度，则将它置0--> 
+seq = 0; 
+window.status = '';<!--清空状态栏-->
+}
+else
+window.setTimeout("Scroll();", interval );<!--每个0.2秒调用一次scroll函数-->
+
+} 
+Scroll();<!--直接调用scroll()函数-->
+</script>
+
+
+<!--本例程实现了状态栏中以打字效果显示的文字的功能-->
+<!--状态栏的操作函数-->
+<!--字符串的循环表示-->
+<!--settimeout函数的使用-->

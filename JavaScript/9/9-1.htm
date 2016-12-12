@@ -1,0 +1,37 @@
+<SCRIPT LANGUAGE="JavaScript">
+
+
+function popupPage(l, t, w, h) {
+var windowprops = "location=no,scrollbars=no,menubars=no,toolbars=no,resizable=yes" +
+",left=" + l + ",top=" + t + ",width=" + w + ",height=" + h;    <!--设定打开窗口的大小和位置参数，并且打开的窗口中没有地址栏、滚动栏、菜单栏和工具栏等-->
+
+var URL = "http://www.JavaScript.com/";                              <!--将要链接到的网页位置-->
+popup = window.open(URL,"MenuPopup",windowprops);              <!--使用window对象的open方法按照设定的参数打开对应的网址-->
+}  
+
+</script>
+<table>
+<tr>
+
+<td>
+<form name=popupform>
+<pre>
+离开左边的距离:  <input type=text name=left size=2 maxlength=4> pixels
+离开右边的距离:  <input type=text name=top size=2 maxlength=4> pixels
+
+窗口的宽度:      <input type=text name=width size=2 maxlength=4> pixels
+窗口的高度:      <input type=text name=height size=2 maxlength=4> pixels
+</pre>
+<center>
+<input type=button value="打开这个窗口!" onClick="popupPage(this.form.left.value, this.form.top.value, this.form.width.value, this.form.height.value)">
+</center>
+</form>
+</td>
+
+</tr>
+</table>
+
+<!--本案例实现了按照指定要求打开窗口的操作-->
+<!--主要是在窗口大小和位置方面做了一些要求-->
+<!--通过window.open()来实现-->
+<!--可以在此基础上扩展更多的可控项-->

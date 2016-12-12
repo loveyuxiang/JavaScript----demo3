@@ -1,0 +1,90 @@
+
+<SCRIPT LANGUAGE="JavaScript">
+sortitems = 1;  <!--设定初始值-->
+
+function move(fbox,tbox) {
+for(var i=0; i<fbox.options.length; i++) {
+if(fbox.options[i].selected && fbox.options[i].value != "") {
+var no = new Option();<!--新建变量-->
+no.value = fbox.options[i].value;<!--获取弹出列表中的序号-->
+no.text = fbox.options[i].text;<!--获取弹出列表的文字-->
+tbox.options[tbox.options.length] = no;<!--将弹出的文字和序号写入接收列表-->
+fbox.options[i].value = "";<!--将弹出列表中弹出的项置空-->
+fbox.options[i].text = "";<!--将弹出列表中弹出的项的文字置空-->
+   }
+}
+BumpUp(fbox);<!--弹出列表的文字-->
+if (sortitems) SortD(tbox);<!--对列表中的文字进行排序-->
+}
+
+
+function BumpUp(box)  {
+for(var i=0; i<box.options.length; i++) {<!--依次对每一项进行处理-->
+if(box.options[i].value == "")  {<!--如果某一项为空-->
+for(var j=i; j<box.options.length-1; j++)  {<!--将该项后边的每一项均前移-->
+box.options[j].value = box.options[j+1].value;<!--移动value值-->
+box.options[j].text = box.options[j+1].text;<!--移动文字-->
+}
+var ln = i;break;<!--记录空值的项-->
+   }
+}
+if(ln < box.options.length)  {<!--如果空值的项小于总长度-->
+box.options.length -= 1;<!--总长度减1-->
+BumpUp(box);<!--继续调用弹出-->
+   }
+}
+
+
+function SortD(box)  {
+var temp_opts = new Array();                   <!--创建一个新的数组-->
+var temp = new Object();                       <!--创建一个新的object对象-->
+for(var i=0; i<box.options.length; i++)  {  <!--对列表中的项依次进行处理-->   
+temp_opts[i] = box.options[i];<!--将列表中的每一项存在temp_opts中-->
+}
+for(var x=0; x<temp_opts.length-1; x++)  {
+for(var y=(x+1); y<temp_opts.length; y++)  {
+if(temp_opts[x].text > temp_opts[y].text)  {
+temp = temp_opts[x].text;<!--获得第x项的文字-->
+temp_opts[x].text = temp_opts[y].text;<!--将第y项的文字赋值给第x项的文字-->
+temp_opts[y].text = temp;<!--同时temp中文字赋值给第y项-->
+temp = temp_opts[x].value;<!--再将第x项中的value存放再temp中-->
+temp_opts[x].value = temp_opts[y].value;<!--再将第y项中的value付给第x项-->
+temp_opts[y].value = temp;<!--第y项value的值换成temp的值-->
+      }
+   }
+}
+for(var i=0; i<box.options.length; i++)  {
+box.options[i].value = temp_opts[i].value;<!--将value值赋给当前列表中-->
+box.options[i].text = temp_opts[i].text;<!--将文字赋给当前列表中-->
+   }
+}
+
+</script>
+
+<form ACTION="" METHOD="POST">
+<table border="0">
+<tr>
+<td><select multiple size="5" name="list1">
+<option value="l1">A</option>
+<option value="l2">B </option>
+<option value="l3">C</option>
+<option value="l4">D</option>
+</select></td>
+<td>
+<input type="button" value=" ==>> " onclick="move(this.form.list1,this.form.list2)" name="B1"><br>
+<input type="button" value=" <<== " onclick="move(this.form.list2,this.form.list1)" name="B2">
+</td>
+<td><select multiple size="5" name="list2">
+<option value="r1">E</option>
+<option value="r2">F </option>
+<option value="r3">G</option>
+<option value="r4">H</option>
+</select></td>
+</tr>
+</table>
+</form>
+
+<!--本例程实现了两个列表内容相互交换的功能-->
+<!--列表对象的交互功能的实现-->
+<!--鼠标事件的响应函数的编写-->
+<!--函数之间的调用关系-->

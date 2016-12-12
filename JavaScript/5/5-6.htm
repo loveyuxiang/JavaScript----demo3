@@ -1,0 +1,31 @@
+<script language="JavaScript">
+function changeto(highlightcolor){
+source=event.srcElement
+if (source.tagName=="TR"||source.tagName=="TABLE")
+return
+while(source.tagName!="TD")
+source=source.parentElement
+if (source.style.backgroundColor!=highlightcolor&&source.id!="ignore")
+source.style.backgroundColor=highlightcolor
+}
+function changeback(originalcolor){
+if (event.fromElement.contains(event.toElement)||source.contains(event.toElement)||source.id=="ignore")
+return
+if (event.toElement!=source)
+source.style.backgroundColor=originalcolor
+}
+</script>
+
+<!--以下是你代码是用来触发事件的，也是改变颜色的地方-->
+<table border="1" width="30%">
+ <tr onMouseover="changeto('#FFFF00')" onMouseout="changeback('white')">
+    <td width="100%"> <center><a href="http://www.javascript.com">JavaScript论坛</a></td>
+  </tr>
+  <tr onMouseover="changeto('#00FF00')" onMouseout="changeback('white')">
+    <td width="100%"><center><a href="http://www.javascript.com">JavaScript课程</a></td>
+  </tr>
+  <tr onMouseover="changeto('#00FFFF')" onMouseout="changeback('white')">
+    <td width="100%"><center><a href="http://www.javascript.com">JavaScript软件</a></td>
+  </tr>
+</table>
+

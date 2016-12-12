@@ -1,0 +1,23 @@
+
+<style>
+#obj {filter:revealTrans();}
+</style>
+<SCRIPT LANGUAGE=javascript>
+
+	function do_transition(){
+		obj.filters(0).apply();
+		obj.src="yu1.jpg";
+		obj.filters(0).play();
+	}
+	
+	function do_restore(){
+		obj.filters(0).apply();
+		obj.src="yu2.jpg";
+		obj.filters(0).play();
+	}
+
+</SCRIPT>
+
+
+<div ><IMG SRC="yu2.jpg" id="obj" onmouseover="do_transition()" onmouseout="do_restore()"></div>
+

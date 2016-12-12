@@ -1,0 +1,41 @@
+<SCRIPT LANGUAGE="JavaScript">
+function changeCase(frmObj) {<!--改变大小写的函数-->
+var index;<!--定义变量-->
+var tmpStr;<!--定义变量，存储临时字符串-->
+var tmpChar;<!--定义变量，存储临时字符-->
+var preString;<!--定义变量，存储先续字符串-->
+var postString;<!--定义变量，存储后续字符串-->
+var strlen;<!--定义变量，存储字符串的长度-->
+tmpStr = frmObj.value.toLowerCase();<!--将文本框中的所有文字变成小写-->
+strLen = tmpStr.length;<!--获得文本框中字符串的长度-->
+if (strLen > 0)  {<!--如果文本框中的字符串不为空-->
+for (index = 0; index < strLen; index++)  {<!--依次对每个字符进行处理-->
+if (index == 0)  {<!--当是第一个字符时-->
+tmpChar = tmpStr.substring(0,1).toUpperCase();<!--将第一个字符变成大写-->
+postString = tmpStr.substring(1,strLen);<!--获得后边的所有的字符-->
+tmpStr = tmpChar + postString;<!--生成一个新的字符串，其中第一个字符为大写-->
+}
+else {
+tmpChar = tmpStr.substring(index, index+1);<!--获得当前字符-->
+if (tmpChar == " " && index < (strLen-1))  {<!--如果当前字符为空格，并且不是最后一个，说明下一个字符将是一个新的单词的开始-->
+tmpChar = tmpStr.substring(index+1, index+2).toUpperCase();<!--获取下一个字符，并把它变成大写-->
+preString = tmpStr.substring(0, index+1);<!--将前面的字符写入新的字符串-->
+postString = tmpStr.substring(index+2,strLen);<!--将后边的字符写入新的字符串-->
+tmpStr = preString + tmpChar + postString;<!--将三部分字符组合-->
+         }
+      }
+   }
+}
+frmObj.value = tmpStr;<!--输出经过改写的字符串-->
+}
+</script>
+
+
+<form name=form>
+<input type=text name=box value="huan ying jin ru ben zhan!" size="25">
+<input type=button value="开始" onClick="javascript:changeCase(this.form.box)">
+</form>
+<!--本例程实现了大小写的变化-->
+<!--如何判断字符串中单词的首字符-->
+<!--字符串的相关操作-->
+<!--表单的交互-->

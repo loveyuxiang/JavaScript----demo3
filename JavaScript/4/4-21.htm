@@ -1,0 +1,70 @@
+
+<script language="JavaScript">
+var timerID = null;<!--时钟-->
+var timerRunning = false;<!--时钟标志位-->
+function startclock () <!--开始时钟-->
+   {
+   stopclock();<!--停止时钟-->
+   time();<!--开始-->
+   }
+function stopclock ()<!--停止时钟-->
+   {
+   if(timerRunning)<!--如果时钟正在运行-->
+      clearTimeout(timerID);<!--清除时钟定时器-->
+   timerRunning = false;<!--重置时钟标志位-->
+   }
+function time ()
+   {
+   var now = new Date();<!--获取当前日期-->
+   var yr = now.getYear();<!--当前的年-->
+   var mName = now.getMonth() + 1;<!--当前的月-->
+   var dName = now.getDay() + 1;<!--当前的天-->
+   var dayNr = ((now.getDate()<10) ? "0" : "")+ now.getDate();<!--如果日期是个位数，则在前面加0-->
+   var ampm = (now.getHours() >= 12) ? " P.M." : " A.M."        <!--ampm变量用来区分上午下午-->
+   var hours = now.getHours();<!--当前的小时-->
+         hours = ((hours > 12) ? hours - 12 : hours);           <!--采用12时制-->
+   var minutes = ((now.getMinutes() < 10) ? ":0" : ":") + now.getMinutes();<!--如果分钟是个位数，则在前面加0-->
+   var seconds = ((now.getSeconds() < 10) ? ":0" : ":") + now.getSeconds();<!--如果秒是个位数，则在前面加0-->
+   if(dName==1) Day = "星期日";<!--星期日-->
+   if(dName==2) Day = "星期一";<!--星期一-->
+   if(dName==3) Day = "星期二";<!--星期二-->
+   if(dName==4) Day = "星期三";<!--星期三-->
+   if(dName==5) Day = "星期四";<!--星期四-->
+   if(dName==6) Day = "星期五";<!--星期五-->
+   if(dName==7) Day = "星期六";<!--星期六-->
+   if(mName==1) Month="一月";<!--一月-->
+   if(mName==2) Month="二月";<!--二月-->
+   if(mName==3) Month="三月";<!--三月-->
+   if(mName==4) Month="四月";<!--四月-->
+   if(mName==5) Month="五月";<!--五月-->
+   if(mName==6) Month="六月";<!--六月-->
+   if(mName==7) Month="七月";<!--七月-->
+   if(mName==8) Month="八月";<!--八月-->
+   if(mName==9) Month="九月";<!--九月-->
+   if(mName==10) Month="十月";<!--十月-->
+   if(mName==11) Month="十一月";<!--十一月-->
+   if(mName==12) Month="十二月";<!--十二月-->
+   var DayDateTime=(Day + " "+ Month+ " "+ dayNr + "日 " + "" + yr + "年    " + hours+ minutes + seconds + " " + ampm);<!--合成一个日期字符串变量-->
+   document.clock.face.value=DayDateTime;<!--设置日期格式-->
+   timerID = setTimeout("time()",1000);<!--每秒钟更新一次日期显示-->
+   timerRunning = true;<!--时钟开始进站-->
+   }
+function clearStatus()<!--清除当前时钟状态-->
+   {
+   if(timerRunning)<!--如果时钟正在运行-->
+      clearTimeout(timerID);<!--清除时钟定时器-->
+   timerRunning = false;<!--设置时钟运行标志位-->
+   window.status=" ";   <!--设置状态栏信息-->
+   }
+</script>
+<form name="clock" onSubmit="0">
+<input type=button name="face" size=100 value=" JavaScript!!  ">
+</form>
+
+<body  onLoad="startclock ()">
+
+
+<!--本例程实现了按钮上的时钟-->
+<!--按照一定的格式获取当前的系统事件-->
+<!--对按钮控件的操作-->
+<!--对时间运行的控制-->

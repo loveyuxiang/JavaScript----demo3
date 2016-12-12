@@ -1,0 +1,36 @@
+
+
+
+
+<script language="JavaScript">
+
+function shake(n) {<!--振动的次数-->
+if (window.top.moveBy) {
+for (i = 10; i > 0; i--) {<!--振幅逐渐变小-->
+for (j = n; j > 0; j--) {
+window.top.moveBy(0,i);<!--窗口向下移动i-->
+window.top.moveBy(i,0);<!--窗口向右移动i-->
+window.top.moveBy(0,-i);<!--窗口向上移动i-->
+window.top.moveBy(-i,0);<!--窗口向左移动i-->
+         }
+      }
+   }
+alert("效果不错吧！！");<!--弹出提示窗口-->
+}
+</script>
+<script
+language="JavaScript">
+
+
+</script>
+<form>
+  <div><p><input onclick="shake(2)" type="button"
+  value="震动页面"> </p>
+  </div>
+</form>
+
+
+<!--本例程实现了地震的效果-->
+<!--窗口参数的动态变化-->
+<!--地震效果的实现方法-->
+<!--弹出窗口的使用-->

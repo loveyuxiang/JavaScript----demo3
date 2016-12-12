@@ -1,0 +1,66 @@
+<BODY><SCRIPT LANGUAGE="JavaScript">
+<!--图片的链接地址-->
+var snowsrc="ball.gif"
+<!--图片的运动时间-->
+  var no = 10; <!--图片的个数-->
+  var dx, xp, yp;    <!--声明变量，xp表示横坐标，yp表示纵坐标-->
+  var am, stx, sty;  <!--声明变量，am表示左右摆动的幅度，stx表示横坐标的偏移步长，sty表示纵坐标的步长-->
+  
+{
+doc_width = document.body.clientWidth;<!--获取当前窗口的宽度-->
+doc_height = document.body.clientHeight;<!--获取当前窗口的高度-->
+}
+dx = new Array();<!--声明数组变量dx-->
+xp = new Array();<!--声明数组变量xp-->
+yp = new Array();<!--声明数组变量yp-->
+am = new Array();<!--声明数组变量am-->
+stx = new Array();<!--声明数组变量stx-->
+sty = new Array();<!--声明数组变量sty-->
+for (i = 0; i < no; ++ i) {  
+dx[i] = 0;                        
+xp[i] = Math.random()*(doc_width-50);  <!--第i个图片的横坐标初始值-->
+yp[i] = Math.random()*doc_height;<!--第i个图片的纵坐标初始值-->
+am[i] = Math.random()*20;         <!--第i个图片的左右摆动的幅度-->
+stx[i] = 0.02 + Math.random()/10; <!--第i个图片x方向的步长-->
+sty[i] = 0.7 + Math.random();     <!--第i个图片y方向的步长-->
+ {<!--加入一个图片-->
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: absolute; Z-INDEX: "+ i +"; VISIBILITY: visible; TOP: 15px; LEFT: 15px;\"><img src='"+snowsrc+"' border=\"0\"></div>");
+}
+}
+
+
+function snowIE() {  
+for (i = 0; i < no; ++ i) {  
+<!--第i个图片的纵坐标加上步长-->
+yp[i] += sty[i];
+<!--如果新坐标超过了屏幕下沿，重置该图片的信息，包括横坐标、纵坐标以及x方向的步长和y方向的步长-->
+if (yp[i] > doc_height-50) {
+xp[i] = Math.random()*(doc_width-am[i]-30);<!--重新赋值图片的横坐标-->
+yp[i] = 0;<!--重新赋值图片的纵坐标-->
+
+
+
+}
+dx[i] += stx[i];<!--dx变量加上一个步长-->
+document.all["dot"+i].style.pixelTop = yp[i];<!--更新图片的纵坐标-->
+document.all["dot"+i].style.pixelLeft = xp[i] + am[i]*Math.sin(dx[i]);<!--更新图片的横坐标-->
+}
+<!--设定动画刷新的时间周期-->
+setTimeout("snowIE()", 10);
+
+}
+
+<!--调用snowIE()函数--> 
+
+snowIE();
+
+
+</script>
+
+
+
+
+<!--本例程完成了随意飘动的图像的设计-->
+<!--设计的过程中，根据用户不同的浏览器分别给出了相应的动画函数-->
+<!--图像飘动的过程中，横坐标的轨迹是以一点为中心的正弦曲线-->
+<!--利用了setTimeout函数完成了动画的功能-->

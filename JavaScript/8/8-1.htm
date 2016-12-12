@@ -1,0 +1,91 @@
+
+
+<body bgcolor="#ffffff">
+
+ <STYLE type=text/css>BODY {
+        FONT-FAMILY: "隶书"; FONT-SIZE: 9pt; MARGIN-LEFT: 0px; MARGIN-RIGHT: 0px; MARGIN-TOP: 0px
+}
+
+</STYLE>
+
+<SCRIPT language=JavaScript>
+var no = 50;<!--定义雨点的总数-->
+var speed = 1;<!--定义下雨的速度-->
+var s, x, y, sn, cs;<!--声明变量-->
+var a, r, cx, cy;<!--声明变量-->
+var i, doc_width = 800, doc_height = 600;<!--存储显示器的分辨率-->
+
+if (document.all) {<!--如果是ie浏览器-->
+doc_width = document.body.clientWidth;<!--获得窗口的宽度-->
+doc_height = document.body.clientHeight;<!--获得窗口的高度-->
+}
+x = new Array();<!--存储所有雨点的横坐标-->
+y = new Array();<!--存储所有雨点的纵坐标-->
+r = new Array();<!--存储所有雨点的横坐标-->
+cx = new Array();<!--存储所有雨点的横坐标-->
+cy = new Array();<!--存储所有雨点的横坐标-->
+s = 8;
+for (i = 0; i < no; ++ i) {<!--循环对所有的雨点进行初始化和显示-->
+initRain();<!--初始化雨点-->
+
+if (document.all) {
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");<!--创建新的层-->
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");<!--显示雨点-->
+document.write("visible; TOP: 15px; LEFT: 15px;\"><font color=\"black\">");<!--颜色为红色-->
+document.write(",</font></div>");
+   }
+}
+function initRain() {<!--对雨点的初始化-->
+a = 6;
+r[i] = 1;
+sn = Math.sin(a);<!--定义变量-->
+cs = Math.cos(a);<!--定义变量-->
+cx[i] = Math.random() * doc_width + 1;<!--初始化雨点横坐标-->
+cy[i] = Math.random() * doc_height + 1;<!--初始化雨点纵坐标-->
+x[i] = r[i] * sn + cx[i];<!--初始化雨点横坐标-->
+y[i] = cy[i];<!--初始化雨点纵坐标-->
+}
+
+function makeRain() {<!--生成雨点-->
+
+r[i] = 1;<!--雨点出现的纵坐标最小值-->
+cx[i] = Math.random() * doc_width + 1;<!--横向速度-->
+cy[i] = 1;<!--纵向速度-->
+x[i] = r[i] * sn + cx[i];<!--获得下一次雨点的横坐标-->
+y[i] = r[i] * cs + cy[i];<!--获得下一次雨点的纵坐标-->
+}
+function updateRain() {<!--更新雨点-->
+
+r[i] += s;<!--
+x[i] = r[i] * sn + cx[i];<!--获得下一次雨点的横坐标-->
+y[i] = r[i] * cs + cy[i];<!--获得下一次雨点的纵坐标-->
+}
+
+function raindropIE() {<!--对IE浏览器的下雨函数-->
+
+for (i = 0; i < no; ++ i) {
+updateRain();
+if ((x[i] <= 1) || (x[i] >= (doc_width - 20)) || (y[i] >= (doc_height - 20))) {<!--判断雨点是否已经出了当前窗口边界-->
+makeRain();<!--重新生成雨点-->
+doc_width = document.body.clientWidth;<!--获得当前雨点所在层的宽度-->
+doc_height = document.body.clientHeight;<!--获得当前雨点所在层的高度-->
+}
+document.all["dot"+i].style.pixelTop = y[i];<!--显示雨点-->
+document.all["dot"+i].style.pixelLeft = x[i];<!--显示雨点-->
+}
+setTimeout("raindropIE()", speed);<!--根据speed值，动态更新下雨的图片-->
+}
+
+if (document.all) {
+raindropIE();<!--如果是ie浏览器，调用相应的函数-->
+
+}
+</SCRIPT>
+
+</body>
+
+</html>
+<!--本例程实现了在页面内下雨的功能-->
+<!--利用settimeout函数实现动画效果-->
+<!--对不同浏览器分别调用不同的函数-->
+<!--模拟雨点的下落效果-->

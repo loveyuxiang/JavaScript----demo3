@@ -1,0 +1,22 @@
+
+<SCRIPT language=javascript>
+function out()
+{
+if(window.event.toElement.id!="menu"   &&    window.event.toElement.id!="link")
+  menu.style.visibility="hidden";
+}
+</SCRIPT>
+
+<div id="back" onmouseout="out()"style="position:absolute;top:180;left:310;width:160;height:40;z-index:1;visibility:visible;">
+<span id="menubar"  onmouseover="menu.style.visibility='visible'">
+<font  color=red size=2>疯狂下载</span>
+<div border=1  id="menu" style="position:absolute;top:15;left:0;width:50;height:10;z-index:2;visibility:hidden;">
+<a id="link" href="x.htm">软件下载</a>
+<a id="link" href="x.htm">游戏下载</a>
+<a id="link" href="x.htm">黄金书籍</a>
+<a id="link" href="x.htm">精彩图库</a>
+<a id="link" href="x.htm">MP3歌曲</a>
+<a id="link" href="x.htm">FLASH</a>
+</div>
+</div>
+</body>

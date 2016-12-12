@@ -1,0 +1,19 @@
+
+
+<script language="JavaScript">
+var popup = null;<!--窗口的对象-->
+var over = "Launch Pop-up Navigator";
+popup = window.open("","popupnav","width=300,height=200,resizable=1,scrollbars=auto");<!--设置弹出窗口的名称和属性-->
+if (popup != null) {
+  if (popup.opener == null) {<!--如果弹出窗口的父窗口为空-->
+    popup.opener = self; <!--将自己作为自己的父窗口-->
+  }
+  popup.location.href ='http://www.JavaScript.com';<!--设置弹出窗口的链接-->
+}
+</script>
+
+
+<!--本例程实现了自动弹出窗口-->
+<!--理解窗口对象继承机制-->
+<!--弹出窗口的使用-->
+<!--设置弹出窗口的属性-->

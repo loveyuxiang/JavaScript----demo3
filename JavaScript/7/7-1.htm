@@ -1,0 +1,32 @@
+<form mane=lao>
+<font color=#FF8000>用户名：<input type="text" name="T1" size="10" value="输入用户名"  id="flashit"><br>密&nbsp;&nbsp;码：<input type="text" name="T1" size="10" value="输入密码"  id="flashit"><br>&nbsp;&nbsp;<input type="reset" value="重写" name="B2"  id="flashit">&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="提交" name="B2"  id="flashit"></font>
+</form>
+
+<script language="JavaScript"> 
+ 
+if (document.all&&document.all.flashit){ 
+ 
+var flashelement=document.all.flashit 
+
+
+ 
+function changecolor(which){ 
+if (flashelement[which].style.color=='') 
+flashelement[which].style.color="#FF8000" 
+else 
+flashelement[which].style.color="" 
+} 
+ 
+ 
+if (flashelement.length==null) 
+setInterval("changecolor(0)",1000) 
+else 
+for (i=0;i<flashelement.length;i++){ 
+var tempvariable='setInterval("changecolor('+i+')",'+'1000)' 
+eval(tempvariable) 
+} 
+ 
+} 
+
+</script> 
+

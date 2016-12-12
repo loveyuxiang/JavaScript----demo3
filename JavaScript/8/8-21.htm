@@ -1,0 +1,33 @@
+
+
+<script LANGUAGE="JavaScript">
+
+function test(form) {
+if (form.text.value == "")
+alert("你喜欢的颜色是什么?")<!--如果输入数字为空，则弹出提示窗口-->
+else { 
+document.bgColor=(""+form.text.value+"");<!--否则，按照输入的值设置当前窗口的背景色-->
+   }
+}
+</script>
+<form>
+<div align="center"><center>
+</center>
+  <table border="1" width="100%" bordercolorlight="#000000" cellspacing="0" bordercolordark="#FFFFFF" cellpadding="0">
+    <tr>
+      <td width="35%">
+        <p align="center"><font size="2">请输入颜色代码：</font></td>
+      <center>
+      <td width="65%">&nbsp;
+      <input type="text" name="text" size="20" style="border: 1 dotted #008000"> &nbsp;&nbsp;<input type="button" name="button" value="生效" onClick="test(this.form)"> </td> 
+      </tr>
+    </table>
+</center>
+</div>
+</form>
+
+
+
+<!--本例实现了根据输入的数字改变背景颜色的功能-->
+<!--如果输入为空，会弹出提示框-->
+<!--否则将按照用户输入的值进行背景色的转换-->

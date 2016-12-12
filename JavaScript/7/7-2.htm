@@ -1,0 +1,49 @@
+
+
+<script language=javascript> 
+var style = document.all, both = style, idme=908601;<!--定义变量-->
+
+if (style) { layerRef = 'document.all'; styleRef = '.style'; }<!--对变量进行赋值-->
+
+function writeOnText(obj, str) {
+ 
+
+    eval(obj+'.innerHTML= str');   <!--向窗口中写入字符串-->
+}
+
+var dispStr = new Array("欢迎来到javascript世界！");
+var overMe=0;
+
+function txtTyper(str, idx, idObj, spObj, clr1, clr2, delay, plysnd) {
+
+  if (both && idx <= str.length) {
+     if (str.charAt(idx) == '<') { while (str.charAt(idx) != '>') idx++; idx++; }
+     if (str.charAt(idx) == '&' && str.charAt(idx+1) != ' ') { while (str.charAt(idx) != ';') idx++; idx++; }
+     tmp0 = str.slice(0,idx);<!--获得字符串的一部分-->
+     tmp1 = str.charAt(idx++);
+     if (overMe==0 && plysnd==1) 
+       
+       overMe=1;<!--标志位改变-->
+   
+     else 
+       overMe=0;<!--标志位改变-->
+     writeOnText(idObj, "<span class="+spObj+"><font color='"+clr1+"'>"+tmp0+"</font><font color='"+clr2+"'>"+tmp1+"</font></span>");<!--获得待显示的字符串-->
+     setTimeout("txtTyper('"+str+"', "+idx+", '"+idObj+"', '"+spObj+"', '"+clr1+"', '"+clr2+"', "+delay+" ,"+plysnd+")",delay);<!--设置逐个显示的频率-->
+  }
+}
+
+function init() {
+  txtTyper(dispStr[0], 0, 'ttl0', 'ttl1', '#339933', '#99FF33', 300, 0);<!--设置参数，调用函数txtTyper-->
+}
+</script>
+<body onload=init() >
+<DIV class=ttl1 id=ttl0></DIV>
+
+
+</body>
+
+</html>
+<!--本例程实现了呈变色并逐个显示的文字-->
+<!--同时本例程还支持对喇叭的调用-->
+<!--定时器的使用-->
+<!--逐个显示效果的实现过程-->

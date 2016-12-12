@@ -1,0 +1,47 @@
+
+<body onload="init()">
+<SCRIPT language=JavaScript>
+drag = 0
+move = 0
+
+function init() {
+    window.document.onmousemove = mouseMove
+    window.document.onmousedown = mouseDown
+    window.document.onmouseup = mouseUp
+    window.document.ondragstart = mouseStop
+}
+
+function mouseDown() {
+    if (drag) {
+        clickleft = window.event.x - parseInt(dragObj.style.left)
+        clicktop = window.event.y - parseInt(dragObj.style.top)
+        dragObj.style.zIndex += 1
+        move = 1
+    }
+}
+
+function mouseStop() {
+    window.event.returnValue = false
+}
+
+function mouseMove() {
+    if (move) {
+        dragObj.style.left = window.event.x - clickleft
+        dragObj.style.top = window.event.y - clicktop
+    }
+}
+
+function mouseUp() {
+    move = 0
+}
+
+
+
+</SCRIPT>
+<DIV id=block1 onmouseout=drag=0 onmouseover="dragObj=block1; drag=1;" 
+style="HEIGHT: 90px; LEFT: 10px; POSITION: absolute; TOP: 10px; WIDTH: 90px"><IMG 
+alt="" border=1
+src="car.jpg" >
+</body>
+
+

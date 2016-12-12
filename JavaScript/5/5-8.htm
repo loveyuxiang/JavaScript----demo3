@@ -1,0 +1,77 @@
+<script language="JavaScript">
+var images='sony.jpg';<!--图片的路径设置-->
+var amount=7;<!--图片显示的个数-->
+var cnter=70;
+var step;
+var currStep = 0;
+var Xpos = 0;<!--横坐标-->
+var Ypos = 0;<!--纵坐标-->
+<!--如果是ie浏览器-->
+{
+document.write('<div id="ieDiv" style="position:absolute;top:0px;left:0px">')<!--显示-->
+document.write('<div id="c" style="position:relative">');
+
+for (n=0; n < amount; n++)<!--依次显示每个图片-->
+document.write('<img src=" '+images+'" style="position:absolute;top:0px;left:0px">')
+document.write('</div>')
+document.write('</div>')
+
+function MsieMouseFollow(evnt){<!--跟随鼠标运动-->
+ Xpos = document.body.scrollLeft+event.x-5;<!--获取横坐标-->
+ Ypos = document.body.scrollTop+event.y-5;<!--获取纵坐标-->
+ }
+ document.onmousemove = MsieMouseFollow;<!--鼠标移动后调用msiemousefollow函数->
+
+ } 
+
+
+
+
+function Swirl(){
+if (currStep<0.0550)<!--如果当前的步长小于某个值-->
+step=0.001;<!--赋值给step-->
+<!--如果是ie浏览器-->
+{
+ for (i=0;i<ieDiv.all.c.all.length;i++)<!--依次处理每一个图片所在的层-->
+ {
+ieDiv.all.c.all[i].style.top = Ypos+cnter*Math.cos((currStep+i*4.5)/5)*Math.sin((currStep)*150);<!--按照一定的规则计算出每一个图片所在层的显示的上边界，并显示-->
+ieDiv.all.c.all[i].style.left = Xpos+cnter*Math.sin((currStep+i*4.5)/5)*Math.sin((currStep)*150);<!--按照一定的规则计算出每一个图片所在层的显示的左边界，并显示-->
+ }
+}
+
+currStep += step;<!--当前的步长增加-->
+setTimeout("Swirl()", 10);<!--设定调用swirl函数的时间间隔-->
+if (currStep>0.0540)<!--如果当前的步长大于某个值-->
+{
+step+=0.002;<!--调整step的值-->
+ <!--如果是ie浏览器-->
+{
+for (i=0;i<ieDiv.all.c.all.length;i++)
+ {
+ieDiv.all.c.all[i].style.top=Ypos+cnter*Math.cos((currStep+i*4.5)/5)<!--按照一定的规则计算出每一个图片所在层的显示的上边界，并显示-->
+ieDiv.all.c.all[i].style.left=Xpos+cnter*Math.sin((currStep+i*4.5)/5)<!--按照一定的规则计算出每一个图片所在层的显示的上边界，并显示-->
+ }
+} 
+}
+if (step > 0.5)<!--判断当前的动画状态-->
+{
+step=0.5;<!--变量重新赋值-->
+cnter-=8;<!--变量重新赋值-->
+}
+ <!--如果是ie浏览器-->
+_y=-document.body.clientWidth;<!--获得当前窗口的宽度-->
+if (cnter <= _y)
+{
+currStep=0;<!--重置变量-->
+step=0.001;<!--重置变量-->
+cnter=70;<!--重置变量-->
+}
+}
+Swirl();<!--直接调用swirl函数-->
+</script>
+
+<!--本例程实现了跟随鼠标旋转的图片的效果-->
+<!--鼠标事件的捕捉以及处理过程-->
+<!--设定动画中对象的轨迹-->
+<!--对不同浏览器的分别处理-->
+<!--动画效果的实现-->

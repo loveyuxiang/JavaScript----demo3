@@ -1,0 +1,56 @@
+
+
+
+<SCRIPT LANGUAGE="JavaScript">
+
+
+adTime=15;
+chanceAd=1;
+
+var ie=(document.all);<!--ie浏览器的标志-->
+adCount=0;
+
+function initAd(){<!--初始化-->
+       
+        if(ie)                adDiv=eval('document.all.sponsorAdDiv.style');<!--如果时ie，获得广告的格式-->
+        
+        randAd=Math.ceil(Math.random()*chanceAd);
+        if (ie)
+        adDiv.visibility="visible";<!--对于ie浏览器，设置广告可视-->
+       
+        if(randAd==1) showAd();<!--显示广告-->
+}
+
+function showAd(){
+     if(adCount<adTime*10){
+		adCount+=1;
+        
+       
+       
+        setTimeout("showAd()",10);<!--设置广告的事件间隔-->
+     }
+     else 
+       closeAd();<!--关闭广告-->
+}
+
+function closeAd(){
+ if (ie)<!--对于ie浏览器-->
+  adDiv.display="none";<!--设置广告隐藏-->
+ 
+}
+
+onload=initAd;<!--页面载入时调用initAd函数-->
+
+</script>
+<div id="sponsorAdDiv" style="visibility:hidden">
+
+<table width="150" height="80" bgcolor="008000"><tr><td>
+<table width="145" height="75" bgcolor="F0FFF0"><tr><td>
+<center><font color=#FF8000><b>欢迎来到本站<br><br>JavaScript世界</b></font></center>
+</td></tr></table></td></tr></table></div>
+
+
+<!--本例程实现了页面广告窗口-->
+<!--对函数的调用-->
+<!--对不同浏览器的支持-->
+<!--动画效果的实现-->

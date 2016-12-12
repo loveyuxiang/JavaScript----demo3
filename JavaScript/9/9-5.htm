@@ -1,0 +1,26 @@
+<SCRIPT LANGUAGE="JavaScript">
+function expandingWindow(website) {
+var heightspeed = 2; <!--垂直方向变化的速度-->
+var widthspeed = 7;  <!--水平方向变化的速度-->
+var leftdist = 0;    <!--左边界-->
+var topdist = 0;     <!--上边界-->
+if (document.all) {<!--如果是ie浏览器-->
+var winwidth = window.screen.availWidth - leftdist;<!--获得横向需要变化的量-->
+var winheight = window.screen.availHeight - topdist;<!--获得纵向需要变化的量-->
+var sizer = window.open("","","left=" + leftdist + ",top=" + topdist + ",width=1,height=1,scrollbars=yes");<!--打开新窗口-->
+for (sizeheight = 1; sizeheight < winheight; sizeheight += heightspeed) {
+sizer.resizeTo("1", sizeheight);<!--垂直方向扩大窗口-->
+}
+for (sizewidth = 1; sizewidth < winwidth; sizewidth += widthspeed) {
+sizer.resizeTo(sizewidth, sizeheight);<!--水平方向扩大窗口-->
+}
+sizer.location = website;<!--设置新窗口的地址链接-->
+}
+
+}
+</script>
+<a href="www.JavaScript.com"onClick="expandingWindow('http://www.JavaScript.com');return false;">欢迎进入JavaScript世界</a>
+<!--本例程实现了打开一个四面变大的窗口-->
+<!--打开新窗口的方法-->
+<!--新窗口的参数意义及设置方法-->
+<!--动态更改新窗口的参数-->

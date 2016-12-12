@@ -1,0 +1,32 @@
+<Script Language="JavaScript">
+function display_image(form) {
+selectionname = form.imagename.options[form.imagename.selectedIndex].text;
+selection = form.imagename.options[form.imagename.selectedIndex].value;
+PreView = window.open("", "Preview", "toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=0,resizable=0,copyhistory=0,width=360,height=440 left=0 top=0");
+PreView.document.open();
+PreView.document.write("<HTML><HEAD>");
+PreView.document.write("<TITLE>Preview</TITLE>");
+PreView.document.write("</HEAD><BODY BGCOLOR=FFFFFF TEXT=000000>");
+PreView.document.write("<FORM><CENTER><B><FONT SIZE=+1>" + 
+selectionname + "</FONT></B><HR>");
+PreView.document.write("<IMG HSPACE=0 VSPACE=0 " +
+"SRC='" + selection + "'>");
+PreView.document.write("<HR><FORM><INPUT TYPE='button' VALUE='关闭窗口' " +
+"onClick='window.close()'></FORM>");
+PreView.document.write("</CENTER>");
+PreView.document.write("</BODY></HTML>");
+PreView.document.close();
+    }
+</SCRIPT>
+<FORM>
+<select NAME="imagename" onChange="display_image(this.form)">
+<option value="" SELECTED>学院景色
+<option value="tp1.gif">景色一
+<option value="tp2.gif">景色二
+<option value="tp3.gif">景色三
+<option value="tp4.gif">景色四
+<option value="tp5.gif">景色五
+<option value="tp6.gif">景色六
+<option value="tp7.gif">景色七
+</select>
+</FORM>

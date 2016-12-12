@@ -1,0 +1,62 @@
+
+
+<SCRIPT LANGUAGE="JavaScript">
+
+function scrollerObj(name,initH,initW,heightB,widthB,content,initBg,Bg,speed,initFl){
+    this.name=name;<!--滚动条的名称-->
+    this.initH=initH;<!--滚动条的初始高度-->
+    this.initW=initW;<!--滚动条的初始宽度-->
+    this.heightB=heightB;<!--文字内容的背景高度-->
+    this.widthB=widthB;<!--文字内容的背景宽度-->
+    this.content=content;<!--滚动条的文字内容-->
+    this.initBg=initBg;<!--滚动条的背景颜色-->
+    this.Bg=Bg;<!--文字内容的背景颜色-->
+    this.iniFl=initFl;<!--文字内容的对齐方式-->
+    this.speed=parseInt(speed);<!--文字滚动速度-->
+    this.timer = name + "Timer";<!--滚动条的定时器-->
+    this.elem;<!--对象中添加elem-->
+    this.getElement = getElement;<!--对象中添加getElement-->
+    this.createLayer=createLayer;<!--对象中添加createLayer-->
+    this.scrollLayer = scrollLayer; <!--对象中添加scrollLayer-->
+    this.scrollLoop=scrollLoop;<!--对象中添加scrollLoop-->
+    this.createLayer();<!--调用createLayer()函数-->
+    this.getElement();<!--调用getElement()函数-->
+    this.scrollLayer();   <!--调用scrollLayer()函数-->
+    }
+function scrollLoop(s){    this.speed = s;    }<!--返回滚动速度-->
+
+function scrollLayer(){
+    if(parseInt(this.elem.style.top)>(this.elem.offsetHeight*(-1))){<!--判断文字块背景的位置-->
+        this.elem.style.top = parseInt(this.elem.style.top)-this.speed;    }<!--更新文字快背景的坐标值-->
+    else {this.elem.style.top = this.initH;}    }
+
+function getElement(){
+	<!--获得具有name的元素-->
+    if(document.getElementById){<!--如果当前可以找到-->
+        this.elem = document.getElementById(this.name);        }
+    else if (document.all){<!--否则，在所有的页面中找-->
+    this.elem = document.all[name];        }
+    else if (document.layers){<!--否则，在所有的层中找-->
+    this.elem = document.layers[name];        }    }
+
+function createLayer(){
+    if(document.all){
+    <!--生成滚动条-->
+    document.write('<div id="layer'+this.name+'" style="font-family:宋体; font-size:9pt; color:#000000; position:relative;overflow:hidden;float:'+this.initFl+';background-color:#'+this.initBg+';border:1px solid black;width:'+this.initW+'px;height:'+this.initH+'px;" onMouseover="'+this.name+'.scrollLoop(0)" onMouseout="'+this.name+'.scrollLoop('+this.speed+')">');
+    document.write('<div id="'+this.name+'" style="position:absolute;top:'+this.initH+'px;left:0px;border:0px solid black;width:'+this.widthB+'px;height:'+this.heightB+'px;background-color:#'+this.Bg+'">');
+    document.write(this.content);
+    document.write('<\/div><\/div>');}
+   
+    if(this.scrollLayer){
+    <!--动态刷新滚动条中的文字内容-->
+      this.timer = setInterval(this.name+'.scrollLayer()','50');    }    
+    }  
+var c = new scrollerObj('c','100','150','20','150','欢迎来到本站！您将进入色彩纷呈的JavaScript世界！','FFCC00','FFFC00','2','center','c');
+
+</SCRIPT>
+
+
+<!--本例程实现了信息滚动条-->
+<!--滚动条的实现方法-->
+<!--函数的调用-->
+<!--this的含义-->

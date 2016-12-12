@@ -1,0 +1,44 @@
+<html>
+
+<head>
+<title>不断闪动的链接</title>
+
+</head>
+<body background="01.jpg">
+
+<script language="JavaScript">
+
+function initArray() {                <!--定义闪烁的颜色变化顺序-->
+for (var i = 0; i < initArray.arguments.length; i++) {   <!--循环变量初始化和依次递加-->
+this[i] = initArray.arguments[i];          <!--变量赋值-->
+}
+this.length = initArray.arguments.length;  <!--记录颜色数组的长度-->
+}
+<!--以下为变幻时的颜色-->
+var colors = new initArray(
+"#000000","#0000FF","#80FFFF","#80FF80","#FFFF00","#FF8000","#FF00FF","#FF0000"
+);
+delay = 100      <!--定义每种颜色闪烁的时间-->
+link = 0;          <!--初始化循环变量-->
+vlink = 0;
+
+function linkDance() {
+link = (link+1)%colors.length;
+vlink = (vlink+1)%colors.length;     <!--通过取整运算实现循环-->
+document.linkColor = colors[link];
+document.vlinkColor = colors[vlink]; <!--将颜色取值分别赋给链接颜色和下划线颜色数组-->
+setTimeout("linkDance()",delay);     <!--延迟delay的时间长度-->
+}
+linkDance();                         <!--调用linkDance()函数实现闪烁功能-->
+
+</script>
+
+<p align="center"><font size="10" face="黑体"><a href="#" target="_blank" >闪动的链接</a></font></p>
+
+
+</body>
+
+</html>
+<!--本案例实现了超链接闪烁的功能-->
+<!--程序中设定了闪烁的时间长短，色彩顺序等-->
+<!--主要是通过调用linkDance()函数来实现闪烁功能-->

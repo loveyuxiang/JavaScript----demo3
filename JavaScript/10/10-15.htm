@@ -1,0 +1,79 @@
+
+<style>
+.BorderOn  { width:90px;
+             margin-left:10px;
+             border:1px solid #456789 }
+.BorderOff { width:90px;
+             margin-left:0px;
+             border:1px solid #444444 }
+A.mBlue:link      {color:#00CCFF; text-decoration:none;}
+A.mBlue:visited   {color:#00CCFF; text-decoration:none;}
+A.mBlue:active    {color:#00CCFF; text-decoration:none;}
+A.mBlue:hover     {color:#FF0000; text-decoration:underline;}
+A.mGreen:link     {color:#00FF80; text-decoration:none;}
+A.mGreen:visited  {color:#00FF80; text-decoration:none;}
+A.mGreen:active   {color:#00FF80; text-decoration:none;}
+A.mGreen:hover    {color:#FF0000; text-decoration:underline;}
+A.mYellow:link    {color:#FFFF00; text-decoration:none;}
+A.mYellow:visited {color:#FFFF00; text-decoration:none;}
+A.mYellow:active  {color:#FFFF00; text-decoration:none;}
+A.mYellow:hover   {color:#FF0000; text-decoration:underline;}
+</style>
+</head>
+
+<body>
+ 
+
+<script language="JavaScript">
+offMessage = "欢迎来到本站<br>这里提供免费下载！"<!--鼠标离开时的显示信息-->
+
+function boxOn(which,message) {<!--打开导航菜单-->
+if (document.all||document.getElementById) {
+which.className = 'BorderOn';<!--将当前对象打开-->
+if (document.getElementById) {
+document.getElementById("Message").innerHTML = message<!--同时设置提示窗口的文字显示-->
+}
+else {
+Message.innerHTML = message;<!--同时设置提示窗口的文字显示-->
+      }
+   }
+}
+
+function boxOff(which) {<!--离开导航菜单-->
+if (document.all||document.getElementById) {
+which.className = 'BorderOff';<!--将当前对象关闭-->
+if (document.getElementById) {
+document.getElementById("Message").innerHTML = offMessage<!--同时设置提示窗口的文字显示-->
+}
+else {
+Message.innerHTML = offMessage;<!--同时设置提示窗口的文字显示-->
+      }
+   }
+}
+</script>
+<table cellpadding="0" cellspacing="0" width="100"><tr><td align="center">
+<table cellpadding="3" cellspacing="0" bgcolor="#FFCC66" class="BorderOff">
+<tr><td><p align="center"><font color="#808080" size="2">首页导航</font></p></td></tr></table>
+<table cellpadding="3" cellspacing="0" class="BorderOff" onMouseover="boxOn(this,'周杰伦<br>周华健<br>游鸿明<br>陶喆<br>梁静茹<br>S.H.E.')" onMouseout="boxOff(this)"><tr><td>
+<p align="center">
+<a class="mBlue" href="#" target="_blank">
+<font color="#808080" size="2">音乐下载</font></a></p>
+    </td></tr></table>
+
+<table cellpadding="3" cellspacing="0" class="BorderOff" onMouseover="boxOn(this,'魔兽争霸<br>CS<br>实况足球9<br>NBA 2005')" onMouseout="boxOff(this)"><tr><td>
+<p align="center">
+<a class="mBlue" href="#" target="_blank">
+<font color="#808080" size="2">游戏下载</font></a></p>
+    </td></tr></table>
+
+
+<table cellpadding="1" cellspacing="0" bgcolor="#444444" width="90"><tr><td>
+<table cellpadding="3" cellspacing="0" bgcolor="#FFCC66" width="88" height="100"><tr><td align="left" valign="top">
+<font id="Message" size="2" color="#808080">欢迎来到本站<br>这里提供免费下载！</font>
+</td></tr></table></td></tr></table></td></tr></table>
+
+
+<!--本例程实现了首页导航菜单-->
+<!--统一格式的定制-->
+<!--对菜单的显示进行控制-->
+<!--对鼠标的事件进行响应-->

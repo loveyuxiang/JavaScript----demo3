@@ -1,0 +1,60 @@
+<!--将以下代码加入HTML的<Body></Body>之间-->
+
+<STYLE type=text/css>
+<!--
+
+
+
+
+
+#spotlight {
+	FILTER: light
+}
+-->
+</STYLE>
+<IMG  id="spotlight" src="final.bmp" speed="50"></P>
+<SCRIPT language=JavaScript>
+
+if (document.all&&window.spotlight){
+var x=new Array()
+var direction=new Array()
+var y=new Array()
+{
+spotlight[0]=document.all.spotlight
+x[0]=0
+direction[0]="right"
+y[0]=spotlight[0].height
+spotlight[0].filters.light.addPoint(100,50,100,255,255,255,90)
+}
+
+}
+
+function slidelight(cur){
+spotlight[cur].filters.light.MoveLight(0,x[cur],y[cur],200,-1)
+
+if (x[cur]<spotlight[cur].width+200&&direction[cur]=="right")
+x[cur]+=10
+else if (x[cur]>spotlight[cur].width+200){
+direction[cur]="left"
+x[cur]-=10
+}
+else if (x[cur]>-200&&x[cur]<-185){
+direction[cur]="right"
+x[cur]+=10
+}
+else{
+x[cur]-=10
+direction[cur]="left"
+}
+}
+
+if (document.all&&window.spotlight){
+if (spotlight.length==null)
+setInterval("slidelight(0)",spotlight[0].speed)
+else
+for (t=0;t<spotlight.length;t++){
+var temp='setInterval("slidelight('+t+')",'+spotlight[t].speed+')'
+eval(temp)
+}
+}
+</SCRIPT>

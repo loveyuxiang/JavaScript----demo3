@@ -1,0 +1,40 @@
+
+
+<SCRIPT Language="JavaScript">
+
+
+var winheight=100<!--窗口的高度-->
+var winsize=100<!--窗口的宽度-->
+var x=5
+
+function openwindow(thelocation){
+ temploc=thelocation<!--获得新窗口的地址-->
+ if (!(window.resizeTo&&document.all)&&!(window.resizeTo&&document.getElementById)){
+  window.open(thelocation)<!--打开地址-->
+  return
+ }
+ win2=window.open("","","scrollbars")<!--设置新窗口的名称和属性-->
+ win2.moveTo(0,0)<!--设置新窗口的左上角位置-->
+ win2.resizeTo(100,100)<!--新窗口的初始大小-->
+ go2()<!--调用go2()函数-->
+}
+
+function go2(){
+ if (winheight>=screen.availHeight-3)<!--判断高度是否已经达到窗口的最大值-->
+  x=0
+ win2.resizeBy(5,x)<!--窗口的宽度增加-->
+ winheight+=5<!--高度增加-->
+ winsize+=5<!--宽度增加-->
+ if (winsize>=screen.width-5){<!--判断宽度是否已经达到窗口的最大值-->
+  win2.location=temploc<!--打开地址对应的链接-->
+  
+  return<!--函数返回-->
+ }
+setTimeout("go2()",50)<!--设置窗口扩大的速度-->
+}
+ </script>
+<p><a href="javascript:openwindow('xxx.htm')">进入JavaScript网站</a>
+<!--本例程实现了慢慢变大的窗口-->
+<!--新窗口的打开方法-->
+<!--窗口的属性、参数设置-->
+<!--动画效果的实现-->

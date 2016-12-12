@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>滚动链接</title>
+<body background="02.jpg">
+<table align="center">
+ <table align="center" bgcolor=#FFFF00 border=1      
+                  bordercolordark=#000000 bordercolorlight=#006666    
+                  cellspacing=0 width="200" bordercolor="#FFFFFF">
+<td height="11" align="center" width="300"> 
+<script language=JavaScript>     
+var index = 6     
+link = new Array(5);     
+text = new Array(5); 
+link[0] ='#'     
+link[1] ='#'     <!--链接的url-->
+link[2] ='#'     <!--链接的url-->
+link[3] ='#'     <!--链接的url-->
+link[4] ='#'     <!--链接的url-->
+link[5] ='#'     <!--链接的url-->
+text[0] ='友情链接'    
+text[1] ='网易网站'     <!--链接的内容-->
+text[2] ='搜狐网站'     <!--链接的内容-->
+text[3] ='雅虎网站'     <!--链接的内容-->
+text[4] ='淘宝网站'     <!--链接的内容-->
+text[5] ='新浪网站'     <!--链接的内容-->
+document.write ("<marquee scrollamount='1' scrolldelay='60' direction= 'up'width='100' id=table height='100' onmouseover=table.stop() onmouseout=table.start()>");     
+for (i=0;i<index;i++)
+{     
+document.write ("<a href="+link[i]+" target='_blank'><font color=#003399>");     <!--滚动条的内容，包含每一个链接-->
+document.write (text[i] + "</font></A><br>");     <!--链接的内容-->
+}     
+document.write ("</marquee>")     
+                        </script>
+                      </td>
+                    </tr>
+                 </table>
+                </td>
+              </tr>
+              <tr align=middle> 
+                <td height="2"></td>
+              </tr>
+            </table>
+</body>
+</html>
+<!--本例程实现了滚动链接-->
+<!--滚动条滚动的简单做法-->
+<!--链接的使用-->

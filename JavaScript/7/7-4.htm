@@ -1,0 +1,32 @@
+
+<script language="javaScript">
+
+function checkBrowserForVersion4(){<!--判断当前浏览器的版本-->
+var x=navigator.appVersion;<!--获得当前浏览器的版本-->
+y=x.substring(0,4);
+if(y>=4) Effect();}<!--如果版本高于4，则调用显示效果函数-->
+
+
+var colors=new Array<!--颜色数组-->
+("FFFFFF","FFFFFF","FFFFFF","FFFFFF","FFFFFF","FFFFFF","FFFFFF","F9F9F9","F1F1F1","E9E9E9","E1E1E1","D9D9D9","D1D1D1","C9C9C9","C1C1C1","B9B9B9","B1B1B1","A9A9A9","A1A1A1","999999","919191","898989","818181","797979","717171","696969","616161","595959","515151","494949","414141","393939","313131","292929","212121","191919","111111","090909","000000")
+a=0,b=1<!--定义变量-->
+
+function Effect(){<!--效果函数-->
+color=colors[a];<!--设置当前文字显示的颜色-->
+<!--待显示的文字-->
+aa="<font size='3'><font face='隶书, Helvetica, sans-serif'><font color="+color+">色彩纷呈<p>乐趣无限<p>就在javaScript世界</font></font></font>"
+object1.innerHTML=aa<!--如果是ie，显示文字-->
+a+=b;if (a==38) b-=2;if (a==0) b+=2;xx=setTimeout("Effect()",10);}<!--设定颜色更换的标准以及更换的频率-->
+
+</script>
+
+<body bgcolor=ffffff>
+<body onload="checkBrowserForVersion4()" >
+<div id="object1" style="position:absolute; visibility:show; left:30px; top:10px; z-index:2"></div>
+</body>
+
+</html>
+<!--本例程实现了文字的渐隐渐显的效果-->
+<!--文本颜色的使用-->
+<!--对不同浏览器的支持-->
+<!--用settimeout函数实现动画效果-->

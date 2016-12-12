@@ -1,0 +1,42 @@
+
+
+<SCRIPT language=JavaScript>
+function initArray() {<!--初始化函数-->
+this.length = initArray.arguments.length;<!--获得存储的变化的颜色的种类-->
+for (var i = 0; i < this.length; i++) {
+this[i] = initArray.arguments[i];<!--返回颜色数组-->
+   }
+}
+
+var ctext = "欢迎光临本站！";<!--变色的文字-->
+var speed = 100;<!--变色的速度-->
+var x = 0;
+var color = new initArray(<!--用数组存储变化的颜色-->
+"#ffff00", 
+"#ff0000", 
+"#ff00ff",
+"#0000ff",
+"#00ff00",
+"#00ffff",
+"#ff0ff0"
+);
+
+if (navigator.appVersion.indexOf("MSIE") != -1){<!--判断当前浏览器为ie-->
+document.write('<div id="c"><b>'+ctext+'</b></div>');<!--输出文字-->
+}
+
+function chcolor(){ 
+ if (navigator.appVersion.indexOf("MSIE") != -1){<!--判断当前浏览器为ie-->
+document.all.c.style.color = color[x];<!--改变当前文字的颜色-->
+}
+(x < color.length-1) ? x++ : x = 0;<!--准备变成下一种颜色-->
+}
+setInterval("chcolor()",speed);<!--设置一定的速度变化颜色-->
+
+</SCRIPT>
+
+
+<!--本例程实现了文字的不停变色-->
+<!--颜色的使用-->
+<!--文字颜色的设置-->
+<!--利用setinterval函数设置动画的速度-->

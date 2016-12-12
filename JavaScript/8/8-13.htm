@@ -1,0 +1,19 @@
+<SCRIPT>
+
+function setElement (id, html) {
+ if (document.all) {
+    document.all[id].innerHTML = html;
+  }
+}
+function changeNow() {
+var user = document.aForm.user.value
+document.aForm.aField.value = "欢迎 <font color=red>"+user+"</font>光临本站！";
+setElement ('someParagraph', document.aForm.aField.value);
+}
+var nw = "''";
+document.write('<FORM NAME="aForm">');
+document.write('<INPUT TYPE="hidden" NAME="aField" VALUE="">');
+document.write('<SPAN ID="someParagraph" CLASS="changeable">');
+document.write('请输入用户名：<input type=text name=user size=10> <INPUT TYPE="button" VALUE="登录" ONCLICK="changeNow();">');
+document.write('</SPAN></form>');
+</SCRIPT>

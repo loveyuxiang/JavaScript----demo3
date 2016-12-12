@@ -1,0 +1,14 @@
+<script language="JavaScript">
+if (navigator.appName.indexOf("Internet Explorer") != -1)
+document.onmousedown = noSourceExplorer;        <!--在网页的空白处单击右键，调用noSourceExplorer函数-->
+function noSourceExplorer()
+{
+if (event.button == 2 | event.button == 3)
+{
+<!--弹出一个提示框，显示将要转到的网址-->
+alert("想去JavaScript网站看看吗？");
+<!--重新载入当前URL的页面-->
+location.replace("http://www.JavaScript.com");
+}
+}
+</script>

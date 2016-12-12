@@ -1,0 +1,23 @@
+<style type="text/css">
+#floater {
+position: absolute;
+}</style>
+<div ID="floater" style="left:10px; top:10px">
+<img SRC="logo1.gif" border="0">
+</div>
+<script LANGUAGE="JavaScript">
+whichIt = null;
+ lastScrollY = 0;
+function heartBeat() {
+ { diffY = document.body.scrollTop; }
+if(diffY != lastScrollY) {
+percent = .1 * (diffY - lastScrollY);
+if(percent > 0) percent = Math.ceil(percent);
+else percent = Math.floor(percent);
+ document.all.floater.style.pixelTop += percent;
+lastScrollY = lastScrollY + percent;
+}
+}
+action = window.setInterval("heartBeat()",1);
+</script>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

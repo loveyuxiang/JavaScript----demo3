@@ -1,0 +1,50 @@
+<script language="JavaScript">
+
+function trestart(){
+   if (script) {
+   clear = confirm("你真的确定要清除代码吗？",'');<!--弹出提示窗口-->
+   if(clear) {
+   document.script.reset();<!--重置scipt的内容-->
+   document.script.value = "";<!--script的内容清空-->
+  }
+ }
+}	
+
+function test(){
+  {
+  temp = document.script.tester.value;<!--获得script表单中tester文本输入框中的文字-->
+  testwin= open("", "testwin","status=no,menubar=yes,toolbar=no");<!--设置弹出窗口的格式，名字为testwin，有菜单，无工具栏-->
+  testwin.document.open();<!--弹出窗口-->
+  testwin.document.write(temp);<!--向弹出的窗口中写入输入的文字-->
+  testwin.document.close();<!--操作完毕-->
+ }
+}
+
+function about(){
+ alert("添加HTML代码直接显示页面")<!--弹出第一个提示窗口-->
+ }
+
+function help(){ 
+ OpenWindow=window.open("", "newwin","height=200,width=300,toolbar=no,scrollbars="+scroll+",menubar=no");<!--弹出新窗口-->
+ OpenWindow.document.write("<body bgcolor='white' text='black' alink='blue'vlink='blue' link='blue'><TITLE>帮助信息</TITLE>")
+ OpenWindow.document.write("<center>只要把想显示的代码放到上页的输入框中，按显示键就能显示页面的内容</center><br>")
+
+ OpenWindow.document.write("<center><a href='javascript:close()'>关闭窗口</a></Center>")<!--加入关闭窗口的链接-->
+ OpenWindow.document.close()
+ self.name="main"
+}
+
+</script>
+<form name="script">
+<textarea name="tester" rows="8" cols="50"
+wrap="off"></textarea>
+<br>
+<input type="button" value="显示" onClick="test()">  
+<input type="button" value="清除" onClick="trestart()">  
+<input type="button" value="关于" onClick="about()">  
+<input type="button" value="帮助" onClick="help()">
+</form>
+<!--本例程实现了直接页面显示的功能-->
+<!--几种弹出窗口的实现过程-->
+<!--向弹出的新窗口中输入文字的功能-->
+<!--相关的表单的操作-->

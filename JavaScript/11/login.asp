@@ -1,0 +1,9 @@
+<html>
+<head>
+<title>新建网页</title>
+</head>
+<body>
+欢迎<%=request.form("user")%>到来！
+您来自<%=request.form("company")公司！%>
+</body>
+</html>

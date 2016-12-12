@@ -1,0 +1,28 @@
+<script>
+function ask()
+{
+      var enter=prompt("你有三种选择:输入1得到更多信息. 输入2打开页面.输入3则发信给作者!"," ");
+        var yes = 1 
+            if (enter == 1)
+             {
+              alert('欢迎光临javascript世界，与我联系吧. QQ:12345678');
+             }
+            else if (enter == 2)
+             {
+              parent.location.href = "xxx.htm"
+             }
+            else if (enter == 3)
+             {
+              parent.location.href = "mailto:123@tom.com"
+             }
+      else
+             {
+              alert('请一定选择一个数字!!!');
+              ask()
+             }
+           
+      
+}
+ask()
+</script> 
+

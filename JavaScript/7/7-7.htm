@@ -1,0 +1,45 @@
+
+
+
+<script language="JavaScript">
+      var max=0;
+      
+      function textlist()
+      {
+      max=textlist.arguments.length;<!--获得文字的条数-->
+      for (i=0; i<max; i++)
+      this[i]=textlist.arguments[i];<!--返回文字的矩阵-->
+      }
+      
+      tl=new textlist<!--定义逐条显示的文字-->
+("欢迎进入","色彩纷呈","乐趣无限的","JavaScript世界！");
+      var x=0; pos=0;<!--定义变量-->
+      var l=tl[0].length;<!--存储第一条文字的字符数-->
+      
+      function textticker()
+      {
+        tickfield.value=tl[x].substring(0,pos)+"=>";<!--显示第x条文字中的前pos个字符-->
+
+        if(x==0) pos++;<!--如果是第一条-->
+        else pos+=1 ;
+
+        if(pos>l)<!--如果显示完本条文字-->
+        {
+          pos=0; setTimeout("textticker()",1000); x++;<!--1秒后显示下一个条-->
+          if(x==max) x=0; l=tl[x].length;<!--如果到达最后一条，则从头开始-->
+        } else
+        {
+        if(x==0) setTimeout("textticker()",200)<!--对于第一条，延时0.05秒显示下一个字-->
+        else     setTimeout("textticker()",200);<!--对于其他条，延时0.1秒显示下一个字-->
+        }
+      }
+</script>
+<body onload="textticker()">
+        <input type="text" size="20" name="tickfield" style="background-color: #f0Cfe0; color: #4fff0efd; text-align: left;border-style: groove">
+</form>
+
+
+<!--本例程实现了指定文字逐条显示的功能-->
+<!--逐条显示的具体实现-->
+<!--每条文字逐字显示的实现-->
+<!--数组的初始化-->

@@ -1,0 +1,225 @@
+
+<script language="JavaScript" FPTYPE="dynamicanimation8">
+
+  dynamicanimAttr = "dynamicanimation8"
+  animateElements = new Array()
+  currentElement = 0
+  speed = 0
+  
+  stepsWord = 8
+  stepsFly = 12
+  
+  steps = 0
+  step = 0
+  outString = ""
+  function dynAnimation8()
+  {
+    var ms = navigator.appVersion.indexOf("MSIE")
+    ie4 = (ms>0) && (parseInt(navigator.appVersion.substring(ms+5, ms+6)) >= 4)
+   
+    for (index=document.all.length-1; index >= document.body.sourceIndex; index--)
+    {
+      el = document.all[index]
+      animation = el.getAttribute(dynamicanimAttr, false)
+      if(null != animation)
+      {
+        if(animation == "dropWord" || animation == "flyTopRightWord" || animation == "flyBottomRightWord")
+        {
+          ih = el.innerHTML
+          outString = ""
+          i1 = 0
+          iend = ih.length
+          while(true)
+          {
+            i2 = startWord(ih, i1)
+            if(i2 == -1)
+              i2 = iend
+            outWord(ih, i1, i2, false, "")
+            if(i2 == iend)
+              break
+            i1 = i2
+            i2 = endWord(ih, i1)
+            if(i2 == -1)
+              i2 = iend
+            outWord(ih, i1, i2, true, animation)
+            if(i2 == iend)
+              break
+            i1 = i2
+          }
+          document.all[index].innerHTML = outString
+          document.all[index].style.posLeft = 0
+          document.all[index].setAttribute(dynamicanimAttr, null)
+        }
+        if(animation == "zoomIn" || animation == "zoomOut")
+        {
+          ih = el.innerHTML
+          outString = "<SPAN " + dynamicanimAttr + "=\"" + animation + "\" style=\"position: relative; left: 10000;\">"
+          outString += ih
+          outString += "</SPAN>"
+          document.all[index].innerHTML = outString
+          document.all[index].style.posLeft = 0
+          document.all[index].setAttribute(dynamicanimAttr, null)
+        }
+      }
+    }
+    i = 0
+    for (index=document.body.sourceIndex; index < document.all.length; index++)
+    {
+      el = document.all[index]
+      animation = el.getAttribute(dynamicanimAttr, false)
+      if (null != animation)
+      {
+        if(animation == "flyLeft")
+        {
+          el.style.posLeft = 10000-offsetLeft(el)-el.offsetWidth
+          el.style.posTop = 0
+        }
+        else if(animation == "flyRight")
+        {
+          el.style.posLeft = 10000-offsetLeft(el)+document.body.offsetWidth
+          el.style.posTop = 0
+        }
+        else if(animation == "flyTop" || animation == "dropWord")
+        {
+          el.style.posLeft = 0
+          el.style.posTop = document.body.scrollTop-offsetTop(el)-el.offsetHeight
+        }
+        else if(animation == "flyBottom")
+        {
+          el.style.posLeft = 0
+          el.style.posTop = document.body.scrollTop-offsetTop(el)+document.body.offsetHeight
+        }
+        else if(animation == "flyTopLeft")
+        {
+          el.style.posLeft = 10000-offsetLeft(el)-el.offsetWidth
+          el.style.posTop = document.body.scrollTop-offsetTop(el)-el.offsetHeight
+        }
+        else if(animation == "flyTopRight" || animation == "flyTopRightWord")
+        {
+          el.style.posLeft = 10000-offsetLeft(el)+document.body.offsetWidth
+          el.style.posTop = document.body.scrollTop-offsetTop(el)-el.offsetHeight
+        }
+        else if(animation == "flyBottomLeft")
+        {
+          el.style.posLeft = 10000-offsetLeft(el)-el.offsetWidth
+          el.style.posTop = document.body.scrollTop-offsetTop(el)+document.body.offsetHeight
+        }
+        else if(animation == "flyBottomRight" || animation == "flyBottomRightWord")
+        {
+          el.style.posLeft = 10000-offsetLeft(el)+document.body.offsetWidth
+          el.style.posTop = document.body.scrollTop-offsetTop(el)+document.body.offsetHeight
+        }
+        else if(animation == "spiral")
+        {
+          el.style.posLeft = 10000-offsetLeft(el)-el.offsetWidth
+          el.style.posTop = document.body.scrollTop-offsetTop(el)-el.offsetHeight
+        }
+        else if(animation == "zoomIn")
+        {
+          el.style.posLeft = 10000
+          el.style.posTop = 0
+        }
+        else if(animation == "zoomOut")
+        {
+          el.style.posLeft = 10000
+          el.style.posTop = 0
+        }
+        else
+        {
+          el.style.posLeft = 10000-offsetLeft(el)-el.offsetWidth
+          el.style.posTop = 0
+        }
+        el.initLeft = el.style.posLeft
+        el.initTop = el.style.posTop
+        animateElements[i++] = el
+      }
+    }
+    window.setTimeout("animate();", speed)
+  }
+  function offsetLeft(el)
+  {
+    x = el.offsetLeft
+    for (e = el.offsetParent; e; e = e.offsetParent)
+      x += e.offsetLeft;
+    return x
+  } 
+  function offsetTop(el)
+  {
+    y = el.offsetTop
+    for (e = el.offsetParent; e; e = e.offsetParent)
+      y += e.offsetTop;
+    return y
+  } 
+  function startWord(ih, i)
+  {
+    for(tag = false; i < ih.length; i++)
+    {
+      c = ih.charAt(i)
+      if(c == '<')
+        tag = true
+      if(!tag)
+        return i
+      if(c == '>')
+        tag = false
+    }
+    return -1
+  }
+  function endWord(ih, i)
+  {
+    nonSpace = false
+    space = false
+    while(i < ih.length)
+    {
+      c = ih.charAt(i)
+      if(c != ' ')
+        nonSpace = true
+      if(nonSpace && c == ' ')
+        space = true
+      if(c == '<')
+        return i
+      if(space && c != ' ')
+        return i
+      i++
+    }
+    return -1
+  }
+  function outWord(ih, i1, i2, dyn, anim)
+  {
+    if(dyn)
+      outString += "<SPAN " + dynamicanimAttr + "=\"" + anim + "\" style=\"position: relative; left: 10000;\">"
+    outString += ih.substring(i1, i2)
+    if(dyn)
+      outString += "</SPAN>"
+  }
+  function animate()
+  {
+    el = animateElements[currentElement]
+    animation = el.getAttribute(dynamicanimAttr, false)
+    step++
+  
+    {
+      steps = stepsFly
+      if(animation == "dropWord" || animation == "flyTopRightWord" || animation == "flyBottomRightWord")
+        steps = stepsWord
+      dl = el.initLeft / steps
+      dt = el.initTop  / steps
+      el.style.posLeft = el.style.posLeft - dl
+      el.style.posTop = el.style.posTop - dt
+    }
+    if (step >= steps) 
+    {
+      el.style.posLeft = 0
+      el.style.posTop = 0
+      currentElement++
+      step = 0
+    }
+    if(currentElement < animateElements.length)
+      window.setTimeout("animate();", speed)
+  }
+
+</script>
+
+
+<p dynamicanimation8="dropWord" style="position: relative !important;color:#FF8000; left: 10000 !important">
+欢 迎 来 到 J a v a S c r i p t 世 界 ！</p>
+<body onload="dynAnimation8()">

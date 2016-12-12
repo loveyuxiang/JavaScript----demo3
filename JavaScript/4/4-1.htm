@@ -1,0 +1,57 @@
+
+
+<style type="text/css">
+ <!--.time{font-family : Comic Sans Ms;
+font-size : 14pt;font-weight : bold;color: #00008D;}-->
+</style><style type="text/css"><!-- .time{
+font-family : Comic Sans Ms;font-size : 14pt;
+font-weight : bold;color: #00008D;}-->
+</style>
+
+<script Language="JavaScript">
+var ctimer;
+
+function init(){<!--初始化-->
+if (document.all){
+<!--将第二个时间得左侧与第一个时间的左侧对齐-->
+tim2.style.left=tim1.style.posLeft;
+<!--第二个时间在第一个时间的下方-->
+tim2.style.top=tim1.style.posTop+tim1.offsetHeight-6;
+<!--调用settimes()函数-->
+settimes();
+}
+}
+
+function settimes(){
+var time= new Date();<!--获取当前日期-->
+hours= time.getHours();<!--获取当前时间-小时-->
+mins= time.getMinutes();<!--获取当前时间-分钟-->
+secs= time.getSeconds();<!--获取当前时间-秒-->
+if (hours<10)<!--如果小时仅有一位，在前面补零-->
+hours="0"+hours;
+if(mins<10)<!--如果分钟仅有一位，在前面补零-->
+mins="0"+mins;
+if (secs<10)<!--如果秒仅有一位，在前面补零-->
+secs="0"+secs;
+<!--设置tim1和tim2的格式-->
+tim1.innerHTML=hours+":"+mins+":"+secs
+tim2.innerHTML=hours+":"+mins+":"+secs
+<!--每0.96秒更新一次时间-->
+ctimer=setTimeout('settimes()',960);
+}
+</script>
+
+
+
+<body onLoad="init()">
+<div Id="tim1" Style="position:absolute; width:10; height:10; top:10; left:50"
+class="time"></div><div Id="tim2"
+Style="position:absolute; filter:flipv() alpha(opacity=20); font-style:italic"
+class="time">
+<p>　</p>
+</div>
+</body>
+
+<!--本例程实现了具有倒影的时间-->
+<!--两个时钟的时间是同步的-->
+<!--具有倒影的效果采用了flipv()和alpha()滤镜组合来实现-->

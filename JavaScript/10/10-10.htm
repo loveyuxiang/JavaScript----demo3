@@ -1,0 +1,96 @@
+
+
+<SCRIPT language=JavaScript>
+
+function move(x, y) {<!--对象移动x，y-->
+if (document.all) {<!--对于ie浏览器-->
+object1.style.pixelLeft += x;<!--左边界移动x-->
+object1.style.pixelTop  += y;}<!--上边界移动y-->
+};
+
+function position() {<!--对象位置移动-->
+document.object1.left += -132;<!--左边界向左移动-->
+document.object1.top  += 0;<!--上边界不变-->
+document.object1.visibility = "show"<!--设置为可视-->
+};
+
+function makeStatic() {
+if (document.all) {object1.style.pixelTop=document.body.scrollTop+20}<!--对于ie浏览器，设置带显示对象的上边界-->
+
+}
+
+</SCRIPT>
+
+<STYLE type=text/css>.hl {
+	BACKGROUND-COLOR: highlight; COLOR: white; CURSOR: hand
+}
+
+</STYLE>
+
+
+
+
+</HEAD>
+<BODY leftMargin=0 topMargin=0>
+
+<CENTER>
+    
+<LAYER class=NS onmouseout="move(-132, 0)" onmouseover="move(132, 0)" left="0"             
+bgcolor="black" name="object1" top="20" visibility="hide">            
+<SCRIPT language=JavaScript>            
+if (document.all)            
+document.write('<DIV ID="object1" style="Position : Absolute ;Left : -132px ;Top : 20px ;Width : 0px ;Z-Index : 20">')            
+</SCRIPT>            
+</LAYER>            
+<TABLE bgColor=#000000 border=0 cellPadding=2 cellSpacing=1             
+onmouseout="move(-132, 0)" onmouseover=move(132,0) width=150>            
+  <TBODY>            
+  <TR>            
+    <TD bgColor=#FFFFFF><B><FONT size=3 face="隶书">菜 单</FONT></B></TD>            
+    <TD align=middle bgColor=#C0C0C0 rowSpan=100 width=12>            
+      <SCRIPT language=JavaScript>            
+if (document.all)            
+document.write('<p align="center"><font size="3" color="#FFFFFF"  face="Arial Black">显<br>示<br>菜<br>单</font></p>')            
+      </SCRIPT>            
+    </TD></TR>            
+  <SCRIPT language=JavaScript>            
+          
+        
+makeStatic();            <!--调用makestatic函数-->
+            
+     
+            
+var sitems=new Array();           <!--存放链接的内容--> 
+var sitemlinks=new Array();            <!--存放链接的地址-->
+            
+            
+sitems[0]="TOM";  <!--第一条链接的内容-->          
+sitems[1]="搜狐";  <!--第二条链接的内容-->      
+sitems[2]="网易";   <!--第三条链接的内容-->
+
+            
+sitemlinks[0]="http://www.tom.com";   <!--第一条链接的地址-->         
+sitemlinks[1]="http://www.sohu.com/";     <!--第二条链接的地址-->                
+sitemlinks[2]="http://www.yeah.net/";     <!--第三条链接的地址-->                
+
+
+for (i=0;i<=sitems.length-1;i++)     <!--依次对每一个菜单进行处理-->
+<!--对于ie浏览器，设置每个菜单的背景、链接、鼠标移动到上边的响应函数，以及鼠标离开的函数-->       
+if (document.all) {document.write('<TR><TD bgcolor=white onclick="location=\''+sitemlinks[i]+'\'" onmouseover="className=\'hl\'" onmouseout="className=\'n\'"><FONT SIZE=2>'+sitems[i]+'</FONT></TD></TR>')}            
+          
+            
+function hl(n) {            
+n.className='hl'}<!--将当前菜单的格式设置为hl-->
+            
+function n(h) {            
+h.className='n'}   <!--将当前菜单的格式设置为n-->         
+
+</SCRIPT>            
+  </TBODY></TABLE>  
+
+
+<!--本例程实现了自动能够隐藏菜单的效果-->
+<!--菜单效果变化的实现方法-->
+<!--对不同浏览器的支持-->
+<!--对鼠标移动的函数响应-->
+<!--统一格式的生成方法-->

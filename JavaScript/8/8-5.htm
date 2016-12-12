@@ -1,0 +1,161 @@
+
+<SCRIPT LANGUAGE="JavaScript">
+
+al="`1234567890-=~!@#$%^&*()_+qwer"
+
++"tyuiop[]QWERTYUIOP{}|asdfghjkl;A"
+
++"SDFGHJKL:zxcvbnm,./ZXCVBNM<>?";
+
+ab1="";
+
+bctr=0;
+
+function ckPwd(){
+
+ tst=document.isn.username.value +"*"+document.isn.passwrd.value+"*";<!--获得输入的用户名和密码-->
+
+ ls=document.pd.pe.value;<!--获得pe的值-->
+
+ a=eval(ls.substring(0,2))-91;
+
+ ls=ls.substring(2,ls.length);<!--去掉前两位-->
+
+ nls="";<!--nls变量为空-->
+
+ flg=0;<!--flg标志为0-->
+
+ while (ls.length>12){<!--如果ls的长度大于12-->
+
+  ab=eval(ls.substring(0,2))-89;<!--ls前两位的值减去89后赋给ab-->
+
+  ab1=(ab1==""?""+ab:ab1);<!--如果ab1为空，则把ab的值赋给ab1-->
+
+  oab1=ab1;<!--把ab1的值赋给oab1-->
+
+  ls=ls.substring(2,ls.length);<!--去掉前面两位-->
+
+  for (var i=0;i<ab;i++){<!--循环ab次-->
+
+   nr=eval(ls.substring(0,2))-a;<!--将ls前两位的值减去a的值赋给nr-->
+
+   ls=ls.substring(2,ls.length);<!--去掉ls的前两位-->
+
+   nls+=al.charAt(nr);<!--nls自身加上al中出现nr字符的位置-->
+
+   }
+
+  nls+="*";<!--nls中加入‘*’-->
+
+  if (nls.indexOf(tst)>-1){<!--如果nls中出现了tst的字样-->
+
+   ls="";<!--ls清空-->
+
+   flg=1;<!--flg标志位变成1-->
+
+   }
+
+  }
+
+ if (flg==1){
+
+  tstOk();<!--密码通过-->
+
+  }
+
+ else{
+
+  bctr++;<!--否则，验证的次数加1-->
+
+  if (bctr>3){<!--如果验证次数超过3-->
+
+   location.href="nopass.htm";<!--页面导入到失败的页面-->
+
+   }
+
+  else{
+
+   alert("对不起,用户名/密码错误."
+
+   +" 你已试登录"+bctr+"次.");<!--否则，弹出窗口提示用户-->
+
+   }
+
+  }
+
+ }
+
+
+
+function tstOk(){
+
+ ab1=ab1+""+a;
+
+  alert("正确，开始登录!");<!--弹出窗口，提示用户-->
+
+  location.href="pwds.htm?"+ab1;<!--转入到指定页面-->
+
+ }
+
+
+
+
+
+
+
+</SCRIPT>
+
+
+
+
+<FORM NAME="pd">
+
+<!-- Paste the element from the pseudo-encrypter here -->
+
+<!-- Paste this element into your script -->
+
+<INPUT TYPE='hidden' NAME='pe' VALUE='9393693658789606190557772053938953313395586858685868976834793758313033975834793758313033 '>
+
+</FORM>
+
+
+
+
+
+<FORM NAME="isn">
+
+<TABLE BORDER=2 CELLPADDING=5 CELLSPACING=0 BGCOLOR=#C0C0C0>
+
+<TR><TD COLSPAN=2 ALIGN=CENTER><FONT SIZE=4 COLOR=WHITE FACE="楷体_GB2312"><B>请您输入</B></FONT></TD></TR>
+
+<TR><TD><FONT SIZE=3 COLOR=WHITE><B>用户名：</B></FONT></TD>
+
+<TD><INPUT TYPE="text" NAME="username" VALUE="" SIZE=15></TD></TR>
+
+<TR><TD><FONT SIZE=3 COLOR=WHITE><B>密&nbsp;&nbsp;码：</B></FONT></TD>
+
+<TD><INPUT TYPE="password" NAME="passwrd" VALUE="" SIZE=15></TD></TR>
+
+<TR><TD COLSPAN=2 ALIGN=CENTER><INPUT TYPE="button" NAME="btn" VALUE=" 登录 " onClick="ckPwd();return false;"></TD></TR>
+
+</TABLE></FORM>
+
+<TABLE BORDER=1 WIDTH=486 BGCOLOR=#C0C0C0>
+
+<TR><TD COLSPAN=3 ALIGN=CENTER><FONT FACE="楷体_GB2312" COLOR=WHITE><B>你可以使用如下号码:</B></FONT></TD</TR>
+
+
+
+<TR><TD><FONT FACE="helvetica,arial,geneva" COLOR=WHITE>用户名：John<BR>密&nbsp;&nbsp;&nbsp;&nbsp;码：4$3gb%a</TD>
+
+<TD><FONT FACE="helvetica,arial,geneva" COLOR=WHITE>用户名：Mary<BR>密&nbsp;&nbsp;&nbsp;&nbsp;码：hHhHhH</TD>
+
+<TD><FONT FACE="helvetica,arial,geneva" COLOR=WHITE>用户名：Humphrey<BR>密&nbsp;&nbsp;&nbsp;&nbsp;码：humphrey</TD></TR>
+
+</TABLE>
+
+
+<!--本例程实现了页面加密的功能-->
+<!--如果需要查看网页内容，则必须通过输入正确的密码才可以通过-->
+<!--密码的验证过程是本例程的重点-->
+<!--读者需要掌握根据不同的情况，给出不同的输出结果的方法-->

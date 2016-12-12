@@ -1,0 +1,34 @@
+
+
+<script language="JavaScript">
+
+
+
+
+function sizefont(text){
+   var color_d1;<!--定义变量，代表颜色-->
+   var allstring="";<!--定义变量-->
+   var flag=0;<!--设置标志位-->
+   for(i=0,j=0;i<text.length;i=i+1){<!--依次处理每一个字符-->
+      if (flag==0) {<!--处于上升期-->
+          j++;<!--字体变大-->
+          if (j>=7) {<!--如果到了7，则变成下降期-->
+             flag=1;}
+      }
+      if (flag==1) {<!--处于下降期-->
+          j=j-1;<!--字体变小-->
+          if (j<=0) {<!--如果到了0，变成上升期-->
+          flag=0; }
+      }
+      allstring+="<FONT SIZE="+ j + ">" + text.substring(i,i+1) + "</FONT>";<!--按照计算的大小，设置字符的字体-->
+   }
+   return allstring;
+}
+document.write("<font size=5 color=#00C0C0>")
+document.write("<BR><BR>")
+document.write( sizefont("欢迎进入五彩缤纷的JavaScript世界！"))
+document.write("</font>")
+</script>
+
+<!--本例程实现了水波浪文字-->
+<!--熟悉对字体的动态控制-->

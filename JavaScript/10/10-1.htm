@@ -1,0 +1,54 @@
+
+<script LANGUAGE="JAVASCRIPT">
+
+var timerID=null;     <!--延时变量-->
+var count=0;          <!--表示进度的循环变量-->
+var running=false;    <!--是否正在进行格式化的标志量-->
+
+function RandomNumber(max)        <!--用来产生随机数的函数-->
+{var today = new Date();          <!--创建一个时间日期对象-->
+  var num= Math.round((Math.abs(Math.sin(today.getTime()))*1000))%max+1;   <!--利用当前的时间日期值采取一定的算法产生随机数，其中的小数部分按四舍五入的规则进行处理-->
+  return num;
+}
+
+
+function stopaction()                    <!--用来停止格式化操作的函数-->
+{if (running)                            <!--如果正在格式化，则清除timerID延时操作-->
+   clearTimeout(timerID);
+ running=false;                          <!--将标志变量置为false-->
+}
+
+
+function startaction()                   <!--用来开始格式化操作的函数-->
+{ stopaction();                          <!--停止格式化操作-->
+  action();                              <!--格式化操作-->
+}
+
+
+function action()
+{if (count!=100)                                                                  <!--如果格式化进度不到100，则显示已经完成的百分比-->
+  { document.outputform.output.value="正在下载文件，目前进度："+count+"%";
+     count++;                                                                     <!--count加1-->
+     timerID=setTimeout("action()",200+RandomNumber(500));                        <!--调用随机数产生函数计算并设定延时长度-->
+     running=true;                                                                <!--标志量置为true-->
+  }
+  else
+   { document.outputform.output.value="下载完毕 ......";                       <!--如果格式化进度为100，则显示格式化完毕-->
+      stopaction();                                                               <!--停止-->
+   } 
+}
+
+
+</script>
+<body onload="startaction()">
+
+<form name="outputform">
+  <p><input TYPE="TEXT" NAME="output" size="30"></p>
+</form>
+
+
+
+<!--本案例模拟了一个格式化硬盘的进度条功能-->
+<!--格式化的进度是通过一个随机数计算得到的-->
+<!--此随机数是根据一定的计算规则对当前系统的时间进行处理求得的-->
+<!--当进度为100的时候表示格式化完成-->

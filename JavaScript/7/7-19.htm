@@ -1,0 +1,69 @@
+
+
+<script language="JavaScript">
+
+function assignArray(text,delay) {
+     this.text=text<!--返回text-->
+     this.delay=delay<!--返回delay-->
+}
+
+function createArray() {
+     fadecolor=new Array("green","yellow","#666666","blue","#CCCCCC","red")<!--新建数组，用来存储颜色-->
+
+    msg=new Array() 
+  msg[0]=new assignArray("WelcomeTo",1000)<!--第三条信息-->
+msg[1]=new assignArray("JavaScriptWorld!",1000)<!--第三条信息-->
+    
+
+     setTimeout("typeIt()", 1000)<!--延时1秒调用typeit函数-->
+}
+
+var msgNo=0;var character=1;var colorNo=0;var fixColor=1 ;var colorCheck=0<!--定义变量，并且初始化-->
+
+function typeIt() {
+var insertHTML=""
+     if(msgNo <= msg.length-1) {
+
+        if(character <= msg[msgNo].text.length || colorCheck < msg[msgNo].text.length) {<!--如果正在显示某一条信息-->
+
+            colorCheck=0
+
+                for(var charCheck=0; charCheck<character; charCheck++,colorNo--,fixColor--){
+
+                    if(fixColor>5)colorNo=5<!--设置颜色-->
+                    if(colorNo==5)colorCheck+=1<!--设置颜色-->
+					<!--设置insertHTML的-->
+                    insertHTML += '<SPAN style="font-family:Arial Black; font-size:15pt; color:'+fadecolor[colorNo]+'">' + msg[msgNo].text.substring(charCheck, charCheck+1) + '</SPAN>'
+
+                }
+
+               if (document.all) {<!--对于ie浏览器-->
+                    document.all.typeWriter.innerHTML = insertHTML<!--输出insertHTML中的内容-->
+                }
+
+            setTimeout("typeIt()", 50)<!--每隔50毫秒，显示一个字-->
+            character++<!--显示下一个字-->
+            colorNo=character-1<!--变化颜色-->
+            fixColor=character<!--变化颜色-->
+        }
+        else {<!--一条信息刚显示完-->
+            character=1<!--下一条信息的第一个字符-->
+            colorNo=character-1<!--设置颜色-->
+            fixColor=character<!--设置颜色-->
+            setTimeout("typeIt()", msg[msgNo].delay)<!--设置周期时间-->
+            msgNo++<!--转到下一条信息-->
+        }
+     }
+}
+
+</script>
+
+
+<body bgcolor="#ffffff" onLoad="createArray()" text="#ffffff">
+<div ID="typeWriter" style="position:absolute; left:20; top:10; height:200; width:70">
+
+
+<!--本例程实现了超级文字显示-->
+<!--垂直显示文字的技巧-->
+<!--绚丽颜色的变化效果的实现过程-->
+<!--定时器的使用-->

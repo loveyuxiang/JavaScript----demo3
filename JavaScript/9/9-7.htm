@@ -1,0 +1,89 @@
+
+
+
+<SCRIPT Language="JavaScript">
+<!--初始化窗口-->
+window.scrollBy(0, 100)
+<!--最初的大小为0-->
+window.resizeTo(0,0)
+window.moveTo(0,0)<!--最初的位置在（0、0）点-->
+document.bgColor=0x000000<!--背景颜色为透明-->
+document.fgColor=0x000000<!--前景颜色为透明-->
+setTimeout("move()", 1);<!--每隔1毫秒调用一次move()函数-->
+var mxm=50
+var mym=25
+var mx=0
+var my=0
+var sv=50
+var status=1<!--移动的步骤-->
+var szx=0
+var szy=0
+var c=255
+var n=0
+var sm=30
+var cycle=2
+var done=2
+function move()
+        {
+        if (status == 1)<!--第一步-->
+                {
+                mxm=mxm/1.05<!--获得新的步长x方向-->
+                mym=mym/1.05<!--获得新的步长y方向-->
+                mx=mx+mxm<!--获得新的横坐标-->
+                my=my-mym<!--获得新的纵坐标-->
+                mxm=mxm+(400-mx)/100<!--计算mxm的值-->
+                mym=mym-(300-my)/100<!--计算mym的值-->
+                window.moveTo(mx,my)<!--移动窗口到新的位置-->
+                rmxm=Math.round(mxm/10)<!--取整-->
+                rmym=Math.round(mym/10)<!--取整-->
+                if (rmxm == 0)<!--如果mxm为0-->
+                        {
+                        if (rmym == 0)<!--如果mym为0-->
+                                {
+                                status=2<!--进入第二步-->
+                                }
+                        }
+                }
+        if (status == 2)<!--第二步-->
+                {
+                sv=sv/1.1
+                scrratio=1+1/3
+                mx=mx-sv*scrratio/2<!--获得新的横坐标-->
+                my=my-sv/2<!--获得新的纵坐标-->
+                szx=szx+sv*scrratio<!--计算szx的值-->
+                szy=szy+sv<!--计算szy的值-->
+                window.moveTo(mx,my)<!--移动窗口到新的位置-->
+                window.resizeTo(szx,szy)<!--变化窗口大小-->
+                if (sv < 1)<!--如果sv小于0.1-->
+                        {
+                        status=3<!--进入第三步-->
+                        }
+                }
+        if (status == 3)<!--第三步-->
+                {
+                document.fgColor=0xffffFF<!--前景颜色为白色-->
+                c=c-16<!--获得c的值-->
+                document.bgColor=0xffffFF<!--背景颜色为白色-->
+                if (c<0)
+                        {status=4}<!--如果c小于0，转到第八步-->
+                }
+       
+      
+       
+       
+        if (status == 4)
+                {
+                window.moveTo(0,0)<!--移动窗口位置-->
+                sx=screen.availWidth<!--设置窗口宽度-->
+                sy=screen.availHeight<!--设置窗口高度-->
+                window.resizeTo(sx,sy)<!--更新窗口大小-->
+                status=9
+}
+        var timer=setTimeout("move()",0.3)<!--设置移动的速度-->
+        }
+</script>
+
+<!--本例程实现了转动窗口-->
+<!--复杂动画的实现过程-->
+<!--窗口位置的改变以及窗口大小的改变-->
+<!--窗口颜色以及背景颜色的变化-->

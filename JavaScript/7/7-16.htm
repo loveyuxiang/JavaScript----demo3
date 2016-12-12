@@ -1,0 +1,77 @@
+<script language="JavaScript">
+
+function statusMessageObject(p,d) {  <!--设定状态栏信息对象的属性-->
+  this.msg = MESSAGE
+  this.out = " "
+  this.pos = POSITION
+  this.delay = DELAY
+  this.i     = 0
+  this.reset = clearMessage
+}
+
+function clearMessage() {<!--清除信息-->
+  this.pos = POSITION<!--返回信息位置-->
+}
+
+var POSITION = 100 <!--定义显示的位置-->
+var DELAY    = 30<!--定义显示的速度-->
+var MESSAGE  = "欢迎进入JavaScript世界！" <!--定义显示的文字-->
+var scroll = new statusMessageObject() <!--定义一个状态栏信息对象-->
+
+function scroller() {
+  for (scroll.i = 0; scroll.i < scroll.pos; scroll.i++) {
+    scroll.out += " "    <!--将scroll的out项加上POSITION个空格-->
+  }
+  if (scroll.pos >= 0)   <!--如果scroll的pos大于0，则将msg加到out中-->
+   scroll.out += scroll.msg
+  else scroll.out = scroll.msg.substring(-scroll.pos,scroll.msg.length)<!--否则将式中的信息赋给out-->
+  window.status = scroll.out    <!--将out赋给window.status-->
+  scroll.out = " "      <!--清空out-->
+  scroll.pos--         <!--pos递减-->
+  if (scroll.pos < -(scroll.msg.length)) {<!--如果pos小于msg长度的相反数了，则清除信息-->
+   scroll.reset()
+  }
+  setTimeout ('scroller()',scroll.delay)  <!--延时5ms-->
+}
+
+function snapIn(jumpSpaces,position) {
+  var msg = scroll.msg   <!--变量赋值-->
+  var out = "" 
+  for (var i=0; i<position; i++)   <!--当不超过显示位置长度时，out叠加msg的第i个元素-->
+    {out += msg.charAt(i)}
+  for (i=1;i<jumpSpaces;i++)      <!--不超过junpSpaces时，out叠加空格元素-->
+    {out += " "}
+  out += msg.charAt(position)     <!--将msg的第position个元素叠加到out中-->
+  window.status = out      <!--将out赋给window.status-->
+  if (jumpSpaces <= 1) {  <!--如果jumpSpaces小于等于1，position递加-->
+    position++
+    if (msg.charAt(position) == ' ') <!--如果当前msg的字符是空的-->
+      {position++ }<!--转向下一个字符-->
+    jumpSpaces = 100-position<!--赋值给jumpSpaces-->
+  } else if (jumpSpaces >  3)<!--如果jumpSpaces的值超过了3-->
+       {jumpSpaces *= .75}<!--将它逐步缩小-->
+  else
+    {jumpSpaces--}<!--jumpSpaces减小-->
+  if (position != msg.length) {<!--msg没有显示完-->
+    var cmd = "snapIn(" + jumpSpaces + "," + position + ")";<!--设置操作命令-->
+    scrollID = window.setTimeout(cmd,scroll.delay);<!--周期调用snapIN函数-->
+  } else {<!--msg显示完-->
+    window.status=""       <!--状态栏清空-->
+    jumpSpaces=0<!--变量清零-->
+    position=0<!--变量清零-->
+    cmd = "snapIn(" + jumpSpaces + "," + position + ")";<!--设置操作命令-->
+    scrollID = window.setTimeout(cmd,scroll.delay);<!--周期调用snapIN函数-->
+    return false 
+  }
+  return true
+}
+
+snapIn(1000,0);  <!--调用snapIn函数-->
+
+</script>
+
+
+<!--本例程实现了文字飞出效果-->
+<!--对状态栏的控制-->
+<!--动画效果的具体实现-->
+<!--字符串的相关函数与使用方法-->

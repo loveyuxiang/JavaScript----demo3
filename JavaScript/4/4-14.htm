@@ -1,0 +1,33 @@
+
+<SCRIPT LANGUAGE="JavaScript">
+
+
+function isLeapYear () {
+year = new Date().getYear();
+year += (year < 2050 ? 1900 : 0);
+return (year % 4==0 && year % 100!=0 || year % 400==0);
+}
+function formatDate(date) {
+mymonth = date.getMonth()+1;
+myweekday = date.getDate();
+return (mymonth + "/" + myweekday);
+}
+function printWeek() {
+beginday = 0; // first day of each week
+// 0 = sunday, 1= monday .... 6 = saturday
+
+var dayarray = new Array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+dayarray[1] = (isLeapYear()) ? 29 : 28;
+dayfactor = 86400000; // one day equals 86400000 milliseconds
+weekstart = new Date();
+weekend = new Date();
+while (weekstart.getDay() != beginday) {
+weekstart.setTime(weekstart.getTime() - dayfactor);
+}
+weekend.setTime(weekstart.getTime() + 7*dayfactor);
+document.write("最近的两个星期天为:  <font color=red> " +formatDate(weekstart) + "</font>和<font color=red>" + formatDate(weekend)+"</font>") ;
+}
+printWeek();
+</script>
+
+

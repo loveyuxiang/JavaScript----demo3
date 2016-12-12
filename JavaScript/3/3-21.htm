@@ -1,0 +1,66 @@
+
+<SCRIPT language=javascript>
+
+document.onclick = popUp 
+
+  
+
+function popUp() {
+
+newX = window.event.x + document.body.scrollLeft
+
+newY = window.event.y + document.body.scrollTop
+
+menu = document.all.itemopen
+
+  if ( menu.style.display == ""){
+
+    menu.style.display = "none" }
+
+  else {
+
+     menu.style.display = ""}
+
+
+
+    menu.style.pixelLeft = newX - 50
+
+    menu.style.pixelTop = newY - 50
+
+}
+
+
+
+
+
+
+</SCRIPT>
+
+
+
+
+
+
+
+
+ <table id="itemopen" class='box'  style='display:none'>  
+
+ <tr><td><font color=#FF8000>友情链接</font></a></td></tr>   
+
+ <tr><td><a href='#' class="cc" >本站首页</a></td></tr>
+
+ <tr><td><a href='#' class="cc">新浪网站</a></td></tr>
+
+ <tr><td><a href='#' class="cc" >搜狐网站</a></td></tr>
+
+ <tr><td><a href='#' class="cc" >游戏下载</a></td></tr>
+
+ <tr><td><a href='#' class="cc" >音乐下载</a></td></tr>
+
+ 
+    </table>
+
+
+
+
+

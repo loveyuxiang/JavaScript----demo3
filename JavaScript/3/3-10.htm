@@ -1,0 +1,25 @@
+<html>
+<head>
+<title>查看网址代码</title>
+</head>
+<body background="11.jpg">
+<SCRIPT LANGUAGE="JavaScript">
+function viewSource() {
+document.getSource.view.value="请稍等...";
+setTimeout("document.getSource.view.value='查看源代码'",10000);
+window.location.href= "view-source:" + document.getSource.url.value;
+return false;
+}
+</script>
+<center>
+<font color=white>输入完整的网址，按“查看源代码”就可看到它的源代码啦！</font>
+<br>
+<form name=getSource onSubmit="return viewSource();">
+<input type=text name=url value="http://">
+<br>
+<br>
+<input type=submit name=view value="查看源代码">
+</form>
+</center>
+</body>
+</head>

@@ -1,0 +1,65 @@
+
+<SCRIPT language=JavaScript>
+
+fCol = '000000'
+hCol = '000000'
+mCol = '000000'
+sCol = 'FF0000'
+H = '....';
+M = '.....';
+S = '......';
+Ybase =8;
+Xbase =8;
+dots =12;
+ns = (document.all)?0:1;
+ {
+for (i = 1; i < dots+1; i++) {
+document.write('<div id="ieDigits" style="position:absolute;top:0px;left:0px;width:30px;height:30px;font-family:Arial,Verdana;font-size:10px;color:'+fCol+';text-align:center;padding-top:10px">'+i+'</div>');
+}
+
+for (i = 0; i < M.length; i++) {
+document.write('<div id=y style="position:absolute;width:2px;height:2px;font-size:2px;background:'+mCol+'"></div>');
+}
+for (i = 0; i < H.length; i++) {
+document.write('<div id=z style="position:absolute;width:2px;height:2px;font-size:2px;background:'+hCol+'"></div>');
+}
+for (i = 0; i < S.length; i++) {
+document.write('<div id=x style="position:absolute;width:2px;height:2px;font-size:2px;background:'+sCol+'"></div>');
+}
+}
+function clock() {
+time = new Date ();
+secs = time.getSeconds();
+sec = -1.57 + Math.PI * secs/30;
+mins = time.getMinutes();
+min = -1.57 + Math.PI * mins/30;
+hr = time.getHours();
+hrs = -1.57 + Math.PI * hr/6 + Math.PI*parseInt(time.getMinutes())/360;
+if (ns) {
+Ypos = window.pageYOffset+window.innerHeight;
+Xpos = window.pageXOffset+window.innerWidth;
+}
+else {
+for (i=0; i < dots; ++i){
+ieDigits[i].style.pixelTop = Ypos - 15 + 40 * Math.sin(-0.49+dots+i/1.9);
+ieDigits[i].style.pixelLeft = Xpos - 14 + 40 * Math.cos(-0.49+dots+i/1.9);
+}
+for (i=0; i < S.length; i++){
+x[i].style.pixelTop = Ypos + i * Ybase * Math.sin(sec);
+x[i].style.pixelLeft = Xpos + i * Xbase * Math.cos(sec);
+}
+for (i=0; i < M.length; i++){
+y[i].style.pixelTop = Ypos + i * Ybase * Math.sin(min);
+y[i].style.pixelLeft = Xpos + i * Xbase * Math.cos(min);
+}
+for (i=0; i < H.length; i++){
+z[i].style.pixelTop = Ypos + i * Ybase*Math.sin(hrs);
+z[i].style.pixelLeft = Xpos + i * Xbase*Math.cos(hrs);
+   }
+}
+setTimeout('clock()', 50);
+}
+Ypos =  window.document.body.clientHeight /8;
+Xpos = window.document.body.clientWidth /8-20;
+if (document.all) window.onload = clock;
+</SCRIPT>

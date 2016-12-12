@@ -1,0 +1,64 @@
+
+
+<SCRIPT LANGUAGE="JavaScript">
+
+IE = (document.all);       <!--判断是否是IE浏览器-->
+if (IE) {
+  var chidc = new Array();      <!--各个表格的背景色-->
+  var hexc = new Array('0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F');   <!--用于十－十六进制的转换-->
+  var chidn = new Array(100,70,40);    <!--初始化-->
+  var step = new Array(10,10,10);      <!--变化步长-->
+  var chway = new Array(step[0],step[1],step[2]);  <!--变化步长-->
+  var tone = new Array(1,1,1);         <!--平衡变量-->
+  
+  function chcol() {
+    for (i=0; i<3; i++) {
+      chidn[i]+=chway[i];       <!--三个表格分别按照设定的步长增长，最大值不能超过255-->
+      if (chidn[i]>=255) {       
+        chidn[i] = 255;
+        chway[i] = -step[i];    <!--如果超过了，则改为同样步长的递减-->
+      }
+      else if (chidn[i]<=40) {  <!--最小值不能低于40-->
+        chidn[i] = 40;
+        chway[i] = step[i];
+        tone[i]>=3? tone[i] = 1:tone[i]++;  <!--tone数组中的值不超过3-->
+      }
+      col1 = hexc[Math.floor(chidn[i]/16)]; <!--转换为十六进制表示-->
+      col2 = hexc[chidn[i]%16];
+      tored = '';                           
+      toblue = '';
+      for (j=1; j<tone[i]; j++) tored+='00'; <!--分别对红色分量和蓝色分量进行处理以实现渐变效果-->
+      for (j=3; j>tone[i]; j--) toblue+='00';
+      chidc[i] = '#'+tored+col1+col2+toblue;  <!--将值赋给chidc-->
+      td = eval('document.all.chcol'+i);      
+      td.style.backgroundColor = chidc[i];    <!--设定第i个表格的背景色-->
+    }
+    setTimeout('chcol()',100);                   <!--延时0.1s-->
+  }
+}
+
+</script>
+<table cellspacing=2 cellpadding=0 bgcolor=#999999 width=400>
+<tr>
+<td width=33% align=center id=chcol0 name=id=chcol0>
+<font color=white>JavaScript论坛</td>
+<td width=33% align=center id=chcol1 name=id=chcol0>
+<font color=white>JavaScript特效</td>
+<td width=33% align=center id=chcol2 name=id=chcol0>
+<font color=white>JavaScript学习</td>
+</tr>
+</table>
+<SCRIPT LANGUAGE="JavaScript">
+
+chcol();  <!--调用chcol函数-->
+
+</script>
+
+
+<!--本例实现了渐变色表格的功能-->
+<!--重点在于颜色的配置，本例是通过chcol函数中的for循环来实现的-->
+<!--定义了多个变量来表示颜色的变化步长、绝对值等-->
+<!--每种颜色显示0.1秒-->
+
+
+

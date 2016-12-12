@@ -1,0 +1,36 @@
+
+
+<SCRIPT language="JavaScript">
+
+
+
+function openclk() {                                <!--用来打开一个新的窗口-->
+
+another=open('http://www.JavaScript.com/','NewWindow');   <!--打开新的窗口-->
+
+}
+
+function closeclk() { 
+
+another.close();                                    <!--关闭打开的窗口-->
+
+}
+
+
+
+</SCRIPT>
+
+
+
+<FORM>
+
+<INPUT TYPE="BUTTON" NAME="open" value="打开JavaScript网站" onClick="openclk()">
+
+<BR><BR>
+
+<INPUT TYPE="BUTTON" NAME="close" value="关闭JavaScript网站" onClick="closeclk()">
+
+</FORM>
+
+<!--本案例实现了打开关闭窗口的功能-->
+<!--分别通过函数openclk()和closeclk()实现-->

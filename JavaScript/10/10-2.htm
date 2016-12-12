@@ -1,0 +1,51 @@
+
+<script language=javascript>
+
+
+function toExit(){<!--对隐藏层的操作-->
+var args=toExit.arguments;<!--获取函数的输入值-->
+var visible=args[0];<!--函数的第一个输入值-->
+if(document.all){<!--对于ie浏览器-->
+		if(visible=='show')visible='visible';<!--设置隐藏层显示-->
+		if(visible=='hide')visible='hidden';<!--设置隐藏层消失-->
+		theObj=eval("document.all[\'"+args[1]+"\']");
+		if(theObj)theObj.style.visibility=visible;<!--执行上述操作-->
+		}
+
+}     
+
+</script>
+
+<div id=div32 
+style="HEIGHT: 80px; LEFT: 10px; POSITION: absolute; TOP: 10px; VISIBILITY: hidden; WIDTH: 180px; Z-INDEX: 1">
+<table bgcolor=#FF9900 border=1 cellpadding=0 cellspacing=0 height=80 
+  width=180>  <tbody> 
+                      <tr> 
+                        <td height=65 width="100%"> 
+                          <table border=0 cellpadding=0 cellspacing=0 height=80 width="99%">
+                            <tbody> 
+                            <tr> 
+                              <td height=57> <font 
+            color=#ffffff>欢迎来到javascript世界！这里有你意想不到奇妙效果！<b></b></font></td>
+                            </tr>
+                            <tr align="center"> 
+                              <td height=23 width="100%"><a 
+            href="javascript:toExit('hide','div32')"><font color=white>关闭此层</font></a></td>
+                            </tr>
+                            </tbody> 
+                          </table>
+                        </td>
+                      </tr>
+                      </tbody> 
+                    </table>
+                  </div>
+<a href="javascript:toExit('show','div32')"><font color="#FF9900">打开隐藏层</font></a>
+<body>
+
+</body>
+
+</html>
+<!--本例程实习了打开活隐藏层的操作-->
+<!--了解隐藏层的产生机制-->
+<!--打开、关闭隐藏层的造作实现-->
+<!--函数的调用-->

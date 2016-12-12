@@ -1,0 +1,32 @@
+<script language="JavaScript">
+<!--弹出窗口，用户可以输入-->
+Ret = prompt('输入你想在状态栏上显示的字符',"^_^")
+
+var temp
+var f =
+""<!--定义一段空格的字符串-->
+var f = f + (Ret)<!--将输入的字符加在空格字符串后边-->
+var speedtogo = 500<!--定义刷新速率-->
+
+var counter
+
+
+function scrollon() {
+        
+   temp  = f.substring(0,1);<!--获取第一个字符-->
+   f += temp<!--将第一个字符放在字符串的最后-->
+   f    = f.substring(1,100);<!--输出后100个字符-->
+   window.status = f.substring(0,100);<!--在状态栏中显示输入的内容-->
+  
+  counter    = setTimeout("scrollon()",speedtogo);<!--按照设置的时间延时-->
+
+ }
+
+</script>
+
+
+<body onLoad="scrollon()">
+<!--本例程实现了输入字符出现在状态栏的功能-->
+<!--如何利用弹出窗口获取用户输入-->
+<!--如何在状态栏中显示字符-->
+<!--如何循环显示字符串-->

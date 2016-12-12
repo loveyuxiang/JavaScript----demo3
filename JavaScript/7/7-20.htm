@@ -1,0 +1,34 @@
+
+
+
+
+<input type=button value="全选" name="B2"  id="flashit"onClick="javascript:text.focus();text.select();"><br>
+<textarea NAME="text" ROWS=8 COLS=30 WRAP=VIRTUAL name="T1"id="flashit">
+       「入朝曲」李白
+   金陵控海浦，渌水带吴京。
+   铙歌列骑吹，飒沓引公卿。
+   槌钟速严妆，伐鼓启重城。
+   天子凭玉几，剑履若云行。
+   日出照万户，簪裾烂明星。
+   朝罢沐浴闲，遨游阆风亭。
+   济济双阙下，欢娱乐恩荣。
+</textarea>
+
+
+<script language="JavaScript1.2"> 
+if (document.all&&document.all.flashit){ <!--如果当前页面包含了文本框-->
+ 
+var flashelement=document.all.flashit <!--文本框、按钮-->
+if (flashelement.length==null) 
+flashelement[0]=document.all.flashit <!--获取文本框-->
+ 
+
+</script> 
+
+
+
+
+<!--本例程实现了文本框中文字的控制-->
+<!--text.focus()函数的使用-->
+<!--text.select()函数的使用-->
+<!--周期性改变颜色的实现-->

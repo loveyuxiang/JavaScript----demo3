@@ -1,0 +1,21 @@
+<script language="JavaScript">
+var enabled = 0;    
+function TOfunc() {       
+	TO = window.setTimeout( "TOfunc()", 1000 );       
+	var today = new Date();       
+	document.clock.disp.value = today.toLocaleString();}
+</script>
+<form name="clock">
+现在的时间是：<input type="text" name="disp" value="" size=21 onFocus="this.blur()">
+
+<input type="radio" name="rad" value="OFF" checked onClick="
+  if( enabled==1 ) 
+    {document.clock.disp.value='';
+     clearTimeout( TO ); 
+     enabled = 0;}
+   "> 关
+<input type="radio" name="rad" value="on"  onClick="
+     if( enabled == 0 ) {
+        var TO = setTimeout( 'TOfunc()', 1000 );
+        enabled = 1;     }" > 开
+</form>

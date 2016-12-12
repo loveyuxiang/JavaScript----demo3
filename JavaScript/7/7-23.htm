@@ -1,0 +1,106 @@
+
+
+<SCRIPT LANGUAGE="JavaScript">
+
+var QA = new Array();  <!--存储各组信息，包括显示信息和提示信息-->
+QA[0] = new Array("星期一", "星期一的信息提示");
+QA[1] = new Array("星期二", "星期二的信息提示");
+QA[2] = new Array("星期三", "星期三的信息提示");
+QA[3] = new Array("星期四", "星期四的信息提示");
+QA[4] = new Array("星期五", "星期五的信息提示");
+QA[5] = new Array("星期六", "星期六的信息提示");
+QA[6] = new Array("星期日", "星期日的信息提示");
+var ql = QA.length - 1;   <!--q1赋值-->
+var qx = Math.round(Math.random() * ql); <!--随机整数-->
+if (qx < 0) { qx = 0; };     <!--如果qx为0，则改为0-->
+x = QA[qx][0], y = QA[qx][1]; <!--x代表第qx项的显示信息，y代表第qx项的提示信息-->
+var isNav = (navigator.appName.indexOf("Netscape") != -1);<!--浏览器种类的判断，若为true，则表明是netscaper-->
+var Ypos = 0;
+
+function setupDescriptions() {
+var x = navigator.appVersion;   <!--x指浏览器的版本-->
+y = x.substring(0,4);          <!--y指x的从0到4的子串-->
+if (y >= 4) setVariables();    <!--如果y大于等于4，则调用setVariables函数-->
+}
+
+var x, y, a, b;
+
+function setVariables() {
+if (navigator.appName == "Netscape") {  <!--如果是netscape浏览器，则设定变量如下-->
+h=".left="; v=".top="; dS="document."; sD="";
+}
+else {  <!--否则设定如下-->
+h=".pixelLeft="; v=".pixelTop="; dS=""; sD=".style";
+   }
+}
+
+function popLayer(a) {    <!--弹出层函数-->
+desc = "<table cellpadding=3 border=1 bgcolor=F7F7F7><td>" + a + "</td></table>"; <!--设定格式、显示内容-->
+if(isNav) {   <!--如果是netscape-->
+document.q1.document.write(desc); <!--显示desc内容-->
+document.q1.document.close();    <!--关闭-->
+document.q1.left = x+25;        <!--q1的位置设定-->
+document.q1.top = y+40;
+}
+else {               <!--否则，将设定如下-->
+y = Ypos - 15;
+q1.innerHTML = desc;
+eval(dS+"q1"+sD+h+(x+25));
+eval(dS+"q1"+sD+v+(y+40));
+   }
+}
+
+function hideLayer(a) {   <!--隐藏层函数-->
+if(isNav) {               <!--如果是netscape浏览器-->
+eval(document.q1.top = a);<!--将a的值赋给top-->
+}
+else q1.innerHTML = "";   <!--否则赋空格给innerHTML-->
+}
+
+function doQuestion() {    <!--执行悬停显示的函数-->
+var text;
+if (!isNav) {  <!--如果不是netscape浏览器-->
+text = "<div id=\"q1\" style=\"position:absolute; "
++ "visibility:show; left:25px; top:-50px; z-index:2\">layer "
++ "hidden off the screen</div><br><a nohref "
++ "onMouseover=\"popLayer('" + y + "')\" "
++ "onMouseout=\"hideLayer(-50)\"><font size=+1 "
++ "color=\"black\"><b>" + x + "</b></font></a><br>";  <!--将要显示的文字，颜色，位置层面赋给text-->
+}
+if(isNav) {  <!--否则按照下面的格式赋值-->
+text = "<br><a href onmouseover=\"alert('" + y + "!');return "
++ "true\" onmouseout=\"status=' '\"><font size=+1 "
++ "color=\"black\"><b>" + x + "</b></font></a><br>";
+}
+document.write(text);             <!--显示text-->
+}
+function handlerMM(e) {     <!--鼠标移动时间响应函数-->
+x = (isNav) ? e.pageX : event.clientX; <!--获得鼠标移动的x方向移动量-->
+y = (isNav) ? e.pageY : event.clientY;;<!--获得鼠标移动的y方向移动量-->
+if (!isNav) { Ypos = window.event.y + document.body.scrollTop; }<!--如果不是netscape浏览器，则给y坐标赋值-->
+}
+if (isNav) {                <!--否则映射鼠标移动对应的事件到响应函数-->
+document.captureEvents(Event.MOUSEMOVE);
+}
+
+document.onmousemove = handlerMM;     <!--调用鼠标移动函数-->
+
+
+doQuestion(); <!--调用doQuestion函数-->
+</script>
+
+
+<body  OnLoad="setupDescriptions()">
+
+
+<!--本例实现了鼠标悬停显示文本的功能-->
+<!--对于不同的信息有相应的提示信息，每组的显示是随机的-->
+<!--调用doQuestion函数来实现这项功能-->
+<!--当鼠标移动到信息上时，弹出一个层来显示提示信息-->
+<!--例程中包含了对不同的浏览器版本的操作-->
+
+
+
+
+
+

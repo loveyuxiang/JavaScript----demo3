@@ -1,0 +1,68 @@
+<SCRIPT language=JavaScript>
+var speed = 2;          <!--速度-->
+var cycledelay = 1000;  <!--循环周期-->
+var maxsize = 48;    <!--最大数目-->
+
+var x = 0;
+var y = 0;
+var themessage, size;
+var esize = "";
+
+function initArray() {   <!--初始化数组-->
+  this.length = initArray.arguments.length;
+  for (var i = 0; i < this.length; i++) {
+    this[i] = initArray.arguments[i];
+  }
+}
+
+var themessage2 = new initArray(<!--初始化矩阵-->
+"欢迎光临",
+"JavaScript世界",
+"隆重奉献",
+"网页特效",
+"色彩缤纷",
+"精彩呈现"
+);
+
+
+if (navigator.appVersion.indexOf("MSIE") != -1)<!--如果是ie浏览器-->
+  document.write('<span id="wds"></span><br>');<!--新的层-->
+
+function upwords(){
+  themessage = themessage2[y];<!--读取第y条信息-->
+  if (x < maxsize) {<!--当前字体大小小于最大值-->
+    x++;<!--字体变大-->
+    setTimeout("upwords()",speed);
+  }
+  else <!--当前字体已经最大-->
+    setTimeout("downwords()",cycledelay);<!--字体变小-->
+  
+  if (navigator.appVersion.indexOf("MSIE") != -1){<!--如果是ie浏览器-->
+    wds.innerHTML = "<center>"+themessage+"</center>";<!--写入信息-->
+    wds.style.fontSize=x+'px'<!--按照给定的字体-->
+  }
+}
+
+function downwords(){
+ if (x > 1) {<!--如果当前字体比1大-->
+   x--;<!--字体继续变小-->
+   setTimeout("downwords()",speed);
+ }
+ else {<!--字体已经最小-->
+   setTimeout("upwords()",cycledelay);<!--更换下一条信息-->
+   y++;<!--下一条信息-->
+   if (y > themessage2.length - 1) y = 0;<!--如果到头，重头开始-->
+ }
+ 
+ if (navigator.appVersion.indexOf("MSIE") != -1){<!--如果是ie浏览器-->
+   wds.innerHTML = "<center>"+themessage+"</center>";<!--写入信息-->
+   wds.style.fontSize=x+'px'<!--按照给定的字体-->
+ }
+}
+
+setTimeout("upwords()",speed);<!--调用upwords函数-->
+</script>
+<!--本例程实现了about窗口-->
+<!--字体在窗口中变化的效果的实现-->
+<!--循环处理、显示消息的方法-->
+<!--settimeout函数实现动画效果-->

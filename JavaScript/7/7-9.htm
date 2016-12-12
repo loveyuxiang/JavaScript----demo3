@@ -1,0 +1,39 @@
+
+
+<SCRIPT LANGUAGE="JavaScript">
+document.write('<style><!--');
+document.write('#glowtext{filter:glow(color=#F5D20A,strength=2);width:100%;}');<!--对glowtext加滤镜效果-->
+document.write('--></style>');
+document.write('<span id="glowtext"><font color="#0A9DF5" face="隶书" size="8">欢迎来到本站！</font></span>');
+
+function glowit(which){
+if (document.all.glowtext[which].filters[0].strength==2)<!--如果当前是效果2-->
+document.all.glowtext[which].filters[0].strength=1<!--则变成1-->
+else
+document.all.glowtext[which].filters[0].strength=2}<!--否则变成2-->
+
+function glowit2(which){
+if (document.all.glowtext.filters[0].strength==2)<!--如果当前是效果2-->
+document.all.glowtext.filters[0].strength=1<!--则变成1-->
+else
+document.all.glowtext.filters[0].strength=2}<!--否则变成2-->
+
+function startglowing(){
+if (document.all.glowtext&&glowtext.length){<!--如果当前窗口中存在多个使用心跳效果的字符串-->
+for (i=0;i<glowtext.length;i++)
+eval('setInterval("glowit('+i+')",150)')<!--设置心跳的速度-->
+}
+else if (glowtext)<!--如果只有一个使用效果的字符串-->
+setInterval("glowit2(0)",150)<!--设置心跳的速度-->
+}
+
+
+window.onload=startglowing<!--直接调用startglowing函数-->
+
+</script>
+
+
+<!--本例程实现了心跳效果的文字-->
+<!--对glow滤镜的使用-->
+<!--动画效果的实现方法-->
+

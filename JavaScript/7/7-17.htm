@@ -1,0 +1,34 @@
+<SCRIPT LANGUAGE="JavaScript">
+
+   var a,b,go,word;  <!--变量定义，a、b为字符串，go为延时，word为显示信息-->
+   function greenlight(word){
+    a="欢迎光临本站";    <!--显示的文字信息-->
+    word.style.color="red";    <!--颜色变为红色-->
+    linkSwitch();              <!--调用linkSwitch函数-->
+   }  
+   function linkSwitch(){       <!--用来改变显示的文字以达到动态效果-->
+    clearTimeout(go);           <!--清除延时-->
+    b=a;                        <!--a值赋给b-->
+    a=a.substring(1,100)+a.charAt(0);<!--a值按规则变化-->
+    esh.innerText=a;            <!--将a赋给要显示的文本-->
+    go=setTimeout("linkSwitch()",100);<!--延时100ms-->
+   }
+   function stp(word){          <!--停止动态显示的函数-->
+    clearTimeout(go);           <!--清除延时-->
+    esh.innerText="欢迎光临本站";<!--显示的字符串恢复原来的值-->
+    word.style.color="blue";           <!--颜色变为蓝色-->
+   }
+  
+  </SCRIPT>
+
+
+
+<A HREF="http://" onmouseover="greenlight(this)"; onmouseout="stp(this)"><span id="esh">欢迎光临本站</span></A> 
+
+
+
+
+<!--本例实现了当鼠标移到文字上时变为动态的功能-->
+<!--鼠标移到文字上时触发了greenlight函数，呈现动态显示-->
+<!--动态显示主要是通过改变文字显示的次序来实现的-->
+<!--鼠标移出时调用stp函数停止动态显示-->

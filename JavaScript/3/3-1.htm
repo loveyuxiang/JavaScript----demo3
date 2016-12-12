@@ -1,0 +1,128 @@
+<html>
+
+<head>
+<title>按时消失的链接</title>
+<script language="javascript">
+
+<!--表示显示的信息-->
+var message='<b><a href="#" target="_blank">按时消失的链接（5秒后自动消失）</a></b>'
+
+<!--定义背景色-->
+var backgroundcolor="#00FFFF"
+
+<!--0 代表信息永远显示，1 代表信息只显示一段时间，2为随机显示模式-->
+var displaymode=1
+
+<!--如果显示模式为在指定时间内显示，输入时间段(1000为1秒)-->
+var displayduration=5000
+
+<!--1代表闪烁，0代表不闪烁；-->
+var flashmode=1
+<!--如果设置了闪烁，输入闪烁的颜色-->
+var flashtocolor="#FFFF00"
+
+function regenerate(){
+window.location.reload()<!--重新载入窗口-->
+}
+
+var which=0
+
+function regenerate2(){
+if (document.layers)   <!--如果是netscape浏览器，则延时700ms-->
+setTimeout("window.onresize=regenerate",700)
+}
+
+
+function display2(){
+if (document.layers){  <!--如果是netscape浏览器-->
+if (topmsg.visibility=="show")<!--如果信息是可见的则改为隐藏-->
+topmsg.visibility="hide"
+else
+topmsg.visibility="show"   <!--否则改为可见-->
+}
+else if (document.all){ <!--如果是ie浏览器-->
+if (topmsg.style.visibility=="visible")
+topmsg.style.visibility="hidden"  <!--如果信息是可见的改为隐藏，否则改为可见-->
+else
+topmsg.style.visibility="visible"
+setTimeout("display2()",Math.round(Math.random()*10000)+10000)  <!--延时一个随机时间-->
+}
+}
+
+function flash(){
+if (which==0){  <!--如果which为0-->
+if (document.layers)  <!--netscape浏览器-->
+topmsg.bgColor=flashtocolor<!--信息的背景色改为闪烁的颜色-->
+else
+topmsg.style.backgroundColor=flashtocolor  <!--ie时也是相同的操作-->
+which=1         <!--将which置为1-->
+}
+else{
+if (document.layers)  <!--netscape浏览器-->
+topmsg.bgColor=backgroundcolor<!--设置链接的背景颜色-->
+else<!--ie浏览器-->
+topmsg.style.backgroundColor=backgroundcolor<!--设置链接的背景颜色-->
+which=0<!--将which置0-->
+}
+}
+
+
+if (document.all){<!--ie浏览器-->
+document.write('<span id="topmsg" style="position:absolute;visibility:hidden">'+message+'</span>')<!--显示链接的内容-->
+}
+Ypos =  window.document.body.clientHeight - 60;
+Xpos = window.document.body.clientWidth - 60;
+
+function logoit(){
+document.all.topmsg.style.left=document.body.scrollLeft+document.body.clientWidth/2<!--设置链接显示的左边界-->
+document.all.topmsg.style.top=document.body.scrollTop+document.body.clientHeight<!--设置链接显示的上边界-->
+}
+
+
+
+
+function setmessage(){<!--显示链接-->
+
+document.all.topmsg.style.backgroundColor=backgroundcolor<!--设置链接的背景色-->
+document.all.topmsg.style.visibility="visible"<!--设置链接为可视-->
+if (displaymode==1)<!--如果是模式1-->
+setTimeout("topmsg.style.visibility='hidden'",displayduration)<!--按照设定的时间延时后，将链接的显示属性变成隐藏-->
+else if (displaymode==2)<!--如果是模式2-->
+display2()<!--直接调用display2函数-->
+if (flashmode==1)
+setInterval("flash()",1000)<!--设置flash的延时1秒-->
+window.onscroll=logoit<!--设置事件对应的函数-->
+window.onresize=new Function("window.location.reload()")<!--重新载入窗口-->
+}
+
+
+function setmessage2(){<!--显示链接-->
+topmsg=new Layer(window.innerWidth)<!--信件一个层，宽度固定-->
+topmsg.bgColor=backgroundcolor<!--设置链接的背景色-->
+regenerate2()
+topmsg.document.write(message)<!--输出链接-->
+topmsg.document.close()
+logoit2()<!--调用函数logoit2函数-->
+topmsg.visibility="show"<!--设置链接的显示属性-->
+if (displaymode==1)<!--如果是模式 1-->
+setTimeout("topmsg.visibility='hide'",displayduration)<!--按照设定的时间延时后，将链接的显示属性变成隐藏-->
+else if (displaymode==2)<!--如果是模式2-->
+display2()<!--直接调用display2函数-->
+if (flashmode==1)
+setInterval("flash()",1000)<!--设置flash的延时1秒-->
+}
+
+
+if (document.layers)<!--如果时netscape浏览器-->
+window.onload=setmessage2<!--调用setmessage2函数-->
+else if (document.all)<!--如果是ie浏览器-->
+window.onload=setmessage<!--调用setmessage函数-->
+</script>
+
+</body>
+
+</html>
+<!--本例程实现了按时消失的链接-->
+<!--延时函数的使用方法-->
+<!--链接的使用-->
+<!--控制链接的背景颜色-->

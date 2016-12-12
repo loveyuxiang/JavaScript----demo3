@@ -1,0 +1,36 @@
+<div id="KBStatic" style="position:absolute; left:3px; top:0px; width:553px; height:70px; z-index:25"> 
+
+<a href="http://www.JavaScript.com">JavaScript全球网站</a></div>
+
+<script language=JavaScript>
+                  
+function KB_keepItInIE(theName,theWantTop,theWantLeft) {<!--ie浏览器中的函数-->
+theRealTop=parseInt(document.body.scrollTop)<!--获取实际页面的上边界-->
+theTrueTop=theWantTop+theRealTop<!--链接的顶部未实际页面上边界＋间距-->
+document.all[theName].style.top=theTrueTop<!--更新链接的上边界-->
+theRealLeft=parseInt(document.body.scrollLeft)<!--获取实际页面的左边界-->
+theTrueLeft=theWantLeft+theRealLeft<!--链接的顶部未实际页面左边界＋间距-->
+document.all[theName].style.left=theTrueLeft<!--更新链接的左边界-->
+}
+
+function KB_keepItInNN(theName,theWantX,theWantY) {<!--netscape浏览器中的函数-->
+theRealLay=document.layers[theName]
+theBadX=self.pageYOffset<!--获取实际页面的上边界-->
+theBadY=self.pageXOffset<!--获取实际页面的左边界-->
+theRealX=theBadX+theWantX<!--链接的顶部未实际页面左边界＋间距-->
+theRealY=theBadY+theWantY<!--链接的顶部未实际页面上边界＋间距-->
+theRealLay.moveTo(theRealY,theRealX)<!--更新链接的边界-->
+}
+
+IE4=(document.all)?1:0<!--ie浏览器的标志-->
+NN4=(document.layers)?1:0<!--netscape浏览器的标志-->
+if (IE4)
+setInterval('KB_keepItInIE("KBStatic",100,30)',1)<!--调用ie的函数-->
+if (NN4)
+setInterval('KB_keepItInNN("KBStatic",100,30)',1)<!--调用netscape的函数-->
+</script>
+
+
+<!--本例程实现了固定链接位置的功能-->
+<!--链接的位置控制-->
+<!--对不同浏览器的不同方法-->

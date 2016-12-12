@@ -1,0 +1,76 @@
+<script language="JavaScript">
+ie=document.all<!--ie的标志-->
+
+lshow=60
+var move=10;
+menuSpeed=40
+var moveOnScroll=true
+var tim;
+var ltop;
+function makeMenu(obj,nest){
+   
+    this.css=eval(obj+'.style')<!--生成菜单-->
+    this.state=1<!--设置菜单的状态-->
+    this.go=0<!--设置菜单的属性-->
+    this.width=eval(obj+'.offsetWidth')<!--设置菜单宽度-->
+    this.left=b_getleft<!--设置菜单左边界-->
+    this.obj = obj + "Object";         
+    eval(this.obj + "=this")
+}
+function b_getleft(){
+        var gleft=eval(this.css.pixelLeft);<!--获取菜单的左边界-->
+        return gleft;
+}
+function moveMenu(){
+        if(!oMenu.state){<!--如果菜单已经弹出-->
+                clearTimeout(tim)<!--清除定时器-->
+                mIn()<!--将菜单收回-->
+        }else{<!--如果菜单未弹出-->
+                clearTimeout(tim)<!--清除定时器-->
+                mOut()<!--将菜单弹出-->
+        }
+}
+function mIn(){<!--收回菜单-->
+        if(oMenu.left()>-oMenu.width+lshow){
+                oMenu.go=1<!--设置标志位，表示菜单在运动中-->
+                oMenu.css.left=oMenu.left()-move<!--每次菜单的左边界向左移动一个值-->
+                tim=setTimeout("mIn()",menuSpeed)<!--设置移动的速度-->
+        }else{
+                oMenu.go=0<!--设置标志位，表示菜单不在运动中-->
+                oMenu.state=1<!--设置标志位，表示菜单已经收回-->
+        }
+}
+function mOut(){<!--弹出菜单-->
+        if(oMenu.left()<0){
+                oMenu.go=1<!--设置标志位，表示菜单在运动中-->
+                oMenu.css.left=oMenu.left()+move<!--每次菜单的左边界向右移动一个值-->
+                tim=setTimeout("mOut()",menuSpeed)<!--设置移动的速度-->
+        }else{<!--菜单弹出完毕-->
+                oMenu.go=0<!--设置标志位，表示菜单不在运动中-->
+                oMenu.state=0<!--设置标志位，表示菜单已经弹出-->
+        }
+}
+function checkScrolled(){
+        if(!oMenu.go) oMenu.css.top=eval(scrolled)+ltop<!--确定菜单的上边界-->
+}
+function menuInit(){
+        oMenu=new makeMenu('divMenu')<!--生成菜单-->
+       
+        oMenu.css.left=-oMenu.width+lshow<!--设置菜单的左边界-->
+        
+        oMenu.css.visibility='visible'<!--将菜单设置为可视-->
+       
+}
+onload=menuInit;<!--页面载入时，直接调用函数menuInit-->
+</script>
+<div id="divMenu" style="position: absolute; top: 10; left: 40; width: 173; visibility: hidden; background-color: #00FFFF; height: 19"><nobr>
+<a href="http://www.tom.com">TOM</a>-
+<a href="http://www.sina.com">新浪</a>-
+<a href="http://www.sohu.com">搜狐</a>-
+<a href="http://www.nba.com">NBA</a>-
+<a href="http://www.JavaScript.com">JavaScript</a>
+--- <a style="background-color: #FFFF00; text-decoration: none" href="javascript://" onclick="moveMenu()">导航菜单</a></nobr></div>
+<!--本例程实现了自动收缩的菜单-->
+<!--收缩功能的实现方法-->
+<!--动画效果的速度设置-->
+<!--scroll控件的交互功能-->

@@ -1,0 +1,15 @@
+
+<script language="JavaScript">
+
+function winopen(){
+var targeturl="http://www.JavaScript.com"
+newwin=window.open("","","scrollbars")
+if (document.all){
+newwin.moveTo(0,0)
+newwin.resizeTo(screen.width,screen.height)
+}
+newwin.location=targeturl
+}
+
+</script>
+  <input type="button" onClick="winopen()" value="JavaScript" name="button">

@@ -1,0 +1,122 @@
+
+
+
+<script language="javascript">
+  var line=new Array();
+  var w=35;     <!-- 一条边框的小格的个数（所以是个正方形）-->
+  var left=7;  <!-- 这个是边框在页面中的位置的左上角的X坐标-->
+  var top=12;   <!-- 自然就是纵坐啦-->
+  var width=4;  <!-- 边框中一小格的象素宽-->
+  var height=3;  <!-- 边框的高度，设为1的话就是一条细线了-->
+  line[0]="ff"+Number(25).toString(16)+Number(25).toString(16);
+  line[1]="ff"+Number(50).toString(16)+Number(50).toString(16);
+  line[2]="ff"+Number(75).toString(16)+Number(75).toString(16);
+  line[3]="ff"+Number(100).toString(16)+Number(100).toString(16);
+  line[4]="ff"+Number(125).toString(16)+Number(125).toString(16);
+  line[5]="ff"+Number(150).toString(16)+Number(150).toString(16);
+  line[6]="ff"+Number(175).toString(16)+Number(175).toString(16);
+  line[7]="ff"+Number(200).toString(16)+Number(200).toString(16);
+  line[8]="ff"+Number(225).toString(16)+Number(225).toString(16);
+  line[9]="ff"+Number(225).toString(16)+Number(225).toString(16);
+  line[10]="ff"+Number(225).toString(16)+Number(225).toString(16);
+  line[11]="ff"+Number(225).toString(16)+Number(225).toString(16);
+  line[12]="ff"+Number(200).toString(16)+Number(200).toString(16);
+  line[13]="ff"+Number(175).toString(16)+Number(175).toString(16);
+  line[14]="ff"+Number(150).toString(16)+Number(150).toString(16);
+  line[15]="ff"+Number(125).toString(16)+Number(125).toString(16);
+  line[16]="ff"+Number(100).toString(16)+Number(100).toString(16);
+  line[17]="ff"+Number(75).toString(16)+Number(75).toString(16);
+  line[18]="ff"+Number(50).toString(16)+Number(50).toString(16);
+  line[19]="ff"+Number(25).toString(16)+Number(25).toString(16);
+
+  function writes(num)
+  {
+    var temp;    var s;    var tl,tt;    var tw,th;    temp=num+1;<!--定义变量-->
+    if(num==0)<!--写第一条边-->
+    {
+      tl = left;<!--左边界-->
+      tt = top;<!--上边界-->
+      tw = w*width;<!--宽度-->
+      th = height;<!--高度-->
+      s="<table style='position: absolute; left: "+tl+"px; top: "+tt+"px; width: "+tw+"px; height: "+th+"px;' cellspacing='0' cellpadding='0' ><tr>";
+      for(r=0;r<w;r++)<!--依次画出每一个小格-->
+      {
+        temp=r+w*num;<!--获得当前的小格的位置-->
+        s+="<td id=tab"+temp+" bgcolor=red></td>";<!--写入小格-->
+      }
+      s+="</tr></table>";
+    }
+    if(num==1)<!--写第二条边-->
+    {
+      tl = left+w*width;<!--左边界-->
+      tt = top;<!--上边界-->
+      tw = height;<!--高度-->
+      th = w*width;<!--宽度-->
+      s="<table style='position: absolute; left: "+tl+"px; top: "+tt+"px; width: "+tw+"px; height: "+th+"px;' cellspacing='0' cellpadding='0'>";
+      for(r=0;r<w;r++)<!--依次画出每一个小格-->
+      {
+        temp=r+w*num;<!--获得当前的小格的位置-->
+        s+="<tr><td id=tab"+temp+" bgcolor=red></td></tr>";<!--写入小格-->
+      }
+      s+="</table>";
+    }
+    if(num==2)<!--写第三条边-->
+    {
+      tl = left+height;<!--上边界-->
+      tt = top+w*width;<!--左边界-->
+      tw = w*width;<!--宽度-->
+      th = height;<!--高度-->
+      s="<table style='position: absolute; left: "+tl+"px; top: "+tt+"px; width: "+tw+"px; height: "+th+"px;' cellspacing='0' cellpadding='0'><tr>";
+      for(r=w;r>0;r--)<!--依次画出每一个小格-->
+      {
+        temp=r-1+w*num;
+        s+="<td id=tab"+temp+" bgcolor=red></td>";<!--写入小格-->
+      }
+      s+="</tr></table>";
+    }
+    if(num==3)<!--写第四条边-->
+    {
+      tl = left;<!--左边界-->
+      tt = top+height;<!--上边界-->
+      tw = height;<!--高度-->
+      th = w*width;<!--宽度-->
+      s="<table style='position: absolute; left: "+tl+"px; top: "+tt+"px; width: "+tw+"px; height: "+th+"px;' cellspacing='0' cellpadding='0'>";
+      for(r=w;r>0;r--)<!--依次画出每一个小格-->
+      {
+        temp=r-1+w*num;
+        s+="<tr><td id=tab"+temp+" bgcolor=red></td></tr>";<!--写入小格-->
+      }
+      s+="</table>";
+    }
+    return s;<!--返回s-->
+  }
+  
+  
+  function count()
+  {
+    var i;    var temp;    var total;<!--定义变量-->
+    total = w*4;<!--小格的总数-->
+    for(i=0; i<line.length; i++)<!--处理当前小格前后各10个点-->
+    {
+      temp=pos+i-line.length/2;<!--获取当前处理的点-->
+      temp=temp<0?(total+temp):temp;<!--如果小于0，则循环到后边-->
+      temp=temp>(total-1)?(temp-total):temp;<!--如果大于总数，则循环到前面-->
+      document.all["tab"+temp].style.backgroundColor=line[line.length-i];<!--给小格上适当的颜色-->
+    }
+    pos=(pos+1)>total?0:(pos+1);<!--pos加1，如果pos超过小格的总数，则重头开始-->
+  }
+
+  for(i=0;i<=3;i++)
+  {
+    document.write(writes(i));<!--依次处理方框的每一条边-->
+  }
+  
+  var pos=0;<!--初始化变量-->
+  setInterval("count()", 1);<!--调用count函数-->
+</script>
+<img src="leaf.jpg">
+
+<!--本例程实现了走在方框上的雾-->
+<!--雾的动画效果的实现-->
+<!--用表格的形式来画边框，便于精确的颜色控制-->
+<!--setinterval函数的使用-->

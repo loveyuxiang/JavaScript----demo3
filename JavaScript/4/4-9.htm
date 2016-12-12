@@ -1,0 +1,11 @@
+<script language="JavaScript">
+var urodz= new Date("8/8/2008");
+var  s="今天离<font color=red>北京奥运会开幕</font>";
+var now = new Date();
+var ile = urodz.getTime() - now.getTime();
+var dni = Math.floor(ile / (1000 * 60 * 60 * 24));
+if (dni >0)
+   document.write(""+s+"还有<font color=red>"+dni +"</font>天")
+else
+    document.write("好象已经过了吧！");
+</script>

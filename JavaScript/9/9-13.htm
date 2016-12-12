@@ -1,0 +1,30 @@
+
+<script>
+tim=1
+setInterval("tim++",100)
+b=1
+
+var autourl=new Array()
+autourl[1]="www.tom.com"
+autourl[2]="www.sohu.com"
+autourl[3]="www.sina.com"
+autourl[4]="www.nba.com"
+autourl[5]="www.cctv.com"
+
+function butt(){
+document.write("<form name=autof>")
+for(var i=1;i<autourl.length;i++)document.write("<input type=text name=txt"+i+" size=10 value=测试中……> =》<input type=text name=url"+i+" size=25> =》<input type=button value=GO onclick=window.open(this.form.url"+i+".value)>&nbsp;<br>")
+
+}
+butt()
+function auto(url){
+document.forms[0]["url"+b].value=url
+if(tim>200)
+{document.forms[0]["txt"+b].value="链接超时"}
+else
+{document.forms[0]["txt"+b].value="时间"+tim/10+"秒"}
+b++
+}
+function run(){for(var i=1;i<autourl.length;i++)document.write("<img src=http://"+autourl[i]+"/"+Math.random()+" width=1 height=1 onerror=auto('http://"+autourl[i]+"')>")}
+run()</script>
+

@@ -1,0 +1,51 @@
+
+
+
+
+<SCRIPT LANGUAGE="JavaScript">
+
+msg ="垂直滚动文字";<!--待滚动的文字-->
+align="";<!--对齐方式-->
+speed=300;<!--设置滚动速度-->
+up=true;<!--滚动的方向为上-->
+spas=" ";
+for (a=0;a<=3;a++) {spas+=" "}
+msg=spas+msg+spas;
+j=eval(-1);<!--j给定初始值-->
+stop=msg.length;
+document.write("<form name='form'><table border=5 cellspacing=5 "
++"cellpadding=0 align="+align+">");<!--设置表单格式-->
+for (i=1;i<=5;i++) {
+document.write("<tr><td><input type=text name=\"box"+i+"\" size=1>");<!--依次画出13个方框-->
+document.write("</td></tr>");
+}
+document.write("</table></form>");
+
+function scrollIt() {
+j++;
+with (document.form) {
+if ((j+5) <= stop) {<!--判断是否满足停止条件-->
+box1.value = msg.charAt(j);<!--将第j个字符放在第1个方框中-->
+box2.value = msg.charAt(j+1);<!--将第j+1个字符放在第2个方框中-->
+box3.value = msg.charAt(j+2);<!--将第j+2个字符放在第3个方框中-->
+box4.value = msg.charAt(j+3);<!--将第j+3个字符放在第4个方框中-->
+box5.value = msg.charAt(j+4);<!--将第j+4个字符放在第5个方框中-->
+
+
+
+} else 
+j=0;<!--从头开始循环-->
+   
+}
+setTimeout("scrollIt()",speed);	<!--按照滚动速度的设置，循环滚动字符串-->
+}
+
+scrollIt();<!--直接调用scrollIt函数-->
+
+</SCRIPT>
+
+
+<!--本例程实现了垂直滚动文字的效果-->
+<!--表单格式的动态设置-->
+<!--循环滚动的实现方法-->
+<!--settimeout函数实现动画效果-->

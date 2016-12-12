@@ -1,0 +1,33 @@
+
+<script language="JavaScript">
+var id,pause=0,position=0,revol=9;
+function banner() {
+var i,k;<!--定义变量-->
+var m1="欢迎进入JavaScript世界！"<!--文本-->
+var m2=" 好的东西当然要和大家一起分享！快快告诉你的朋友吧！！";<!--文本-->
+
+var msg=m1+m2;<!--文本-->
+var speed=10;<!--滚动速度-->
+
+document.isnform.banner.value=msg.substring(position,position+160);<!--显示文本中的160个字符-->
+if(position++==msg.length) {<!--如果到达了文本的末端-->
+if (revol--< 2) return;     <!--重新开始-->
+position=0;
+}
+id=setTimeout("banner()",2000/speed);<!--设置动画速度-->
+}
+
+
+</script>
+
+
+<body onload="banner()">
+
+
+<form method="POST" name="isnform">
+<input type="text" size="50" maxlength="256" name="banner">
+</form>
+<!--本例程实现了横向移动显示的跑马灯-->
+<!--字符串的相关函数的使用-->
+<!--settimeout设置动画速度-->
+<!--表单的交互-->

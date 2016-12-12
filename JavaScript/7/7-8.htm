@@ -1,0 +1,55 @@
+
+
+<DIV id=object0 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#ff0000 size=+4>*</FONT></DIV>
+<DIV id=object1 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#0fff00 size=+4>*</FONT></DIV>
+<DIV id=object2 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#ff00ff size=+4>*</FONT></DIV>
+<DIV id=object3 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#0080ff size=+4>*</FONT></DIV>
+<DIV id=object4 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#ff8000 size=+4>*</FONT></DIV>
+<DIV id=object5 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#008000 size=+4>*</FONT></DIV>
+<DIV id=object6 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#8000ff size=+4>*</FONT></DIV>
+<DIV id=object7 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#ff0000 size=+4>*</FONT></DIV>
+<DIV id=object8 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#0fff00 size=+4>*</FONT></DIV> 
+<DIV id=object9 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#ff00ff size=+4>*</FONT></DIV>
+<DIV id=object10 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#0080ff size=+4>*</FONT></DIV>
+<DIV id=object11 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#ff8000 size=+4>*</FONT></DIV>
+<DIV id=object12 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#008000 size=+4>*</FONT></DIV>
+<DIV id=object13 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#8000ff size=+4>*</FONT></DIV>
+<DIV id=object14 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#ff0000 size=+4>*</FONT></DIV>
+<DIV id=object15 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#0fff00 size=+4>*</FONT></DIV>
+<DIV id=object16 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#ff00ff size=+4>*</FONT></DIV>
+<DIV id=object17 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#0080ff size=+4>*</FONT></DIV>
+<DIV id=object18 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#ff8000 size=+4>*</FONT></DIV>
+<DIV id=object19 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#008000 size=+4>*</FONT></DIV>
+<DIV id=object20 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#8000ff size=+4>*</FONT></DIV>
+<DIV id=object21 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#ff0000 size=+4>*</FONT></DIV>
+<DIV id=object22 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#0fff00 size=+4>*</FONT></DIV>
+<DIV id=object23 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#0fff00 size=+4>*</FONT></DIV>
+<DIV id=object24 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#0080ff size=+4>*</FONT></DIV>
+<DIV id=object25 style="LEFT: 250px; POSITION: absolute; TOP: 150px; Z-INDEX: 2"><FONT color=#ff8000 size=+4>*</FONT></DIV>
+<script language="JavaScript">
+
+function setVariables(){<!--设置变量-->
+       
+       h=".pixelLeft=",v=".pixelTop=",dS="",sD=".style";<!--设置变量-->
+}
+var y = 200;<!--初始纵坐标-->
+var x = 300;<!--初始横坐标-->
+var inc=0;
+var X = 250;<!--初始纵坐标-->
+var Y = 150;<!--初始横坐标-->
+function moveLetters() {
+   for ( j = 0 ; j <26 ; j++ ) {
+      objectX="object"+j<!--对第j个对象-->
+      eval(dS + objectX +sD + v + (Y + Math.cos((20*Math.sin(inc/20))+j*70)*y*(Math.sin(10+inc/10)+0.2)*Math.cos((inc + j*25)/10)));<!--设置第j个对象的上边界-->
+      eval(dS + objectX + sD + h + (X + Math.sin((20*Math.sin(inc/20))+j*70)*x*(Math.sin(10+inc/10)+0.2)*Math.cos((inc + j*25)/10)));<!--设置第j个对象的左边界-->
+   }
+   inc+=.2;<!--幅度增加-->
+   setTimeout("moveLetters()", 1);<!--设置周期调用的时间-->
+}
+setVariables()<!--直接调用setVariables函数-->
+moveLetters()<!--直接调用moveLetters函数-->
+</script>
+
+<!--本例程实现了文字的旋转功能-->
+<!--字符串的使用，eval函数的使用-->
+<!--动画中对象的轨迹的设置-->

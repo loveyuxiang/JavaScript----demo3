@@ -1,0 +1,114 @@
+<script language="JavaScript">
+monthnames = new Array(
+"1月",
+"2月",
+"3月",
+"4月",
+"5月",
+"6月",
+"7月",
+"8月",
+"10月",
+"11月",
+"12月"); <!--声明数组变量，存储月份表-->
+
+var linkcount=0;
+
+function addlink(month, day, href) {
+var entry = new Array(3);<!--声明一个数组变量-->
+entry[0] = month;
+entry[1] = day;
+entry[2] = href;
+this[linkcount++] = entry;<!--返回链接对象-->
+}
+
+Array.prototype.addlink = addlink;
+linkdays = new Array();
+monthdays = new Array(12);<!--声明变量，存储每个月的天数-->
+monthdays[0]=31;
+monthdays[1]=28;
+monthdays[2]=31;
+monthdays[3]=30;
+monthdays[4]=31;
+monthdays[5]=30;
+monthdays[6]=31;
+monthdays[7]=31;
+monthdays[8]=30;
+monthdays[9]=31;
+monthdays[10]=30;
+monthdays[11]=31;
+todayDate=new Date();<!--获得当前时间-->
+thisday=todayDate.getDay();<!--获得当前日-->
+thismonth=todayDate.getMonth();<!--获得当前月份-->
+thisdate=todayDate.getDate();<!--获得当前日期-->
+thisyear=todayDate.getYear();<!--获得当前年份-->
+thisyear = thisyear % 100;
+thisyear = ((thisyear < 50) ? (2000 + thisyear) : (1900 + thisyear));<!--年份转换成标准格式-->
+if (((thisyear % 4 == 0) <!--判断今年是否为闰年-->
+&& !(thisyear % 100 == 0))<!--如果是不是闰年，monthdays中的第二项＋1-->
+||(thisyear % 400 == 0)) monthdays[1]++;
+startspaces=thisdate;
+while (startspaces > 7) startspaces-=7;<!--求出当前日期对应的星期几-->
+startspaces = thisday - startspaces + 1;
+if (startspaces < 0) startspaces+=7;<!--计算本月1号对应星期几-->
+document.write("<table border=2 bgcolor=white ");<!--开始画表格的第一行-->
+document.write("bordercolor=black><font color=black>");
+document.write("<tr><td colspan=7><center>" 
++ thisyear 
++"年"+monthnames[thismonth]+"</center></font></td></tr>");<!--显示当前年份和月份-->
+document.write("<tr>");<!--画表格的第二行-->
+document.write("<td align=center>日</td>");
+document.write("<td align=center>一</td>");
+document.write("<td align=center>二</td>");
+document.write("<td align=center>三</td>");
+document.write("<td align=center>四</td>");
+document.write("<td align=center>五</td>");
+document.write("<td align=center>六</td>"); 
+document.write("</tr>");
+document.write("<tr>");
+for (s=0;s<startspaces;s++) {
+document.write("<td>&nbsp</td>");<!--本月1号以前的几列空白-->
+}
+count=1;
+while (count <= monthdays[thismonth]) {<!--依次将本月的每一天填入到表格中-->
+for (b = startspaces;b<7;b++) {
+linktrue=false;
+document.write("<td>");<!--写入表格符-->
+for (c=0;c<linkdays.length;c++) {
+if (linkdays[c] != null) {<!--填入相应的连接-->
+if ((linkdays[c][0]==thismonth + 1) && (linkdays[c][1]==count)) {
+document.write("<a href=\"" + linkdays[c][2] + "\">");
+linktrue=true;
+}
+}
+}
+if (count==thisdate) {
+document.write("<font color='FF0000'><strong>");<!--如果是当前日期，则用特殊的颜色来显示-->
+}
+if (count <= monthdays[thismonth]) {<!--如果没有超出本月的范围-->
+document.write(count);<!--显示日期-->
+}
+else {
+document.write("&nbsp");<!--否则，显示空格-->
+}
+if (count==thisdate) {
+document.write("</strong></font>");<!--如果是当前日期，则用特殊的字体来显示-->
+}
+if (linktrue)
+document.write("</a>");
+document.write("</td>");
+count++;
+}
+document.write("</tr>");
+document.write("<tr>");
+startspaces=0;
+}
+document.write("</table></p>");
+
+</script>
+
+
+
+<!--本例程完成了日历的功能-->
+<!--表格的编写-->
+<!--动态的加入超链接-->

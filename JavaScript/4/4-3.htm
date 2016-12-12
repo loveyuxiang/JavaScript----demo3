@@ -1,0 +1,115 @@
+<script language="JavaScript"> 
+
+var bsYear; 
+var bsDate; 
+var bsWeek; 
+var arrLen=8; <!--数组长度-->
+var sValue=0; <!--当年的秒数 -->
+var dayiy=0; <!--当年第几天 -->
+var miy=0; <!--月份的下标 -->
+var iyear=0; <!--年份标记 -->
+var dayim=0; <!--当月第几天 -->
+var spd=86400; <!--每天的秒数 -->
+
+var year1999="30;29;29;30;29;29;30;29;30;30;30;29"; <!--1999年354 天-->
+var year2000="30;30;29;29;30;29;29;30;29;30;30;29"; <!--2000年354 天-->
+var year2001="30;30;29;30;29;30;29;29;30;29;30;29;30"; <!--2001年384 天-->
+var year2002="30;30;29;30;29;30;29;29;30;29;30;29"; <!--2002年354 天-->
+var year2003="30;30;29;30;30;29;30;29;29;30;29;30"; <!--2003年355 天-->
+var year2004="29;30;29;30;30;29;30;29;30;29;30;29;30"; <!--2004年384 天-->
+var year2005="29;30;29;30;29;30;30;29;30;29;30;29"; <!--2005年354 天-->
+var year2006="30;29;30;29;30;30;29;29;30;30;29;29;30"; 
+
+var month1999="正月;二月;三月;四月;五月;六月;七月;八月;九月;十月;十一月;十二月" <!--1999年农历月份表-->
+var month2001="正月;二月;三月;四月;闰四月;五月;六月;七月;八月;九月;十月;十一月;十二月" <!--2001年农历月份表-->
+var month2004="正月;二月;闰二月;三月;四月;五月;六月;七月;八月;九月;十月;十一月;十二月" <!--2002年农历月份表-->
+var month2006="正月;二月;三月;四月;五月;六月;七月;闰七月;八月;九月;十月;十一月;十二月" <!--2003年农历月份表-->
+var Dn="初一;初二;初三;初四;初五;初六;初七;初八;初九;初十;十一;十二;十三;十四;十五;十六;十七;十八;十九;二十;廿一;廿二;廿三;廿四;廿五;廿六;廿七;廿八;廿九;三十"; 
+<!--农历日历表-->
+var Ys=new Array(arrLen); 
+<!--计算每一年的秒数-->
+Ys[0]=919094400;Ys[1]=949680000;Ys[2]=980265600; 
+Ys[3]=1013443200;Ys[4]=1044028800;Ys[5]=1074700800; 
+Ys[6]=1107878400;Ys[7]=1138464000; 
+
+var Yn=new Array(arrLen); <!--定义变量，农历年的名称 -->
+Yn[0]="己卯年";Yn[1]="庚辰年";Yn[2]="辛巳年"; 
+Yn[3]="壬午年";Yn[4]="癸未年";Yn[5]="甲申年"; 
+Yn[6]="乙酉年";Yn[7]="丙戌年"; 
+var D=new Date(); <!--获得当前日期-->
+var yy=D.getYear(); <!--获得当前年-->
+var mm=D.getMonth()+1; <!--获得当前月份-->
+var dd=D.getDate(); <!--获得当前日期-->
+var ww=D.getDay(); <!--获得当前日子-->
+if (ww==0) ww="<font color=RED>星期日"; 
+if (ww==1) ww="星期一"; 
+if (ww==2) ww="星期二"; 
+if (ww==3) ww="星期三"; 
+if (ww==4) ww="星期四"; 
+if (ww==5) ww="星期五"; 
+if (ww==6) ww="<font color=RED>星期六"; 
+ww=ww; <!--将ww换成“星期几”的方式表示-->
+var ss=parseInt(D.getTime() / 1000); 
+if (yy<100) yy="19"+yy; <!--将年份转换为标准形式-->
+
+for (i=0;i<arrLen;i++) 
+if (ss>=Ys[i]){ 
+iyear=i; 
+sValue=ss-Ys[i]; <!--得到当年的秒数 -->
+} 
+dayiy=parseInt(sValue/spd)+1; <!--得到当年的天数 -->
+
+var dpm=year1999; <!--根据不同的年份，选择不同的农历月份日子表
+if (iyear==1) dpm=year2000; 
+if (iyear==2) dpm=year2001; 
+if (iyear==3) dpm=year2002; 
+if (iyear==4) dpm=year2003; 
+if (iyear==5) dpm=year2004; 
+if (iyear==6) dpm=year2005; 
+if (iyear==7) dpm=year2006; 
+dpm=dpm.split(";"); 
+
+var Mn=month1999; <!--根据不同的年份，选择不同的农历月份表-->
+if (iyear==2) Mn=month2001; 
+if (iyear==5) Mn=month2004; 
+if (iyear==7) Mn=month2006; 
+Mn=Mn.split(";"); 
+
+var Dn="初一;初二;初三;初四;初五;初六;初七;初八;初九;初十;十一;十二;十三;十四;十五;十六;十七;十八;十九;二十;廿一;廿二;廿三;廿四;廿五;廿六;廿七;廿八;廿九;三十"; 
+Dn=Dn.split(";"); 
+
+dayim=dayiy; 
+
+var total=new Array(13);<!--定义变量--> 
+total[0]=parseInt(dpm[0]); 
+for (i=1;i<dpm.length-1;i++) total[i]=parseInt(dpm[i])+total[i-1]; <!--得到total的值，用来计算农历的日期和月份-->
+for (i=dpm.length-1;i>0;i--) 
+if (dayim>total[i-1]){ 
+dayim=dayim-total[i-1]; <!--对农历的日期进行赋值-->
+miy=i; <!--对农历的月份进行赋值-->
+} 
+bsWeek=ww; <!--定义变量，记录星期-->
+bsDate=yy+"年"+mm+"月"; <!--定义变量记录年和月-->
+bsDate2=dd; 
+bsYear="农历"+Yn[iyear]; <!--得到农历的年份-->
+bsYear2=Mn[miy]+Dn[dayim-1];<!---将农历的月份和日合成一个新的变量--> 
+if (ss>=Ys[7]||ss<Ys[0]) bsYear=Yn[7]; 
+
+function CAL(){ 
+<!--画日历-->
+document.write("<table border='1' cellspacing='3' width='105' bordercolor='#000000' bgcolor='#FFFFFF' height='110' cellpadding='2'");<!--画第一行表格-->
+<!--输出日期--> 
+document.write("<tr><td align='center'><b><font color=#008040>"+bsDate+"</font><br><font face='Arial' size='6' color=#FF8040>"+bsDate2+"</font><br><font color=#008040><span style='FONT-SIZE: 10.5pt'>"); 
+<!--输出星期-->
+document.write(bsWeek+"</span><br>"+"<br></b><font color=#9B4E00>"); 
+<!--输出农历-->
+document.write(bsYear+"<br>"+bsYear2+"</td></tr></table>"); 
+} 
+
+</script> 
+<script language="javascript">CAL();</script> 
+
+<!--本例程实现了小窗口内的日历-->
+<!--通过程序，读者认真体会农历日历的实现方法-->
+<!--javascript自己带的时间函数的使用-->
+<!--带有一定格式的输出-->

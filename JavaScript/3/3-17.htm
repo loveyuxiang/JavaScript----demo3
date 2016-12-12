@@ -1,0 +1,17 @@
+
+<script language="JavaScript">
+function surfto(form) 
+{      
+ var myindex=form.dest.selectedIndex
+    location=form.dest.options[myindex].value;
+}
+</SCRIPT>
+<FORM NAME="form1"> 
+ <SELECT NAME="dest" SIZE=4>  
+  <OPTION SELECTED VALUE="">选项</OPTION>
+  <OPTION VALUE="">站内搜索</OPTION>
+  <OPTION VALUE="">聊天室</OPTION>
+  <OPTION VALUE="">资料查询</OPTION>
+</SELECT>
+<INPUT TYPE="BUTTON" VALUE="GO!" onClick="surfto(form1)">
+</FORM>
